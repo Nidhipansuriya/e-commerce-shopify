@@ -1,0 +1,211 @@
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+@mixin transition($transition) {
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition: $transition;
+  -webkit-transition: $transition;
+  transition: $transition;
+}
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+@mixin background-opacity($color, $opacity: 0.5) {
+  background: $color;
+  background: rgba($color, $opacity);
+}
+@mixin font_size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+/* MIXIN : LINEAR GRADIENT
+ *    EX : @include linear-gradient((90deg, #000 0%, rgba(0,0,0,0) 100%));
+ * ------------------------------------------------------------------------- */
+@mixin linear-gradient($value) {
+  background: -webkit-linear-gradient($value);
+  background: -moz-linear-gradient($value);
+  background: -o-linear-gradient($value);
+}
+
+/* MIXIN : MEDIA QUERIES
+ *    EX : @include mq( 'lap-and-up' ) { CODE }
+ * ------------------------------------------------------------------------- */
+$small--phone: "screen and (max-width: 340px)"; 
+$small_phone: "screen and (max-width: 420px)";
+$s_phone: "screen and (max-width: 600px)";
+$phone: "screen and (max-width: 767px)";
+$phone-portrait: "screen and (max-width: 551px)";
+$phone-landscape: "screen and (min-width: 552px) and (max-width: 767px)";
+$tablet: "screen and (min-width: 768px) and (max-width: 1024px)";
+$phone-and-tablet: "screen and (max-width: 1024px)";
+$tablet-and-up: "screen and (min-width: 768px)";
+$tablet-portrait: "screen and (min-width: 768px) and (max-width: 991px)";
+$tablet-landscape: "screen and (min-width: 992px) and (max-width: 1024px)";
+$lap: "screen and (min-width: 1025px) and (max-width: 1199px)";
+$lap-and-up: "screen and (min-width: 1025px)";
+$desk-and-up: "screen and (min-width: 1200px)";
+$desk-and-down: "screen and (max-width: 1199px)";
+$large-desk-and-up: "screen and (min-width: 1400px)";
+$lap-desk-and-down: "screen and (max-width: 1440px)";
+$large-desk-and-down: "screen and (max-width: 1600px)";
+$lap-and-desk: "screen and (min-width: 1025px) and (max-width: 1679px)";
+$tablet-and-down: "screen and (max-width: 991px)";
+
+
+@mixin mq($alias) {
+  @if $alias == "phone" {
+    @media #{$phone} {
+      @content;
+    }
+  } @else if $alias == "small--phone" {
+    @media #{$small--phone} {
+      @content;
+    }
+  } @else if $alias == "small_phone" {
+    @media #{$small_phone} {
+      @content;
+    }
+  } @else if $alias == "s_phone" {
+    @media #{$s_phone} {
+      @content;
+    }
+  }
+    @else if $alias == "phone-portrait" {
+    @media #{$phone-portrait} {
+      @content;
+    }
+  } @else if $alias == "phone-landscape" {
+    @media #{$phone-landscape} {
+      @content;
+    }
+  } @else if $alias == "tablet" {
+    @media #{$tablet} {
+      @content;
+    }
+  } @else if $alias == "phone-and-tablet" {
+    @media #{$phone-and-tablet} {
+      @content;
+    }
+  } @else if $alias == "tablet-and-up" {
+    @media #{$tablet-and-up} {
+      @content;
+    }
+  } @else if $alias == "tablet-portrait" {
+    @media #{$tablet-portrait} {
+      @content;
+    }
+  } @else if $alias == "tablet-landscape" {
+    @media #{$tablet-landscape} {
+      @content;
+    }
+  } @else if $alias == "lap" {
+    @media #{$lap} {
+      @content;
+    }
+  } @else if $alias == "lap-and-up" {
+    @media #{$lap-and-up} {
+      @content;
+    }
+  } @else if $alias == "desk-and-up" {
+    @media #{$desk-and-up} {
+      @content;
+    }
+  } @else if $alias == "desk-and-down" {
+    @media #{$desk-and-down} {
+      @content;
+    }
+  } @else if $alias == "lap-and-desk" {
+    @media #{$lap-and-desk} {
+      @content;
+    }
+  } @else if $alias == "large-desk-and-up" {
+    @media #{$large-desk-and-up} {
+      @content;
+    }
+  }
+    @else if $alias == "lap-desk-and-down" {
+    @media #{$lap-desk-and-down} {
+      @content;
+    }
+  } @else if $alias == "large-desk-and-down" {
+    @media #{$large-desk-and-down} {
+      @content;
+    }
+  } @else if $alias == "tablet-and-down" {
+    @media #{$tablet-and-down} {
+      @content;
+    }
+  } @else if $alias == "tab_max" {
+    @media #{$tab_max} {
+      @content;
+    }
+  }@else {
+    @media (#{$alias}) {
+      @content;
+    }
+  }
+}
+
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin align-items($align) {
+  -webkit-box-align: $align;
+  -webkit-flex-align: $align;
+  -ms-flex-align: $align;
+  -webkit-align-items: $align;
+  align-items: $align;
+}
+@mixin flex-direction($direction) {
+  flex-direction: $direction;
+  -webkit-flex-direction: $direction;
+}
+@mixin flex-wrap($wrap) {
+  flex-wrap: $wrap;
+  -webkit-flex-wrap: $wrap;
+}
+
+@mixin justify-content($content) {
+  justify-content: $content;
+  -webkit-justify-content: $content;
+}
+@mixin grid-template-columns($content) {
+  -ms-grid-columns: $content;
+  grid-template-columns: $content;
+}
+
+@mixin inline-flex(){
+  display:-webkit-inline-box;
+  display:-ms-inline-flexbox;
+  display:inline-flex;
+}

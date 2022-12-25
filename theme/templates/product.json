@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "recommendation": {
+      "type": "product-recommendation",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "recommendation"
+  ]
+}

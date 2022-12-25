@@ -1,0 +1,55 @@
+<style>
+    {{ settings.font_heading | font_face }}
+    {{ settings.font_body | font_face }}
+  
+    {%- assign font_body_bold = settings.font_body | font_modify: 'weight', 'bolder' -%}
+    {%- assign font_body_bold_italic = font_body_bold | font_modify: 'style', 'italic' -%}
+  
+    {{ font_body_bold | font_face }}
+    {{ font_body_bold_italic | font_face }}
+  
+    :root {
+      --primary-color: {{ settings.primary_color }};
+      --secondary-color: {{ settings.secondary_color }};
+      --bg-color: {{ settings.bg_color }};
+      --basic-text-color: {{ settings.basic_text_color }};
+      --heading-text-color: {{ settings.heading_text_color }};
+
+      /* button */
+      --button-bg-color: {{settings.button_bg_color}};
+      --button-text-color: {{settings.button_text_color}};
+      --button-radius: {{settings.button_radius}}px;
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      html {
+        box-sizing: border-box;
+        font-size: 62.5%;
+        height: 100%;
+      }
+
+      body {
+        display: grid;
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-columns: 100%;
+        min-height: 100%;
+        margin: 0;
+        font-size: 1.5rem;
+        letter-spacing: 0.06rem;
+        line-height: 1.8;
+        font-family: var(--font-body-family);
+        font-style: var(--font-body-style);
+        font-weight: var(--font-body-weight);
+      }
+
+      @media screen and (min-width: 750px) {
+        body {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  </style>

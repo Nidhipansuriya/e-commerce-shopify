@@ -1,0 +1,49 @@
+<section class="category-hero-section">
+    <div class="custom-container">
+        <div class="row d-flex row-padding align-items-center collection_all_main" id="all_collections">
+            {% for collection in collections %}
+            {% if collection.image %}
+            {%- assign collection_image = collection.image -%}
+            {% elsif collection.products.first and collection.products.first.images != empty %}
+            {%- assign collection_image = collection.products.first.featured_image -%}
+            {% else %}
+            {% assign collection_image = blank %}
+            {% endif %}
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 my-2">
+                <div class="category-box">
+                    <div class="category-box-wrap">
+                        <div class="img">
+                          {%- assign src_name = collection_image -%}
+                          {%- assign src_alt = collection_image.alt -%}
+                          {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+                        </div>
+                       
+                        <div class="category-content">
+                            <div class="category-content-box">
+                                <div class="category-title">{{ collection.title }}</div>
+                                <a href="{{ collection.url }}">
+                                    <button class="categort-button mt-3">View Collection</button>
+                                </a>
+                            </div>
+                        </div> 
+                      <!-- {% include 'collection-grid-item' %} -->
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+  
+  
+  {% schema %}
+  {
+    "name": "list-collection",
+    "presets": [
+        {
+            "name": "list-collection",
+            "category": "list collection"
+        }
+    ]
+  }
+  {% endschema %}

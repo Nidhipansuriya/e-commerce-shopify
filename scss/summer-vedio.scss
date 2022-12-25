@@ -1,0 +1,48 @@
+.summer-vedio-section {
+    margin: 100px 0px;
+    @include mq("phone"){
+        margin: 25px 0;
+    }
+    .summer-vedio-wrap {
+        align-items: center;
+        .summer-content-right {
+            @include mq("phone"){
+               margin-top: 20px;
+            }
+            .summer-content-head {
+                font-family: 'Heebo';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 40px;
+                line-height: 60px;
+                letter-spacing: 1px;
+                text-transform: capitalize;
+                color: #333333;
+                @include mq("lap"){
+                    font-size: 32px;
+                    line-height: 52px;
+                }
+                @include mq("phone-and-tablet"){
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+            }
+            .summer-content-desc {
+                font-family: 'Heebo';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 30px;
+                color: #666666;
+                @include mq("lap"){
+                    font-size: 16px;
+                    line-height: 26px;
+                }
+                @include mq("phone-and-tablet"){
+                    font-size: 14px;
+                    line-height: 22px;
+                }   
+            }   
+        }
+    }
+}

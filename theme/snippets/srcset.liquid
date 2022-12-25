@@ -1,0 +1,28 @@
+{% assign sizes = '480,765,900,1000,1200,1500,1900' | split: "," %}
+{%- assign load_blur = true -%}
+{%- if load_blur -%}
+  {% assign base_classes =  "lazyload img-responsive blur-up" %}
+  {%- assign load_blur = true -%}
+{% else  %}
+  {% assign base_classes =  "lazyload img-responsive" %}
+{%- endif -%}
+
+{%- if asset_url -%}
+  <img alt="{{src_alt}}" {%- if load_blur -%} src="{{- src_name | asset_img_url: '50x' -}}" {%- else -%} src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" {%- endif -%} data-sizes="auto" data-src="{{- src_name | asset_img_url: 'master' -}}" data-srcset="
+            {%- for size in sizes -%}
+            {%- assign size_x = size| append : 'x' -%}
+            {{- src_name | asset_img_url: size_x  }} {{size | append:'w' -}},
+            {%- endfor -%}" class="{{base_classes}}{% unless src_class == blank %} {{src_class}}{% endunless %}">
+{%- elsif file_url -%}
+  <img alt="{{src_alt}}" {%- if load_blur -%} src="{{- src_name | file_img_url: '50x' -}}" {%- else -%} src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" {%- endif -%} data-sizes="auto" data-src="{{- src_name | file_img_url: 'master' -}}" data-srcset="
+                    {%- for size in sizes -%}
+                    {%- assign size_x = size| append : 'x'  -%}
+                    {{- src_name | file_img_url: size_x   }} {{size | append:'w' -}},
+                    {%- endfor -%}" class="{{base_classes}}{% unless src_class == blank %} {{src_class}}{% endunless %}">
+{%- else -%}
+  <img alt="{{src_alt}}" {%- if load_blur -%} src="{{- src_name | img_url: '50x' | format:'pjpg' -}}" {%- else -%} {%- unless no_base -%} src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" {%- endunless -%} {%- endif -%} data-sizes="auto" data-src="{{- src_name | img_url: 'master' | format:'pjpg' -}}" data-srcset="
+            {%- for size in sizes -%}
+            {%- assign size_x = size| append : 'x' -%}
+            {{- src_name | img_url: size_x | format:'pjpg' }} {{size | append:'w' -}},
+            {%- endfor -%}" class="{{base_classes}}{% unless src_class == blank %} {{src_class}}{% endunless %}">
+{%- endif -%}

@@ -1,0 +1,49 @@
+// home page scss
+.template-index{
+    .hero-section-wrap{
+        .hero-section{
+            a{
+                display: block;
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+                .hero-desktop-img{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    @include mq("phone"){
+                        display: none;
+                    }
+                }
+                .hero-mobile-img{
+                    display: none;
+                    @include mq("phone"){
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .featured_collection_section{
+        .container{
+            @include mq("small_phone"){
+                padding: 0px 5px;
+            }
+            .product_slider {
+                li{
+                    padding: 0px 15px;
+                    @include mq("lap-desk-and-down"){
+                        padding: 0px 7.5px;
+                    }
+                      @include mq("small_phone"){
+                        padding: 0px 5px;
+                    }
+                    .product-item {
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+}

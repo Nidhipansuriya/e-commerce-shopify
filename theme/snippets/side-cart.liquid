@@ -1,0 +1,280 @@
+<div id="side_drawer_section">
+  <div id="side_cart" class="Fixed" data-items="{{cart.items.size}}">
+    <div class="side_cart_wrapper_fixed"></div>
+    <div class="cart_min">
+      <div class="cart-header">
+        <h3 class="title">
+          <a href="/cart"
+            ><span class="bag-icon">{% render 'cart-logo' %}</span>Cart</a
+          >
+          <p class="toggleCart-close">
+            Close <span class="close_icon">{% render 'icon-close' %}</span>
+          </p>
+        </h3>
+      </div>
+
+      <form class="mini_cart">
+        <div class="cart_data">
+          {% if cart.items.size <= 0 %}
+            <div class="no_data">Your cart is empty</div>
+          {% endif %}
+          {% for item in cart.items %}
+            {% assign bundlePrice = 0 %}
+            {% assign bundleCompPrice = 0 %}
+            {% assign isBundle = false %}
+            {% assign b_id = 0 %}
+            {% for prop in item.properties %}
+              {% if prop.first contains '_bid' %}
+                {% assign isBundle = true %}
+                {% assign b_id = prop.last %}
+              {% endif %}
+              {% if prop.first contains '_type' %}
+                {% assign type = prop.last %}
+              {% endif %}
+            {% endfor %}
+            {% assign mainProdPrice = 0 %}
+            {% assign mainProdCompPrice = 0 %}
+            {% if type == 'master' %}
+              {% assign mainProdPrice = item.line_price %}
+              {% assign mainProdCompPrice = item.variant.compare_at_price | times: item.quantity %}
+              {% assign bundlePrice = bundlePrice | plus: mainProdPrice %}
+              {% assign bundleCompPrice = bundleCompPrice | plus: mainProdCompPrice %}
+
+              {% for itemIn in cart.items %}
+                {% assign childPrice = 0 %}
+                {% assign childCompPrice = 0 %}
+                {% for prop in itemIn.properties %}
+                  {% if prop.first contains '_type' and prop.last contains 'child' and itemIn.properties._bid == b_id %}
+                    {% assign childPrice = itemIn.line_price %}
+                    {% assign childCompPrice = itemIn.variant.compare_at_price | times: itemIn.quantity %}
+                    {% assign bundlePrice = bundlePrice | plus: childPrice %}
+                    {% assign bundleCompPrice = bundleCompPrice | plus: childCompPrice %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
+            <div
+              data-id="{{forloop.index}}"
+              data-original-price="{{item.original_line_price}}"
+              data-type="{{type}}"
+              data-bid="{{b_id}}"
+              data-line-price="{{item.line_price}}"
+              class="items{% if isBundle %} bundle-item{% endif %}{% if type == 'child' %} hide{% endif %}"
+              data-quantity="{{item.quantity}}"
+              data-variant="{{item.variant_id}}"
+              data-product="{{item.product.handle}}"
+              data-title="{{item.product.title}}"
+            >
+              <div class="flex-view-xs d-flex align-items-center">
+                <div class="col-4">
+                  <div class="image cart_item">
+                    <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                      {%- assign src_name = item -%}
+                      {%- assign src_alt = item.product.title -%}
+                      {%- render 'srcset' with src_name:src_name,src_alt:src_alt -%}
+                    </a>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="name cart_item ">
+                    <a href="{{ item.url }}">
+                      {{ item.product.title }}
+                    </a>
+                  </div>
+                  {% if item.sku != blank %}
+                    <span class="item_sku">SKU : {{ item.sku }}</span>
+                  {% endif %}
+
+                  <!--
+                    {% if type == 'master' %}
+                        {% for prop in item.properties %}
+                            {% assign p = prop.first | slice: 0 %}
+                            {% unless p == '_' %}
+                                <p>{{prop.first}}:{{prop.last}}</p>
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                  -->
+
+                  <!--
+                    {% if item.line_level_discount_allocations.size > 0 %}
+                        {% for discount_allocation in item.line_level_discount_allocations %}
+                            <span class="discount-msg">{{discount_allocation.discount_application.title}}</span>
+                        {% endfor %}
+                    {% endif %}
+                  -->
+                </div>
+              </div>
+
+              <div class="flex-view-xs d-flex align-items-center">
+                <div class="col-4">
+                  <div class="price-wrapper">
+                    <div class="flex-view-xs space-between ">
+                      {% assign compare = item.variant.compare_at_price | times: item.quantity %}
+                      {% if isBundle %}
+                        <span class="side_cart_price d-flex">
+                          <div class="pn-total-line-item original-price" data-id="{{ item.key }}">
+                            <span class="money">
+                              <div class="pn-total-line-item side_cart_price" data-id="{{ item.key }}">
+                                {{ bundlePrice | money }}
+                              </div>
+                            </span>
+                          </div>
+                          {% if bundleCompPrice > bundlePrice %}
+                            <small class="compare-price"
+                              ><span class="money">{{ bundleCompPrice | money }}</span></small
+                            >
+                          {% endif %}
+                        </span>
+                      {% else %}
+                        <span class="side_cart_price d-flex">
+                          <div class="pn-total-line-item original-price" data-id="{{ item.key }}">
+                            <span class="money">
+                              <div class="pn-total-line-item side_cart_price" data-id="{{ item.key }}">
+                                {{ item.line_price | money }}
+                              </div>
+                            </span>
+                          </div>
+                          {% if compare > item.line_price %}
+                            <small class="compare-price"
+                              ><span class="money">{{ compare | money }}</span></small
+                            >
+                          {% else %}
+                            {% if item.original_line_price != item.line_price %}
+                              <small class="original-price"
+                                ><s>
+                                  <div class="pn-total-line-item" data-id="{{ item.key }}">
+                                    <span class="money">
+                                      <div class="pn-total-line-item sidecart_compare_price" data-id="{{ item.key }}">
+                                        {{ item.original_line_price | money }}
+                                      </div>
+                                    </span>
+                                  </div>
+                                </s></small
+                              >
+                            {% endif %}
+                          {% endif %}
+                        </span>
+                      {% endif %}
+                      <!--
+                        <p class="remove">
+                            <a>
+                                <span class="remove-icon"><img src="{{'cart-remove.svg' | file_url}}" alt="remove item"/></span>
+                                <span class="remove_text">Remove</span>
+                            </a>
+                        </p>
+                      -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <!--
+                    {% if type == 'master' %}
+                        {% for prop in item.properties %}
+                            {% assign p = prop.first | slice: 0 %}
+                            {% unless p == '_' %}
+                                <p>{{prop.first}}:{{prop.last}}</p>
+                            {% endunless %}
+                        {% endfor %}
+                    {% endif %}
+                  -->
+                  {% assign item_product = item.product %}
+                  <div class="qty cart_item">
+                    <div class="product_form">
+                      <div class="option_box flex-view-xs d-flex">
+                        <div class="spinner clearfix">
+                          <div class="side-cart-loader">
+                            <!-- <img class="img" src="{{ 'button-loading.svg' | file_url }}" alt=""> -->
+                            {% render 'loader-gif' %}
+                          </div>
+                          {% unless isBundle %}
+                            <div class="spinner_wrap">
+                              <div class="spinner-min">{% render 'qty-minus' %}</div>
+                              <input
+                                type="text"
+                                id="updates_{{ item.key }}"
+                                class="product_qty"
+                                value="{{ item.quantity }}"
+                                min="0"
+                                data-id="{{ item.key }}"
+                                pattern="[0-9]*"
+                                inputmode="numeric"
+                                readonly
+                              >
+
+                              <div class="spinner-plus">{% render 'qty-plus' %}</div>
+                            </div>
+                          {% endunless %}
+                        </div>
+                        <p class="remove">
+                          <a>
+                            <span class="remove-icon">{% render 'icon-remove' %}</span>
+                            <!-- <span class="remove_text">Remove</span> -->
+                          </a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--
+                    {% if item.line_level_discount_allocations.size > 0 %}
+                        {% for discount_allocation in item.line_level_discount_allocations %}
+                            <span class="discount-msg">{{discount_allocation.discount_application.title}}</span>
+                        {% endfor %}
+                    {% endif %}
+                  -->
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="footer">
+          <!-- <hr> -->
+          <!-- <div class="docapp-coupon-input"></div> -->
+          <!--
+            <div class="offer-section-inner">
+                <div class="offer-header-title">
+                    <img src="//cdn.shopify.com/s/files/1/1188/2592/files/discount.png?v=1635318983" alt="discount-badge">
+                    <span>Applicable offers:</span>
+                </div>
+                <ul class="offer-section-ul">
+                    {% if settings.offer_txt_1 != "" %}
+                        <li>{{ settings.offer_txt_1 }}</li>
+                    {% endif %}
+                    {% if settings.offer_txt_2 != "" %}
+                        <li>{{ settings.offer_txt_2 }}</li>
+                    {% endif %}
+                    {% if settings.offer_txt_3 != "" %}
+                        <li>{{ settings.offer_txt_3 }}</li>
+                    {% endif %}
+                    {% if settings.offer_txt_4 != "" %}
+                        <li>{{ settings.offer_txt_4 }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+          -->
+          <div class="total-price-wrapper" data-price="{{ cart.total_price | money }}">
+            <span class="cart-subtotal-label">Total</span>
+            <!--
+              {% if cart.original_total_price > cart.total_price%}
+              <span class="cart-subtotal-compare">{{ cart.original_total_price | money }}</span>
+              {% endif %}
+            -->
+            <span class="cart-subtotal-total">{{ cart.total_price | money }}</span>
+            <!-- <span class="subtotal-total">{{ cart.total_price | money }}</span> -->
+          </div>
+          <!-- <div class="docapp-cart-with-coupon-summary"></div> -->
+          <div class="btn-wrapper">
+            <div class="check_btn d-flex">
+              <a class="btn continue_shop" href="/collections"> Continue Shopping </a>
+              <a href="/checkout" class="btn checkout_btn"> Secure Checkout </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="count hide">
+      {{ cart.item_count }}
+    </div>
+  </div>
+</div>

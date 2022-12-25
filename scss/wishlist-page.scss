@@ -1,0 +1,207 @@
+// .wishlist-content-wrap{
+//     .section-heading-wrap{
+//         margin: 70px 0px;
+//         @include mq("lap"){
+//             margin: 40px 0px;    
+//         }
+//         @include mq("tablet-landscape"){
+//             margin: 30px 0px;
+//         }
+//         @include mq("tablet-and-down"){
+//             margin: 20px 0px;
+//         }
+//         @include mq("small_phone"){
+//             margin: 15px 0px;
+//         }
+//         .section-title{
+//             font-family: $heading-font;
+//             font-weight: 600;
+//             font-size: 30px;
+//             line-height: 37px;
+//             text-align: center;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: $color-header-bg;
+//             margin-bottom: 10px;
+//             @include mq("phone-portrait"){
+//               font-size: 22px;
+//               line-height: 24px;
+//             }
+//             @include mq("small_phone"){
+//               font-size: 18px;
+//               line-height: 20px;
+//             }
+//         }
+//     }
+
+//     .mian-wishlist-wrap{
+//         margin-bottom: 100px;
+//         .wishlist_items_main{
+//             .wishlist-items-ul{
+//                 list-style: none;
+//                 color: $color-header-bg;
+//                 border-bottom: 1px solid $color-cart-page;
+//                 padding-bottom: 7px;
+//                 margin-bottom: 19px;
+//                 margin-top: 0;
+//                 text-transform: uppercase;
+//                 font-size: 15px;
+//                 font-weight: 700;
+//                 padding: 10px 30px;
+//                 background: $color-cart-page;
+//                 @include mq("phone-portrait"){
+//                   font-size: 14px;
+//                   padding: 10px 15px;
+//                 }
+//                 li {
+//                     @include mq("tablet-portrait"){
+//                         display: none;
+//                     }
+//                     @include mq("phone"){
+//                         display: none;
+//                     }
+//                 }
+//                 .first-col {
+//                     width: 70%;
+//                     @media (max-width: 991px) {
+//                       display: block;
+//                       width: 100%;
+//                     }
+//                 }
+//                 .second-col {
+//                     width: 15%;
+//                 }
+//             }
+//             .wishlist-items-wrap{
+//                 margin: 0;
+//                 padding: 0 30px;
+//                 @include mq("phone-portrait"){
+//                     padding: 0;
+//                 }
+//                 .wishlist-item{
+//                     border-bottom: 1px solid $color-off-grey;
+//                     position: relative;
+//                     padding-bottom: 18px;
+//                     margin-bottom: 15px;
+//                     .wishlist-product-info{
+//                         width: 70%;
+//                         @include mq("tablet-portrait"){
+//                             width: 85%;
+//                         }
+//                         @include mq("phone"){
+//                             width: 85%;
+//                         }
+//                         .item-img-wrap{
+//                             width: 100px;
+//                             padding-right: 15px;
+//                         }
+//                         .wishlist-item-info{
+//                             .item-info-wrap{
+//                                 a{
+//                                     font-family: $heading-font;
+//                                     font-style: normal;
+//                                     font-weight: 500;
+//                                     font-size: 16px;
+//                                     line-height: 20px;
+//                                     letter-spacing: 0.08em;
+//                                     text-transform: uppercase;
+//                                     color: $color-product-title;
+//                                     @include mq("tablet-and-down"){
+//                                         font-size: 14px;
+//                                     }
+//                                     @include mq("small_phone"){
+//                                         font-size: 12px;
+//                                     }
+//                                 }
+//                                 .item-price{
+//                                     margin: 10px 0;
+//                                     display: none;
+//                                     @include mq("tablet-portrait"){
+//                                         display: block;
+//                                     }
+//                                     @include mq("phone"){
+//                                         display: block;
+//                                     }
+//                                     .money{
+//                                         font-family: $base-font;
+//                                         font-size: 18px;
+//                                         line-height: 26px;
+//                                         letter-spacing: 0.08em;
+//                                         text-transform: uppercase;
+//                                         color: $color-light---yellow;
+//                                         @include mq("phone-portrait"){
+//                                             font-size: 14px;
+//                                             line-height: 20px;
+//                                         }
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+//                     .wishlist-product-price{
+//                         width: 15%;
+//                         @include mq("tablet-portrait"){
+//                             display: none;
+//                         }
+//                         @include mq("phone"){
+//                             display: none;
+//                         }
+//                         .item-price{
+//                             .money{
+//                                 font-family: $base-font;
+//                                 font-size: 18px;
+//                                 line-height: 26px;
+//                                 letter-spacing: 0.08em;
+//                                 text-transform: uppercase;
+//                                 color: $color-light---yellow;
+//                             }
+//                         }
+//                     }
+//                     .wishlist-product-action{
+//                         width: 15%;
+//                         .wishlist-add-cart-btn{
+//                             width: 250px;
+//                             height: 45px;
+//                             background: $color-splide-arrow;
+//                             border: 1px solid $color-splide-arrow;
+//                             color: $color--white;
+//                             font-family: var(--typeBasePrimary);
+//                             font-weight: 500;
+//                             font-size: 18px;
+//                             text-transform: uppercase;
+//                             cursor: pointer;
+//                         }
+//                         .wishlist-delete-btn ,.delete-local-btn{
+//                             width: 35px;
+//                             height: 35px;
+//                             border-radius: 3px;
+//                             background: $color-white-walk;
+//                             margin-left: 10px;
+//                             border: none;
+//                             cursor: pointer;
+//                         }
+//                     }
+//                 }
+//                 .empty-msg{
+//                     font-family: $heading-font;
+//                     font-style: normal;
+//                     font-weight: 500;
+//                     font-size: 16px;
+//                     line-height: 28px;
+//                     letter-spacing: 0.08em;
+//                     text-transform: uppercase;
+//                     color: $color-product-title;
+//                     margin-top: 15px;
+//                     @include mq("phone-portrait"){
+//                         font-size: 14px;
+//                         line-height: 26px;
+//                     }
+//                     @include mq("small--phone"){
+//                         font-size: 12px;
+//                         line-height: 24px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

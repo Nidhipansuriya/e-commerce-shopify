@@ -1,0 +1,309 @@
+#shopify-section-header{
+    background-color: $bg-color;
+    .header_sec{
+        max-width: 1445px;
+        padding: 8px 15px;
+        .header_logo{
+            @include mq("phone-and-tablet") {
+                width: 33%;
+                text-align: center;
+            }
+            .logo_main_div{
+                a{
+                    @include mq("phone"){
+                        display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    }
+                    img{
+                        max-width: 30% !important;
+                        @include mq("phone"){
+                            max-width: 64px;
+                        }
+                    }
+                }
+            }
+        }
+        .header_menu{
+            @include mq("phone-and-tablet") {
+                display: none;
+            }
+        }
+        .menu_main_div{
+            .nav_ul {
+                display: flex;
+                align-items: center;
+                @include mq("phone-and-tablet") {
+                    display: block;
+                    padding: 1.7rem;
+                }
+                .nav_li {
+                    margin-right: 35px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 5px;
+                    @include mq("lap-desk-and-down"){
+                        margin-right: 20px;
+                    }
+                    @include mq("desk-and-down"){
+                        margin-right: 15px;
+                    }
+                    @include mq("phone-and-tablet") {
+                        margin-right: 0;
+                        margin-bottom: 10px;
+                    }
+                    &:hover{
+                        .menu.dropdown-child{
+                            display: block;
+                            transition: .3s all;
+                        }
+                    }
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    a,p {
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 25px;
+                        letter-spacing: 0.04em;
+                        text-transform: capitalize;
+                        text-decoration: none;
+                        // border-bottom: 1.5px solid transparent;
+                        color: #333333;
+                        margin: 0 ;
+                        cursor: pointer;
+                        @include mq("desk-and-down"){
+                            font-size: 14.5px;
+                        }
+                        &:hover{
+                            color: $primary;
+                            // border-color: $primary;
+                        }
+                    }
+                    svg{
+                        margin-top: 3px;
+                    }
+                }
+                .active_nav_li{
+                    a,p{
+                        color: $primary;
+                    }
+                }
+            }
+        }
+        .header_icon{
+            @include mq("phone-and-tablet") {
+                width: 33%;
+                display: flex;
+                justify-content: flex-end;
+            }
+            ul{
+                li{
+                    margin-left: 27px;
+                    position: relative;
+                    &:first-child{
+                        margin-left: 0;
+                    }
+                    span{
+                        cursor: pointer;
+                        display: block;
+                    }
+                    .cart_item_counter {
+                        width: 17px;
+                        height: 17px;
+                        border-radius: 50%;
+                        display: flex;
+                        background: $primary;                    
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+                        right: -4px;
+                        font-weight: 700;
+                        font-size: 13px;
+                        line-height: 16px;
+                        top: -4px;
+                    }
+                    .header_user_account{
+                        @include mq("phone-and-tablet") {
+                            display: none;
+                        }
+                    }
+                }
+                .cart-wrap-header{
+                    @include mq("phone-and-tablet"){
+                        display: none;
+                    }
+                }
+            }
+            .header_user_account{
+                @include mq("phone-and-tablet") {
+                    display: none;
+                }
+            }
+        }
+        .sidebar_icon{
+            display: none;
+            @include mq("phone-and-tablet") {
+                display: block;
+                width: 33%;
+                text-align: left;
+                
+            }
+            button {
+                background: transparent;
+                border: 0;
+                padding: 0;
+                margin: 0;
+                svg{
+                    @include mq("phone"){
+                        width: 32px;
+                    }
+                }
+            }
+        }
+        .side_bar{
+            display: none;
+            @include mq("phone-and-tablet") {
+                display: block;
+                max-width: 450px;
+                background: $color--white;
+                width: 100%;
+                position: absolute;
+                left: -100%;
+                top: 0;
+                height: 100vh;
+                transition: all 0.8s ease-in-out;
+                z-index: 1000;
+            }
+            .sidebar_header{
+                background: $primary;
+                padding: 1.5rem 1.5rem;
+                border-bottom: 1px solid $color--white;
+                .user_account{
+                    display: flex;
+                    align-items: center;
+                    .user_icon{
+                        svg{
+                            width: 50px;
+                            height: 40px;
+                        }
+                    }
+                    .welcome_title {
+                        color: #fff;
+                        font-weight: 700;
+                        padding-bottom: 0px;
+                    }
+                }
+                .close_icon{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    button {
+                        background: transparent;
+                        border: 0;
+                        padding: 0;
+                        margin: 0;
+                        svg{
+                            path{
+                                fill: $color--white;
+                            }
+                        }
+                    }
+                }
+            }
+            .sidebar_footer {
+                background: $primary;
+                padding: 1.5rem;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                a {
+                    color: #fff;
+                    font-weight: 700;
+                    padding-bottom: 0;
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    svg {
+                        width: 50px;
+                        height: 38px;
+                    }
+                }
+            }
+        }
+        .mobile-fix-option {
+            display: none;
+            @include mq("phone-and-tablet") {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                background-color: #fff;
+                height: auto;
+                width: 100vw;
+                z-index: 999;
+                padding: 12px 0;
+                box-shadow: 0 2px 5px #a8a8a8;
+            }
+            .w-25{
+                a{
+                    text-decoration: none;
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 20px;
+                    color: #313848;
+                }
+            }
+        }
+        .menu.dropdown-child {
+            display: none;
+            background: $color--white;
+            position: absolute;
+            top: 30px;
+            padding: 10px 8px;
+            min-width: 250px;
+            box-shadow: 0px -8px 16px -4px rgba(0, 0, 0, 0.07);
+            max-width: 400px;
+            @include mq ("phone-and-tablet") {
+                background: $color--white;
+                position: absolute;
+                top: 30px;
+                padding: 25px 0;
+                min-width: 200px;
+                max-width: 270px;
+                z-index: 999;
+                width: 100%;
+            }
+            .menu-link{
+                display: list-item;
+                position: relative;
+                line-height: 40px;
+                text-transform: capitalize;
+                margin-bottom: 12px;
+                &.active{
+                    a{
+                        box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.07);
+                        background: $primary;
+                        color: $color--white !important;
+                    }
+                }
+                a{
+                    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.0);
+                    border-radius: 10px;
+                    background: transparent;
+                    padding: 9px 17px;
+                    &:hover{
+                        background: $primary;
+                        color: $color--white !important;
+                    }
+                    &::after{
+                        display: none !important;
+                    }
+                }
+            }
+        }    
+    } 
+}

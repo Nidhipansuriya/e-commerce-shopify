@@ -1,0 +1,21 @@
+<div class="step-1-inner">
+    <div class="container">
+        <div class="step-title text-center">
+            <p class="step-info">STEP-1 of 3</p>
+            <h4 class="step-heading">{{ section.settings.step_1_title }}</h4>
+            <p class="step-desc">{{ section.settings.step_1_desc }}</p>
+        </div>
+        <div class="gift-box-wrap">
+            {% for i in (1..2) %}
+                {% assign product_han = 'step_1_product_' | append: i %}
+                {% assign product = all_products[section.settings[product_han]] %}
+                <div class="gift-box-inner-wrap">
+                    <img src="{{product.featured_image | img_url: 'original' }}" alt="{{product.featured_image.alt}}" />
+                    <div class="gift-box-button" data-id={{product.first_available_variant.id}}>
+                        {{product.title}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

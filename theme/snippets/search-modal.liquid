@@ -1,0 +1,58 @@
+<style>
+  .top-75px {
+    top: 60px !important;
+  }
+</style>
+
+<!-- search form -->
+<div class="serch-upper" style="display: flex; justify-content: center;">
+  <div class="search-form quick-search" style="width: 60%;">
+    <form action="/search" method="get" class="quick-search-form" role="search">
+      <input
+        type="search"
+        id="searchbar"
+        class="search__input quick-search form-control"
+        name="q"
+        placeholder="S E A R C H ...."
+        autocomplete="off"
+      >
+      <button class="search-bar-btn" type="submit">
+        {% render 'icon-search' %}
+      </button>
+      <span class="close-form">
+        <!-- <img src="{{'close-icon.svg' | file_url }}" alt="search close"> -->
+        {% render 'icon-close' %}
+      </span>
+    </form>
+    <div class="search-result" style="display: block;">
+      <div class="search-data">
+        {% comment %} <div class="search-product d-flex row  m-0"> {% endcomment %}
+        <!--
+          <div class="col-lg-2">
+              <a href="">
+                  <img src="https://cdn.shopify.com/s/files/1/1606/0723/products/f397-black-1_f473f5fc-ac98-4079-92e5-dd0836575bc1.jpg?v=1570018709" alt="">
+              </a>
+          </div>
+          <div class="col-lg-8">
+              <a href="">
+                  <p>Cropped Fleece Zip Hoodie</p>
+              </a>
+              <p class="price">Rs. 2,000.00</p>
+          </div>
+        -->
+        {% comment %} </div> {% endcomment %}
+      </div>
+      <div class="search-bottom">
+        <!-- <span class="result-count">View All Result</span> -->
+      </div>
+    </div>
+    <!--
+      <form class="form-pred-form" method="post" name="pre-search-form" style="display: none;">
+          <div class="search-input-group">
+              <input type="search" class="pre-search-form-query" name="query" value="">
+              <input type="url" class="pre-search-form-url" name="product" value="">
+          </div>
+      </form>
+    -->
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<section class="blog-section-title">
+    <div class="bg-breadcrumb">
+        <div class="title-page"><h2>Blog</h2>  </div>
+    </div>
+</section>
+<section class="blog-section-content">
+
+    {%- paginate blog.articles by 12 -%}
+    <div class="blog-temp custom-container">
+        <div class="pb-3 text-center blog-header">
+            <div class="section-title">
+                {{ blog.title | escape }}
+            </div>
+            <!-- <img src="{{ 'section-underline.png' | file_img_url: 'original' }}" alt="section-underline" class="img-fluid section-underline"> -->
+        </div>
+        
+        <div class="blog-content-wrap">
+            <div class="row d-flex">
+                {%- for article in blog.articles -%}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                    {% render 'blog-article-card',article: article %}
+                </div>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+    {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate, class: 'pagination-wrapper-small' %}
+    {%- endif -%}
+    {%- endpaginate -%}
+</section>
+{% schema %}
+{
+    "name": "blog template",
+    "presets": [
+        {
+            "category": "page",
+            "name":"blog template"
+        }
+    ]
+}
+{% endschema %}

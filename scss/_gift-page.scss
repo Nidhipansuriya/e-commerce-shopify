@@ -1,0 +1,754 @@
+// #gift-page-wrap{
+//     .gift-wrap-section{
+//         padding: 80px 0px;
+//         @include mq("phone"){
+//             padding: 40px 0;
+//         }
+//         @include mq("phone-portrait"){
+//             padding: 20px 0;
+//         }
+//         .header-section{
+//             .title-wrap{
+//                 font-family: $heading-font;
+//                 font-style: normal;
+//                 font-weight: 600;
+//                 font-size: 30px;
+//                 line-height: 37px;
+//                 text-align: center;
+//                 letter-spacing: 0.08em;
+//                 text-transform: uppercase; 
+//                 color: $color-header-bg;
+//                 @include mq("phone"){
+//                     font-size: 22px;
+//                     line-height: 35px;
+//                     margin-bottom: 0;
+//                 }
+//                 @include mq("small_phone"){
+//                     font-size: 14px;
+//                     line-height: 30px;
+//                 }
+//             }
+//         }
+//         .gift-content{
+//             display: none;
+//             &.active{
+//                 display: block;
+//             }
+//             .step-title{
+//                 padding-bottom: 35px;
+//                 @include mq("phone"){
+//                     padding-bottom: 20px;
+//                 }
+//                 @include mq("small_phone"){
+//                     padding-bottom: 5px;
+//                 }
+//                 .step-info{
+//                     font-family: $heading-font;
+//                     font-style: normal;
+//                     font-weight: 500;
+//                     font-size: 20px;
+//                     line-height: 24px;
+//                     color: $color-step-info;
+//                     margin-bottom: 10px;
+//                     @include mq("phone"){
+//                         font-size: 16px;
+//                         line-height: 22px;
+//                     }
+//                 }
+//                 .step-heading{
+//                     font-family: $heading-font;
+//                     font-style: normal;
+//                     font-weight: 600;
+//                     font-size: 30px;
+//                     line-height: 37px;
+//                     text-align: center;
+//                     letter-spacing: 0.08em;
+//                     text-transform: uppercase;  
+//                     color: $color--black;
+//                     @include mq("phone"){
+//                         font-size: 22px;
+//                         line-height: 24px;
+//                     }
+//                     @include mq("small_phone"){
+//                         font-size: 14px;
+//                         line-height: 18px;
+//                     }
+//                 }
+//                 .step-desc{
+//                     font-family: $base-font;
+//                     font-style: normal;
+//                     font-weight: normal;
+//                     font-size: 15px;
+//                     line-height: 22px;
+//                     color: $color-header-bg;
+//                     margin: 0;
+//                     @include mq("phone"){
+//                         font-size: 14px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     // step header
+//     .tab-header-wrap{
+//         padding: 40px 0px;
+//         margin-top: 30px;
+//         @include mq("phone"){
+//             padding: 25px 0;
+//             margin-top: 20px;
+//         }
+//         @include mq("small_phone"){
+//             padding: 10px 0;
+//         }
+//         .tab-header-inner{
+//             display: grid;
+//             .tab-header-ul{
+//                 @include flexbox();
+//                 .step_text{
+//                     .num{
+//                         margin-bottom: 5px;
+//                         font-family: $heading-font;
+//                         font-style: normal;
+//                         font-weight: 500;
+//                         font-size: 15px;
+//                         line-height: 18px;
+//                         @include mq("phone"){
+//                             font-size: 12px;
+//                             line-height: 14px;
+//                         }
+//                     }
+//                     .text{
+//                         font-family: $base-font;
+//                         font-style: normal;
+//                         font-weight: 500;
+//                         font-size: 15px;
+//                         line-height: 22px;
+//                         color: $color-splide-arrow;
+//                         @include mq("phone"){
+//                             font-size: 13px;
+//                             line-height: 16px;
+//                         }
+//                         @include mq("phone-portrait"){
+//                             font-size: 12px;
+//                         }   
+//                     }
+//                 }
+//                 .tab-header-li{
+//                     width: 25%;
+//                     position: relative;
+//                     padding: 20px 0 0;
+//                     margin: 0;
+//                     @include mq("phone-portrait"){
+//                         padding: 10px 0 0;
+//                     }
+//                     &.active , &.filled{
+//                         &:after {
+//                             background-image: url('https://cdn.shopify.com/s/files/1/0588/6528/7346/files/filter_right.svg?v=1629464301');
+//                             background-repeat: no-repeat;
+//                             background-position: center;
+//                             background-color: $color-splide-arrow;
+//                         }
+//                     }
+//                     &:after{
+//                         background-color: $color--white;
+//                         height: 26px;
+//                         top: -22px;
+//                         width: 26px;
+//                         border-radius: 100%;
+//                         content: "";
+//                         left: calc(50% - 7px);
+//                         line-height: 14px;
+//                         position: absolute;
+//                         text-align: center;
+//                         transition: all .25s ease 0s;
+//                         vertical-align: middle;
+//                         border: 2px solid $color-splide-arrow;
+//                         @include mq("phone-portrait"){
+//                             height: 20px;
+//                             top: -19px;
+//                             width: 20px;
+//                         }   
+//                     }
+//                     &:not(:last-child):before{
+//                         background-color: $color-splide-arrow;
+//                         content: "";
+//                         height: 2px;
+//                         left: calc(50% + 13px);
+//                         position: absolute;
+//                         top: -7px;
+//                         width: calc(100% - 14px);
+//                         @include mq("phone-portrait"){
+//                             left: calc(50% + 10px);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     // step 1
+//     .step-1{
+//         .gift-box-wrap{
+//             @include flexbox();
+//             padding: 0px 130px;
+//             @include mq("tablet-portrait"){
+//                 padding: 0;
+//             }
+//             @include mq("phone"){
+//                 padding: 0;
+//             }
+//             .gift-box-inner-wrap{
+//                 width: 50%;
+//                 padding: 0 20px;
+//                 @include mq("phone"){
+//                     padding: 0 10px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     padding: 0 5px;
+//                 }
+//                 img{
+//                     margin-inline: auto;
+//                     display: block;
+//                 }
+//                 .gift-box-button{
+//                     background-color: $color-splide-arrow;
+//                     color: $color--white;
+//                     text-align: center;
+//                     padding: 10px 20px;
+//                     font-size: 18px;
+//                     margin-top: 20px;
+//                     cursor: pointer;
+//                     text-transform: uppercase;
+//                     border: 1px solid $color-splide-arrow;
+//                     transition: 0.5s all;
+//                     &:hover{
+//                         background-color: $color--white;
+//                         color: $color-splide-arrow;
+//                     }
+//                     @include mq("phone-portrait"){
+//                         font-size: 14px;
+//                         margin-top: 5px;
+//                         padding: 8px 20px;
+//                     }
+//                     @include mq("small_phone"){
+//                         font-size: 12px;
+//                         padding: 8px 10px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     // step 2
+//     .step-2{
+//         .step-2-inner{
+//             .selected-products-wrap{
+//                 @include flexbox();
+//                 @include mq("tablet-portrait"){
+//                     @include flex-direction(column);
+//                 }
+//                 @include mq("phone"){
+//                     @include flex-direction(column);
+//                 }
+//                 .left-section{
+//                     width: calc(33.33% - 15px);
+//                     margin-right: 15px;
+//                     background-color: $color-cart-page;
+//                     @include mq("tablet-portrait"){
+//                         width: 100%;
+//                     }
+//                     @include mq("phone"){
+//                         width: 100%;
+//                     }
+//                     .left-inner-wrap{
+//                         padding: 20px 10px;
+//                         @include flexbox();
+//                         @include flex-wrap(wrap);
+//                         .image-wrap{
+//                             width: 50%;
+//                             padding: 10px;
+//                             position: relative;
+//                             @include mq("tablet-portrait"){
+//                                 width: 25%;
+//                             }
+//                             @include mq("phone"){
+//                                 width: 33.33%;
+//                             }
+//                             .count{
+//                                 position: absolute;
+//                                 top: 5px;
+//                                 right: 5px;
+//                                 border-radius: 50%;
+//                                 width: 15px;
+//                                 height: 15px;
+//                                 text-align: center;
+//                                 background-color: $color-light---yellow;
+//                                 color: $color--white;
+//                             }
+//                         }
+//                     }
+//                 }
+//                 .right-section{
+//                     width: calc(66.66% - 15px);
+//                     margin-left: 15px;
+//                     background-color: $color-cart-page;
+//                     border: 1px solid $color-gift-border-offwhite;
+//                     @include mq("tablet-portrait"){
+//                         width: 100%;
+//                         margin-left: 0;
+//                     }
+//                     @include mq("phone"){
+//                         width: 100%;
+//                         margin-left: 0;
+//                     }
+//                     .top-section{
+//                         font-size: 20px;
+//                         text-align: center;
+//                         border-bottom: 1px solid;
+//                         padding: 12px 0px;
+//                         border-bottom: 1px solid $color-gift-border;
+//                         p{
+//                             font-family: $heading-font;
+//                             font-style: normal;
+//                             font-weight: 500;
+//                             font-size: 20px;
+//                             line-height: 24px;
+//                             text-align: center;
+//                             color: $color-header-bg;
+//                         }
+//                     }
+//                     .middle-section{
+//                         font-size: 20px;
+//                         text-align: center;
+//                         border-bottom: 1px solid;
+//                         padding: 15px 0px;
+//                         border-bottom: 1px solid $color-gift-border;
+//                         .selected-product-wrap{
+//                             @include flexbox();
+//                             @include align-items(center);
+//                             font-family: $base-font;
+//                             font-weight: normal;
+//                             font-size: 15px;
+//                             line-height: 22px;
+//                             color: $color-step-info;
+//                             font-size: 14px;
+//                             .qty-wrap{
+//                                 width: 15%;
+//                                 @include mq("phone-portrait"){
+//                                     width: 10%;
+//                                 }
+//                             }
+//                             .title-wrap{
+//                                 width: 55%;
+//                                 text-align: left;
+//                                 @include mq("phone-portrait"){
+//                                     width: 57%;
+//                                     padding: 0px 5px;
+//                                 }
+//                                 @include mq("small_phone"){
+//                                     width: 50%;
+//                                 }
+//                             }
+//                             .price-wrap{
+//                                 width: 20%;
+//                                 @include mq("small_phone"){
+//                                     width: 27%;
+//                                 }
+//                             }
+//                             .remove-btn-wrap{
+//                                 width: 10%;
+//                                 cursor: pointer;
+//                                 .remove-icon{
+//                                     @include mq("small_phone"){
+//                                         margin-left: 0px;
+//                                     }
+//                                 }
+//                             }
+//                         }
+//                     }
+//                     .bottom-section{
+//                         font-size: 20px;
+//                         text-align: center;
+//                         border-bottom: 1px solid;
+//                         border-bottom: 1px solid $color-gift-border;   
+//                         .sub-total-wrap{
+//                             text-align: right;
+//                             font-size: 16px;
+//                             padding: 15px 30px 15px 0px;
+//                             color: $color-header-bg;
+//                             .total-value{
+//                                 padding-left: 10px;
+//                             }
+//                         }
+//                         .complete-box-btn{
+//                             background-color: $color-light---yellow;
+//                             color: $color--white;
+//                             border: 1px solid $color-light---yellow;
+//                             text-align: center;
+//                             padding: 10px 20px;
+//                             font-size: 18px;
+//                             cursor: pointer;
+//                             width: 40%;
+//                             margin: 0 auto;
+//                             margin-bottom: 20px;
+//                             transition: 0.5s all;
+//                             &:hover{
+//                                 background-color: $color--white;
+//                                 color: $color-light---yellow;
+//                             }
+//                             @include mq("small_phone"){
+//                                 width: 55%;
+//                                 padding: 8px 20px;
+//                                 font-size: 16px;
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//             .sort-by-filter-wrap{
+//                 padding: 20px 0px;
+//                 select::-ms-expand {
+//                     display: none;
+//                 }
+//                 select {
+//                     -moz-appearance: none;
+//                     -webkit-appearance: none;
+//                     width: 250px;
+//                     padding: 15px 20px;
+//                     border: none;
+//                     background-color: $color-cart-page;
+//                     outline: none;
+//                     @include mq("small_phone"){
+//                         width: 160px;
+//                         padding: 10px 10px;
+//                         padding-right: 25px;
+//                     }
+//                 }
+                  
+//             }
+//             .gift-products-wrap{
+//                 @include flexbox();
+//                 @include flex-wrap(wrap);
+//                 margin-top: 50px;
+//                 @include mq("small_phone"){
+//                     margin-top: 10px;
+//                 }
+//                 .gift-each-item{
+//                     // width: 25%;
+//                     padding: 0px 10px;
+//                     position: relative;
+//                     margin-bottom: 20px;
+//                     @include mq("small_phone"){
+//                         padding: 0px 5px;
+//                     }
+//                     .gift-each-product-wrap{
+//                         // margin: 0 10px;
+//                         // padding-inline: 0 10px;
+//                         position: relative;
+//                         &:hover{
+//                             .add-to-box-btn{
+//                                 opacity: 1;
+//                                 @include transform(translate(0,0));
+//                                 @include transition(transform .4s ease-out) 
+//                             }
+//                         }
+//                         .add-to-box-btn{
+//                             background: $color-light---yellow;
+//                             color: $color--white;
+//                             text-align: center;
+//                             padding: 10px 20px;
+//                             position: absolute;
+//                             right: 0;
+//                             left: 0;
+//                             bottom: 0;
+//                             opacity: 0;
+//                             cursor: pointer;
+//                             border: 1px solid $color-light---yellow;
+//                             transition: 0.5s all;
+//                             &:hover{
+//                                 background: $color--white;
+//                                 color: $color-light---yellow;
+//                             }
+//                             @include mq("phone-and-tablet"){
+//                                 opacity: 1;
+//                                 position: relative;
+//                                 margin-top: 5px
+//                             }
+//                             @include mq("small_phone"){
+//                                 padding: 7px 20px;
+//                             }
+//                         }
+//                         .qty-spinner-wrap{
+//                             @include flexbox();
+//                             @include align-items(center);
+//                             @include justify-content(center);
+//                             padding: 2px;
+//                             border: 1px solid $color-grey;
+//                             position: absolute;
+//                             right: 0;
+//                             left: 0;
+//                             bottom: 0;
+//                             background-color: $color--white;
+//                             div{
+//                                 width: 100%;
+//                                 text-align: center;
+//                                 border: none;
+//                                 font-size: 24px;
+//                                 @include mq("phone-portrait"){
+//                                     font-size: 18px;
+//                                 }
+//                                 @include mq("small_phone"){
+//                                     font-size: 16px;
+//                                 }
+                                
+//                             }
+//                             .qty-min,.qty-plus{
+//                                 width: 48px;
+//                                 height: 37px;
+//                                 cursor: pointer;
+//                                 border: none;
+//                                 user-select: none;
+//                                 @include mq("small_phone"){
+//                                     width: 46px;
+//                                     height: 28px;
+//                                 }
+//                             }
+//                             .qty-min{
+//                                 background-color: $color-grey;
+//                             }
+//                             .qty-plus{
+//                                 background-color: $color-light---yellow;
+//                                 color: $color--white;
+//                             }
+//                             @include mq("phone-and-tablet"){
+//                                 opacity: 1;
+//                                 position: relative;
+//                                 margin-top: 5px
+//                             }
+//                         }
+//                     }
+                        
+//                 }
+//             }
+//         }
+//     }
+//     // step 3
+//     .step-3{
+//         .step-3-inner{
+//             .card-section-first{
+//                 @include flexbox();
+//                 @include flex-wrap(wrap);
+//                 .card-child-wrap{
+//                     display: block;
+//                     text-align: center;
+//                     margin-bottom: 10px;
+//                     cursor: pointer;
+//                     @include mq("small_phone"){
+//                         padding: 0px 5px;
+//                         margin-bottom: 5px;
+//                     }
+//                     p{
+//                         padding-top: 10px;
+//                         font-family: $base-font;
+//                         font-style: normal;
+//                         font-weight: normal;
+//                         font-size: 18px;
+//                         line-height: 22px;
+//                         color: $color-header-bg;
+//                         @include mq("phone-portrait"){
+//                             font-size: 14px;
+//                             line-height: 16px;
+//                             padding-top: 5px;
+//                         }
+//                     }
+//                 }
+//             }
+//             .card-section-final{
+//                 .left-part{
+//                     margin-top: 20px;
+//                     @include mq("phone-landscape"){
+//                        margin: 0 auto;
+//                     }
+//                     @include mq("phone-portrait"){
+//                         margin: 0 auto;
+//                         padding: 0;
+//                     }
+//                     img{
+//                         width: 100%;
+//                     }
+//                     .change-card-button{
+//                         border: 1px solid $color-light---yellow;
+//                         width: 100%;
+//                         @include flexbox();
+//                         @include align-items(center);
+//                         @include justify-content(center);
+//                         padding: 15px 0px;
+//                         background: $color-light---yellow;
+//                         color: $color--white;
+//                         transition: 0.5s all;
+//                         margin-top: 33px;
+//                         font-size: 18px;
+//                         cursor: pointer;
+//                         text-transform: uppercase;
+//                         &:hover{
+//                             background: $color--white;
+//                             color: $color-light---yellow;
+//                         }
+//                         @include mq("phone-landscape"){
+//                             display: none;
+//                         }
+//                         @include mq("phone-portrait"){
+//                             display: none;
+//                         }
+//                     }
+//                 }
+//                 .right-part{
+//                     margin-top: 20px;
+//                     @include mq("phone-portrait"){
+//                        padding: 0;
+//                     }
+//                     .inner-wrap,.message-wrap, .checkbox-wrap, .gift-action-btn-wrap {
+//                         @include mq("phone-portrait"){
+//                             padding: 0;
+//                         }
+//                     }
+//                     label{
+//                         font-family: $base-font;
+//                         font-style: normal;
+//                         font-weight: normal;
+//                         font-size: 18px;
+//                         line-height: 26px;
+//                         text-align: center;
+//                         color: $color-step-info;
+//                         @include mq("phone-portrait"){
+//                             font-size: 16px;
+//                         }
+//                     }
+//                     input ,textarea{
+//                         width: 100%;
+//                         padding: 15px;
+//                         font-size: 16px;
+//                         border-radius: 5px;
+//                         border: 1px solid $color-grey;
+//                         font-family: $base-font;
+//                         line-height: 23px;
+//                         color: $color-gift-text;
+//                         outline: 0;
+//                         max-width: 100%;
+//                         text-transform: capitalize;
+//                         margin-bottom: 10px;
+//                         @include mq("phone-portrait"){
+//                             padding: 10px;
+//                             font-size: 14px;
+//                         }
+//                     }
+//                     .checkbox-wrap{
+                        
+//                         #gift-checkbox{
+//                             width: auto;
+//                         }
+//                         label{
+//                             font-size: 15px;
+//                         }
+
+//                     }
+//                     .gift-action-btn-wrap{
+//                         @include mq("phone-landscape"){
+//                             @include flexbox();
+//                         }
+//                         @include mq("phone-portrait"){
+//                             @include flexbox();
+//                         }
+//                         .gift-add-to-cart-btn, .change-card-button{
+//                             border: 1px solid $color-light---yellow;
+//                             width: 100%;
+//                             @include flexbox();
+//                             @include align-items(center);
+//                             @include justify-content(center);
+//                             padding: 15px 0px;
+//                             background: $color-light---yellow;
+//                             color: $color--white;
+//                             transition: 0.5s all;
+//                             margin-top: 10px;
+//                             font-size: 18px;
+//                             cursor: pointer;
+//                             text-transform: uppercase;
+//                             &:hover{
+//                                 background: $color--white;
+//                                 color: $color-light---yellow;
+//                             }
+//                             @include mq("phone-landscape"){
+//                                 width: 50%;
+//                                 margin : 10px 5px 0px 5px;
+//                             }
+//                             @include mq("phone-portrait"){
+//                                 width: 50%;
+//                                 margin : 10px 5px 0px 5px;
+//                                 font-size: 16px;
+//                                 padding: 10px 0;
+//                             }
+//                             @include mq("small_phone"){
+//                                 font-size: 14px;
+//                                 padding: 8px 10px;
+//                             }
+//                         }
+//                         .change-card-button{
+//                             display: none;
+//                             @include mq("phone-landscape"){
+//                                 @include flexbox();
+//                             }
+//                             @include mq("phone-portrait"){
+//                                 @include flexbox();
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     // step 4
+//     .step-4{
+//         .step-4-inner{
+//             .step-content-wrap {
+//                 .step-btn-wrap{
+//                     .step-view-cart{
+//                         width: 50%;
+//                         padding: 20px;
+//                         border: 1px solid $color-light---yellow;
+//                         background: $color-light---yellow;
+//                         font-family: $base-font;
+//                         font-style: normal;
+//                         font-weight: 500;
+//                         font-size: 20px;
+//                         line-height: 29px;
+//                         letter-spacing: 0.08em;
+//                         text-transform: uppercase;
+//                         color: $color--white;
+//                         transition: 0.5s all;
+//                         cursor: pointer;
+//                         margin-top: 15px;
+//                         &:hover{
+//                             background: $color--white;
+//                             color: $color-light---yellow;
+//                         }
+//                         @include mq("phone-portrait"){
+//                             padding: 10px;
+//                             font-size: 14px;
+//                             padding: 8px;
+//                         }
+//                         @include mq("small_phone"){
+//                             width: 60%;
+//                             padding: 7px;
+//                         }
+//                     }
+//                 }
+//                 .box-complete-img {
+//                     img{
+//                         @include mq("phone-portrait"){
+//                             width: 30%;
+//                         }
+//                     }
+//                 }
+//             }
+
+//         }
+//     }
+// }

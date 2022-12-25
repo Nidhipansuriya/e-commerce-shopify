@@ -1,0 +1,507 @@
+<style>
+  .mw-100 {
+    width: 100%;
+  }
+</style>
+
+<section
+  id="MainProduct-{{ section.id }}"
+  class="product_section section-{{ section.id }}-padding"
+  data-section="{{ section.id }}"
+>
+  {% assign current_variant = product.selected_or_first_available_variant -%}
+  {% assign featured_img_src = current_variant.featured_image.src | default: product.featured_image.src %}
+  {% assign featured_img_alt = current_variant.featured_image.alt | default: product.featured_image.alt %}
+
+  {% assign swatchoff = true %}
+  <div class="product_sec_container">
+    <div class="row d-flex main-d-flex">
+      <div class="col-lg-1 col-md-1 col-sm-1 col-12 prod-thum-wrap ">
+        <div class="img_main_nav">
+          {% for image in product.images %}
+            <div class="product_img_nav">
+              <!-- <img src="{{ image.src | img_url:'original' }}" alt="{{ product.title }}"> -->
+              {%- assign src_name = image.src -%}
+              {%- assign src_alt = product.title.alt -%}
+              {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-lg-5 col-md-5 col-sm-6 col-12 p-0-sm">
+        <div class="img_main_for">
+          {% for image in product.images %}
+            <div class="product_img_for">
+              <!-- <img src="{{ image.src | img_url:'original' }}" alt="{{ product.title }}"> -->
+              {%- assign src_name = image.src -%}
+              {%- assign src_alt = product.title.alt -%}
+              {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"mw-100" -%}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-sm-6 col-12 product-right-side-wrap">
+        <div class="product_details ">
+          <div class="product_vendor">
+            <h3>{{ product.vendor }}</h3>
+          </div>
+          <div class="product_title">
+            <h3>{{ product.title }}</h3>
+          </div>
+          <div class="product_price_rating">
+            <div class="product_price">
+              <h3 class="m-0">{{ product.price | money_with_currency }}</h3>
+              <h4 class="my-0">{{ product.compare_at_price | money_with_currency }}</h4>
+            </div>
+            {%- comment -%}
+              <div class="product_review">
+              <div class="product_rating">
+              {{ product.metafields.judgeme.badge }}
+              </div>
+              </div>
+            {%- endcomment -%}
+          </div>
+
+          <div class="product_form">
+            <div class="form-wrap" x-data="{ qty: 1 }">
+              <form method="post" action="">
+                <variant-selects
+                  class="no-js-hidden"
+                  data-section="{{ section.id }}"
+                  data-url="{{ product.url }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- for option in product.options_with_values -%}
+                    <div class="product-form__input product-form__input--dropdown">
+                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                        {{ option.name }}
+                        {% comment %} <div>{{ option | json }}</div> {% endcomment %}
+                      </label>
+                      <div class="select">
+                        <select
+                          id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                          class="select__select"
+                          name="options[{{ option.name | escape }}]"
+                          form="{{ product_form_id }}"
+                          style="background: #ffffff; "
+                        >
+                          {%- for value in option.values -%}
+                            <option
+                              value="{{ value | escape }}"
+                              {% if option.selected_value == value %}
+                                selected="selected"
+                              {% endif %}
+                            >
+                              {{ value }}
+                              {% comment %} <div>{{ value | json }}</div> {% endcomment %}
+                            </option>
+                          {%- endfor -%}
+                        </select>
+                        {% render 'icon-caret' %}
+                      </div>
+                    </div>
+                  {%- endfor -%}
+
+                  <script type="application/json">
+                    {{ product.variants | json }}
+                  </script>
+                </variant-selects>
+                <select name="id" class="variants-list" style="display:none">
+                  <option value="1" selected data-id="{{ product.selected_or_first_available_variant.id }}">
+                    Please select variant
+                  </option>
+                  {% for variant in product.variants %}
+                    {% comment %} <div>{{ variant | json }}</div> {% endcomment %}
+                    {% assign option_value = '' %}
+                    {%- for option in variant.options -%}
+                      {% assign option_value = option_value | append: option %}
+                      {%- unless forloop.last -%}
+                        {% assign option_value = option_value | append: '/' %}
+                      {%- endunless -%}
+                    {%- endfor -%}
+                    <option
+                      id="vari_option"
+                      data-available="{{ variant.available }}"
+                      data-id="{{ product.selected_or_first_available_variant.id }}"
+                      {%- comment -%}{% if forloop.first %} selected {% endif %}{%- endcomment -%}
+                      data-value="{{option_value}}"
+                      data-img="{{ variant.image | img_url: 'master' }}"
+                    >
+                      {{ option_value }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <input type="hidden" name="id" id value="{{ current_variant.id }}">
+                <div class="form-wrap">
+                  <label class="form__labe" style="font-size: 14px;">Quantity</label>
+                  <div class="form-qty-wrap d-flex align-items-center justify-content-center">
+                    <div class="qty-selector-wrap">
+                      <div class="qty_wrap">
+                        <div class="d-flex">
+                          <div
+                            class="qty-min d-flex justify-content-center align-items-center"
+                            id="qty-minus"
+                            style="width: 10px; margin: 10px; font-size:20px; line-height:0px; cursor: default;"
+                          >
+                            {% render 'icon-minus' %}
+                          </div>
+                          <input
+                            type="Text"
+                            name="quantity"
+                            class="product_qty_num"
+                            id="product_qty_num"
+                            value="1"
+                            min="1"
+                            pattern="[0-9]*"
+                            inputmode="numeric"
+                            style=" text-align: center;"
+                            readonly
+                          >
+                          <div
+                            class="qty-plus d-flex justify-content-center align-items-center"
+                            id="qty-plus"
+                            style="width: 10px; margin: 10px; font-size:20px; line-height:0px; cursor: default;"
+                          >
+                            {% render 'icon-plus' %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-wishlist-wrap"></div>
+                  </div>
+                </div>
+                {%- comment -%}
+                  <button type="submit">ADD TO CART</button>
+                {%- endcomment -%}
+
+                <div class="form-action-wrap">
+                  <div class="checkout-button">
+                    {{ form | payment_button }}
+                    <div class="variant_err" style="display: none;">Please select size</div>
+                    <div class="product-action-btn">
+                      {% assign show_add_button = true %}
+                      {% unless product.available %}
+                        {% assign show_add_button = false %}
+                      {% endunless %}
+                      <span class="out-of-stock-err" style="display: none;">sorry this size is out of stock</span>
+                      <button
+                        type="button"
+                        class="product-add-to-cart button-all add_to_cart_btn {% if product.has_only_default_variant %} default_variant {% endif %}"
+                        {% if product.has_only_default_variant %}
+                          data-id="{{ current_variant.id }}"
+                        {% endif %}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            {%- comment -%}
+              <div class="form-action-wrap">
+              <div class="checkout-button">
+              <div class="product-action-btn btn_div_cart">
+              {% assign show_add_button = true %}
+              {% unless product.available %}
+              {% assign show_add_button = false %}
+              {% endunless %}
+
+
+              <button type="button" class="product-add-to-cart button-all add_to_cart_btn
+              {% if product.has_only_default_variant %}
+              default_variant
+              {% endif %}"
+              {% if product.has_only_default_variant %}
+              data-id="{{ current_variant.id }}"
+              {% endif %}>
+              Add to Cart
+              </button>
+
+              </div>
+              </div>
+              </div>
+            {%- endcomment -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- product tab -->
+<section class="product_tab">
+  <div class="product-tab-content">
+    <ul class="tab">
+      {% if product.description != blank %}
+        <li class="nav-item">
+          <a class="tablinks active" onclick="opentab(event, 'tab1')">Description</a>
+        </li>
+      {% endif %}
+      {% if product.metafields.custom.additional_information != blank %}
+        <li class="nav-item additional_information_title">
+          <a class="tablinks" onclick="opentab(event, 'tab2')">Additional Information</a>
+        </li>
+      {% endif %}
+
+      <li class="nav-item">
+        <a class="tablinks" onclick="opentab(event, 'tab3')"
+          >Reviews
+          {% if product.metafields.reviews.rating_count != blank -%}
+            ({{ product.metafields.reviews.rating_count }})
+          {%- endif %}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      {% if product.description != blank %}
+        <div id="tab1" class="tab-pane active">
+          <div class="product_description">
+            {{ product.description }}
+          </div>
+        </div>
+      {% endif %}
+      {% if product.metafields.custom.additional_information != blank %}
+        <div id="tab2" class="tab-pane">
+          <div class="additional_information">
+            {{ product.metafields.custom.additional_information }}
+          </div>
+        </div>
+      {% endif %}
+      <div id="tab3" class="tab-pane">
+        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+  {% for collection in product.collections limit: 2 %}
+    {% if forloop.length > 1 %}
+      {% for coll_title in collection.title %}
+        {% if coll_title != 'All' %}
+          {% assign coll = collection %}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {% assign coll = collection %}
+    {% endif %}
+  {% endfor %}
+{% endcomment %}
+
+<!-- Releated Product -->
+{% comment %}
+  <section class="releated_product_section">
+    <div class="related_section_heading text-center section_heading text-center">
+      <h3 class="font-f-heading">You May Also Like</h3>
+    </div>
+    <div class="releated_product_wrap">
+      {% assign is_product_page = true %}
+      {% assign current_product = product %}
+      {% assign current_product_found = false %}
+      {% assign collection_product = coll.products %}
+      {% if collection_product.length > 4 %}
+        <div class="releated_product_row row d-flex">
+          {% for product in coll.products %}
+            {% if product.handle == current_product.handle %}
+              {% assign current_product_found = true %}
+            {% else %}
+              {% unless current_product_found == false and forloop.last %}
+                <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+                  <div class="releated_col">
+                    {% render 'own-product' , product.product:product,is_product_page:is_product_page %}
+                  </div>
+                </div>
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="row d-flex">
+          {% for product in coll.products limit: 10 %}
+            {% if product.handle == current_product.handle %}
+              {% assign current_product_found = true %}
+            {% else %}
+              {% unless current_product_found == false and forloop.last %}
+                <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+                  <div class="a1">
+                    {% render 'own-product' , product.product:product,is_product_page:is_product_page %}
+                  </div>
+                </div>
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="releated_product_slider_arrow slider_arrow_main"></div>
+  </section>
+{% endcomment %}
+
+{% comment %} variant select {% endcomment %}
+<script>
+  $(document).ready(function() {
+  {% comment %} console.log("#Variants-{{ section.id }}","hey",{{ Variants }}) {% endcomment %}
+  {% comment %} document.addEventListener('DOMContentLoaded', function() {
+    function isIE() {
+      const ua = window.navigator.userAgent;
+      const msie = ua.indexOf('MSIE ');
+      const trident = ua.indexOf('Trident/');
+
+      return (msie > 0 || trident > 0);
+    }
+
+    if (!isIE()) return;
+    const hiddenInput = document.querySelector('#{{ product_form_id }} input[name="id"]');
+    const noScriptInputWrapper = document.createElement('div');
+    const variantSwitcher = document.querySelector('variant-radios[data-section="{{ section.id }}"]') || document.querySelector('variant-selects[data-section="{{ section.id }}"]');
+    noScriptInputWrapper.innerHTML = document.querySelector('.product-form__noscript-wrapper-{{ section.id }}').textContent;
+    variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML; {% endcomment %}
+    {% comment %} console.log("{{ section.id }}") {% endcomment %}
+    const options= {{ product.options_with_values | json }}
+    {% comment %} console.log(options) {% endcomment %}
+    for(var i=0;i<options.length;i++){
+      {% comment %} console.log("Option-{{ section.id }}-{{ forloop.index0 }}",i) {% endcomment %}
+      console.log("#Option-{{ section.id }}-"+i)
+      document.querySelector("#Option-{{ section.id }}-"+i).addEventListener('change', function(event) {
+        console.log(event.target.value,event)
+        let get_variid = document.querySelector('#vari_option')
+         get_variid.setAttribute('data-id',"");
+        });
+    }
+    {% comment %} {%- for option in product.options_with_values -%}
+     console.log("Option-{{ section.id }}-{{ forloop.index0 }}")
+      {%endfor%} {% endcomment %}
+    {% comment %} document.querySelector('#Option-template--14371962192160__main-0').addEventListener('change', function(event) { {% endcomment %}
+      {% comment %} console.log(event.currentTarget.value) {% endcomment %}
+      {% comment %} hiddenInput.value = event.currentTarget.value; {% endcomment %}
+    {% comment %} }); {% endcomment %}
+  {% comment %} }); {% endcomment %}
+    })
+</script>
+
+{% comment %}
+  <script>
+    function getvariId() {
+      let params = new URLSearchParams(document.location.search);
+      let vid = params.get("variant");
+      console.log(vid);
+   }
+  </script>
+{% endcomment %}
+
+<script>
+  $(document).ready(function () {
+    $('.img_main_for').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      dots: false,
+      asNavFor: '.img_main_nav',
+    });
+    $('.img_main_nav').slick({
+      slidesToShow: 4,
+      Infinity: false,
+      slidesToScroll: 1,
+      arrows: true,
+      centerPadding: '0px',
+      vertical: true,
+      asNavFor: '.img_main_for',
+      dots: false,
+      centerMode: true,
+      focusOnSelect: true,
+      responsive: [
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 4,
+            arrows: false,
+            vertical: false,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    });
+  });
+</script>
+
+{%- comment -%}
+  <script>
+  // qauntityChange Js
+  qauntityChange = () => {
+  let plusItem = document.querySelector(".qty-selector-wrap .qty_wrap .qty-plus");
+  let minusItem = document.querySelector(".qty-selector-wrap .qty_wrap .qty-min");
+
+  if (plusItem) {
+  plusItem.addEventListener("click", (e) => {
+  let that = e.currentTarget;
+  let parent = that.closest('.qty-selector-wrap');
+  let target = document.querySelector('.product_qty_num', parent);
+
+  let value = parseInt(target.value) + 1;
+  target.value = value;
+
+  });
+  }
+
+  if (minusItem) {
+  minusItem.addEventListener("click", (e) => {
+  let that = e.currentTarget;
+  let parent = that.closest('.qty-selector-wrap');
+  let target = document.querySelector('.product_qty_num', parent);
+  if (target.value > 1) {
+  let value = parseInt(target.value) - 1;
+  target.value = value;
+  }
+  });
+  }
+  }
+  qauntityChange();
+
+  // tabs Js
+  function opentab(evt, tabname) {
+  var i,
+  tabcontent,
+  tablinks;
+  tabcontent = document.getElementsByClassName("tab-pane");
+  for (i = 0; i < tabcontent.length; i++) {
+  tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+  tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabname).style.display = "block";
+  evt.currentTarget.className += " active";
+  }
+  </script>
+{%- endcomment -%}
+
+{% schema %}
+{
+  "name": "Product pages",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Page Background color"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color"
+    },
+    {
+      "type": "header",
+      "content": "Description Title"
+    },
+    {
+      "type": "text",
+      "id": "dis_title",
+      "label": "Title"
+    }
+  ]
+}
+{% endschema %}

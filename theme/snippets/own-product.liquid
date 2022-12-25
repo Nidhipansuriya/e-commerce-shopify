@@ -1,0 +1,33 @@
+<div class="own-item">
+  <div class="own-box">
+    <div class="own-img-box">
+      <a href="{{ product.url | within: collection }}">
+        <div class="product_img">
+          {%- assign src_name = product.featured_image -%}
+          {%- assign src_alt = product.featured_image.alt -%}
+          {%- render 'srcset' with src_name: src_name, src_alt: src_alt, src_class: "img-fluid" -%}
+        </div>
+      </a>
+    </div>
+    <div class="own-product">
+      <div class="own_title">
+        <a class="font-f-noto" href="{{ product.url | within: collection }}">
+          <h3 class="font-f-noto">{{ product.title | truncate: 20 }}</h3>
+        </a>
+      </div>
+      <div class="own_price_div">
+        <span class="product_price font-f-noto"> {{ product.price | money_without_trailing_zeros }}</span>
+        <span class="product_compare_price font-f-noto">
+          {{- product.variants[0].compare_at_price | money_without_trailing_zeros -}}
+        </span>
+      </div>
+      <div class="own_form">
+        <div class="own_add_to_cart">
+          <a href="{{ product.url }}" class="add_to_cart_btn button_all font-f-noto" style="padding-top: 11px;">
+            Add to Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

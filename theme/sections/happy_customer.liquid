@@ -1,0 +1,134 @@
+{% if section.settings.enable_sec %}
+<section class="happy_customer_section mx-auto">
+  {% if section.settings.main_title !=blank %}
+  <div class="section_heading text-center">
+    <h3 class="font-f-heading">{{section.settings.main_title}}</h3>
+  </div>
+  {% endif %}
+  <div class="happy_customer_slider">
+    {% for block in section.blocks %}
+        <div class="happy_customer_main">
+            <div class="customer_profile">
+                <div class="customer_img">
+                    {% if block.settings.customer_img != blank %}
+                    <!-- <img src="{{ block.settings.customer_img | img_url:'original'}}" alt="{{ block.settings.customer_name }}"> -->
+                    {%- assign src_name = block.settings.customer_img -%}
+                    {%- assign src_alt = block.settings.customer_name.alt -%}
+                    {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+                    {% endif %}
+                </div>
+                <div class="customer_info">
+                    <div class="customer_name_country">
+                        {% if block.settings.customer_name !=blank %}
+                        <h4 class="font-f-pop">{{ block.settings.customer_name }}</h4>
+                        {% endif %}
+                        {% if block.settings.customer_country %}
+                        <h5 class="font-f-pop">{{ block.settings.customer_country }}</h5>
+                        {% endif %}
+                    </div>
+                    <div class="customer_review">
+                        <p class="font-f-pop">{{ block.settings.add_content }}</p>
+                    </div>
+                    <div class="social_icons">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                <svg width="10" height="17" viewBox="0 0 10 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.13224 1.22266H6.97582C6.02262 1.22266 5.10846 1.60131 4.43444 2.27533C3.76043 2.94934 3.38177 3.8635 3.38177 4.8167V6.97313H1.22534V9.84837H3.38177V15.5988H6.25701V9.84837H8.41343L9.13224 6.97313H6.25701V4.8167C6.25701 4.62606 6.33274 4.44323 6.46754 4.30843C6.60234 4.17362 6.78518 4.09789 6.97582 4.09789H9.13224V1.22266Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.1944 4.49021V4.88229C14.1944 8.83051 11.1989 13.3551 5.71769 13.3551C4.09956 13.3586 2.5158 12.8884 1.16174 12.0024C1.3969 12.0344 1.63411 12.0488 1.8714 12.0456C3.2127 12.0492 4.51629 11.6018 5.57262 10.7752C4.94948 10.766 4.34509 10.5607 3.84534 10.1883C3.3456 9.81599 2.97592 9.2956 2.78887 8.70113C2.97448 8.74048 3.16372 8.76019 3.35346 8.75994C3.61841 8.76 3.88216 8.72439 4.13761 8.65408C3.46268 8.51953 2.85549 8.15462 2.41992 7.62179C1.98435 7.08895 1.74749 6.42131 1.74986 5.7331V5.69389C2.1628 5.92456 2.62575 6.05106 3.09861 6.06245C2.46916 5.64824 2.02164 5.00932 1.84747 4.27622C1.67331 3.54312 1.78565 2.77119 2.16154 2.11814C2.91051 3.03933 3.84496 3.79258 4.90414 4.32892C5.96333 4.86527 7.12353 5.1727 8.30932 5.23124C8.25062 5.00871 8.22291 4.77914 8.22698 4.54903C8.20491 3.94088 8.3708 3.3407 8.70207 2.83022C9.03334 2.31974 9.51389 1.92376 10.0783 1.6962C10.6427 1.46864 11.2635 1.42056 11.8562 1.5585C12.4489 1.69644 12.9847 2.01371 13.3906 2.46709C14.0579 2.33244 14.6979 2.08729 15.2844 1.74175C15.062 2.4441 14.5889 3.04004 13.9552 3.41592C14.5471 3.33436 15.1242 3.16798 15.6686 2.9219C15.274 3.52792 14.7749 4.05895 14.1944 4.49021V4.49021Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.46872 4.49669C7.77203 4.49669 7.09097 4.70328 6.51169 5.09035C5.9324 5.47741 5.48091 6.02757 5.21429 6.67123C4.94768 7.3149 4.87792 8.02317 5.01384 8.70648C5.14976 9.38979 5.48525 10.0175 5.97789 10.5101C6.47053 11.0027 7.09819 11.3382 7.7815 11.4741C8.46482 11.6101 9.17309 11.5403 9.81676 11.2737C10.4604 11.0071 11.0106 10.5556 11.3976 9.9763C11.7847 9.39701 11.9913 8.71596 11.9913 8.01926C11.9913 7.08502 11.6202 6.18904 10.9596 5.52843C10.299 4.86782 9.40297 4.49669 8.46872 4.49669ZM8.46872 10.6229C7.95377 10.6229 7.45039 10.4702 7.02222 10.1841C6.59405 9.89802 6.26034 9.49138 6.06327 9.01563C5.86621 8.53988 5.81465 8.01637 5.91511 7.51132C6.01557 7.00626 6.26355 6.54233 6.62767 6.17821C6.9918 5.81408 7.45572 5.56611 7.96078 5.46565C8.46584 5.36519 8.98934 5.41675 9.46509 5.61381C9.94085 5.81087 10.3475 6.14459 10.6336 6.57276C10.9197 7.00092 11.0724 7.50431 11.0724 8.01926C11.0703 8.70917 10.7954 9.37024 10.3075 9.85808C9.81971 10.3459 9.15863 10.6209 8.46872 10.6229ZM11.8381 0.514648H5.09931C4.00258 0.514648 2.95078 0.95032 2.17528 1.72582C1.39978 2.50132 0.964111 3.55312 0.964111 4.64984V11.3887C0.964111 12.4854 1.39978 13.5372 2.17528 14.3127C2.95078 15.0882 4.00258 15.5239 5.09931 15.5239H11.8381C12.9349 15.5239 13.9867 15.0882 14.7622 14.3127C15.5377 13.5372 15.9733 12.4854 15.9733 11.3887V4.64984C15.9733 3.55312 15.5377 2.50132 14.7622 1.72582C13.9867 0.95032 12.9349 0.514648 11.8381 0.514648ZM15.0544 11.3887C15.0544 12.2417 14.7156 13.0598 14.1124 13.6629C13.5092 14.2661 12.6911 14.6049 11.8381 14.6049H5.09931C4.2463 14.6049 3.42823 14.2661 2.82507 13.6629C2.2219 13.0598 1.88304 12.2417 1.88304 11.3887V4.64984C1.88304 3.79684 2.2219 2.97877 2.82507 2.3756C3.42823 1.77244 4.2463 1.43358 5.09931 1.43358H11.8381C12.6911 1.43358 13.5092 1.77244 14.1124 2.3756C14.7156 2.97877 15.0544 3.79684 15.0544 4.64984V11.3887ZM13.2165 4.03722C13.2165 4.18868 13.1716 4.33673 13.0875 4.46266C13.0033 4.5886 12.8837 4.68675 12.7438 4.74471C12.6039 4.80267 12.4499 4.81783 12.3014 4.78828C12.1528 4.75874 12.0164 4.6858 11.9093 4.57871C11.8022 4.47161 11.7292 4.33516 11.6997 4.18662C11.6702 4.03807 11.6853 3.8841 11.7433 3.74417C11.8012 3.60424 11.8994 3.48465 12.0253 3.4005C12.1513 3.31636 12.2993 3.27145 12.4508 3.27145C12.6539 3.27145 12.8486 3.35212 12.9923 3.49574C13.1359 3.63935 13.2165 3.83413 13.2165 4.03722Z" fill="white"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="customer_post_img">
+                <div class="post_img_div">
+                    {% if block.settings.customer_post_img != blank %}
+                    <!-- <img src="{{ block.settings.customer_post_img | img_url:'original'}}" alt="{{ block.settings.customer_name }}"> -->
+                    {%- assign src_name = block.settings.customer_post_img -%}
+                    {%- assign src_alt = block.settings.customer_post_img -%}
+                    {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+  </div>
+  <div class="slider-arrow"><ul></ul></div>
+</section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "happy customer section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_sec",
+        "label": "Enable Section?"
+      },
+      {
+        "type": "text",
+        "id": "main_title",
+        "label": "Section Heading"
+      }
+	],
+  "blocks": [
+    {
+      "type": "review_section",
+      "name": "review",
+      "settings": [
+        {
+            "type": "header",
+            "content": "Customer Details"
+        },
+        {
+            "type": "image_picker",
+            "id": "customer_img",
+            "label": "Customer Image"
+        },
+        {
+            "type": "text",
+            "id": "customer_name",
+            "label": "Customer Name"
+        },
+        {
+            "type": "text",
+            "id": "customer_country",
+            "label": "Customer Country"
+        },
+        {
+            "type": "textarea",
+            "id": "add_content",
+            "label": "Add Review Content"
+        },
+        {
+            "type": "image_picker",
+            "id": "customer_post_img",
+            "label": "Customer Post Image"
+        }
+      ]
+    }
+  ],
+ 	"presets": [
+    {
+      "name": "happy customer section"
+    }
+  ]
+  }
+{% endschema %} 

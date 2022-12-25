@@ -1,0 +1,201 @@
+// Common scss
+
+.home_btn{
+    max-width: 168px;
+    font-family: $base-font;
+    padding: 15px 28px;
+    background-color: $primary;
+    border-radius: 8px;
+    border: 1px solid $primary;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: $color--white;
+    margin-top: 20px;
+    transition: all .5s ease;
+    display: block;
+    @include mq("desk-and-down"){
+        font-size: 18px;
+    }
+    @include mq("desk-and-down"){
+        padding: 13px 25px;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+    @include mq("phone"){
+      padding: 7px 15px;
+      font-size: 14px;
+      margin-top: 10px;
+  }
+    &:hover{
+      background-color: transparent;
+      transition: all .5s ease;
+      color: $primary;
+    }
+  }
+  
+  .heading_txt{
+    font-family: $base-font;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $primary;
+    margin-bottom: 14px !important;
+    @include mq("desk-and-down"){
+        font-size: 18px;
+    }
+    @include mq("phone-and-tablet"){
+      font-size: 16px;
+    }
+    @include mq("phone"){
+      font-size: 14px;
+      margin-bottom: 7px;
+    }
+  }
+  
+  .heading_title{
+    font-family: $heading-font;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 122%;
+    color: $basic-text-color;
+    margin-bottom: 10px !important;
+    @include mq("lap-desk-and-down"){
+        font-size: 44px;
+    }
+    @include mq("desk-and-down"){
+        font-size: 30px;
+    }
+    @include mq("tablet-and-down"){
+        font-size: 28px;
+    }
+    @include mq("phone"){
+      font-size: 20px;
+    }
+}
+
+.heading_para{
+    font-family: $base-font;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 157%;
+    color: $color-grey;
+    @include mq("desk-and-down"){
+        font-size: 16px;
+    }
+    @include mq("phone"){
+      max-width: 100%;
+      font-size: 14px;
+    }
+}
+
+
+// image with text section
+
+
+.image_with_text_grid_reverse{
+    flex-direction: row-reverse;
+    .image_with_text_img{
+        margin-left: 20px;
+        @include mq("phone") {
+            margin-left: 0px;
+        }
+    }
+}
+
+.image_with_text_content-right > * {
+    align-self: flex-end;
+    text-align: right;
+    @include mq("phone") {
+        align-self: initial;
+        text-align: initial;
+    }
+}
+
+.image_with_text_content-left > * {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.image_with_text_content-center > * {
+    align-self: center;
+    text-align: center;
+}
+
+.image_with_text {
+    .image_with_text_wrap {
+        justify-content: space-between;
+        align-items: center;
+        @include mq("phone") {
+            flex-wrap: wrap;
+        }
+        .image_with_text_img {
+            max-width: 530px;
+            width: 100%;
+            margin-right: 20px;
+            @include mq("phone") {
+                max-width: 100%;
+                margin-right: 0px;
+            }
+            .image_with_text_left {
+                img {
+                    width: 100%;
+                }
+                .default_image{
+                    border: 1px solid #dadada;
+                }
+            }
+        }
+        .image_with_text_right {
+            max-width: 778px;
+            width: 100%;
+            @include mq("phone") {
+                margin-top: 20px;
+            }
+            .image_with_text_right_text {
+            }
+            .image_with_text_content {
+                .image_with_text_content_title {
+                }
+                .image_with_text_content_text {
+                }
+                .brand_contex_btn {
+                    padding: 16px 28px;
+                    a {
+                    }
+                }
+                .home_product_info {
+                    margin-top: 16px;
+                    .home_product_list {
+                        display: flex;
+                        margin-bottom: 14px;
+                        @include mq("phone"){
+                            margin-bottom: 7px;
+                        }
+                        .home_list_icon {
+                            margin-top: 5px;
+                        }
+                        .home_product_cont {
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 157%;
+                            display: flex;
+                            align-items: center;
+                            color: #828282;
+                            margin-left: 15px;
+                            @include mq("desk-and-down") {
+                                font-size: 16px;
+                            }
+                            @include mq("phone"){
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

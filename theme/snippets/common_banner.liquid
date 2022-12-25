@@ -1,0 +1,142 @@
+<section class="common_banner_section mx-auto" style="padding-bottom: 0px !important;">
+  <div class="common_banner_bg_img text-center">
+    <div class="common_banner_content">
+      <h4 class="text-white">
+        {%- assign t = template | split: '.' | first -%}
+        {%- case t -%}
+          {%- when 'page' -%}
+            <li class="breadcrumbs__item">
+              <span aria-current="page">{{ page.title }}</span>
+            </li>
+          {%- when 'product' -%}
+            {%- if collection.url -%}
+              <li class="breadcrumbs__item">
+                {{ collection.title | link_to: collection.url }}
+              </li>
+            {%- endif -%}
+            <li class="breadcrumbs__item">
+              <span aria-current="page">{{ product.title }}</span>
+            </li>
+          {%- when 'collection' and collection.handle -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item">
+                {{ collection.title | link_to: collection.url }}
+              </li>
+              <li class="breadcrumbs__item">
+                {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                <span aria-current="page">{{ current_tags | join: ' + ' }}</span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item">
+                <span aria-current="page">{{ collection.title }}</span>
+              </li>
+            {%- endif -%}
+          {%- when 'blog' -%}
+            {%- if current_tags -%}
+              <li class="breadcrumbs__item">
+                {{ blog.title | link_to: blog.url }}
+              </li>
+              <li class="breadcrumbs__item">
+                {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+                <span aria-current="page">{{ current_tags | join: ' + ' }}</span>
+              </li>
+            {%- else -%}
+              <li class="breadcrumbs__item">
+                <span aria-current="page">{{ blog.title }}</span>
+              </li>
+            {%- endif -%}
+          {%- when 'article' -%}
+            <li class="breadcrumbs__item">
+              {{ blog.title | link_to: blog.url }}
+            </li>
+            <li class="breadcrumbs__item">
+              <span aria-current="page">{{ article.title }}</span>
+            </li>
+          {%- else -%}
+            <li class="breadcrumbs__item">
+              <span aria-current="page">{{ page_title }}</span>
+            </li>
+        {%- endcase -%}
+      </h4>
+      <ul class="breadcrumbs_ul">
+        <li>
+          <a href="{{ shop.url }}">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M7.51699 2.36667L3.02533 5.86667C2.27533 6.45 1.66699 7.69167 1.66699 8.63333V14.8083C1.66699 16.7417 3.24199 18.325 5.17533 18.325H14.8253C16.7587 18.325 18.3337 16.7417 18.3337 14.8167V8.75C18.3337 7.74167 17.6587 6.45 16.8337 5.875L11.6837 2.26667C10.517 1.45 8.64199 1.49167 7.51699 2.36667Z"
+                stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M10 14.9917V12.4917" stroke="white" stroke-width="1.8" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            Home
+          </a>
+          <span class="middle_line">/</span>
+        </li>
+        <li>
+          <span>
+            {%- case t -%}
+              {%- when 'page' -%}
+                <li class="breadcrumbs__item">
+                  <span aria-current="page">{{ page.title }}</span>
+                </li>
+              {%- when 'product' -%}
+                {%- if collection.url -%}
+                  <li class="breadcrumbs__item">
+                    {{ collection.title | link_to: collection.url }}
+                  </li>
+                {%- endif -%}
+                <li class="breadcrumbs__item">
+                  <span aria-current="page">{{ product.title }}</span>
+                </li>
+              {%- when 'collection' and collection.handle -%}
+                {%- if current_tags -%}
+                  <li class="breadcrumbs__item">
+                    {{ collection.title | link_to: collection.url }}
+                  </li>
+                  <li class="breadcrumbs__item">
+                    {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+                    <span aria-current="page">{{ current_tags | join: ' + ' }}</span>
+                  </li>
+                {%- else -%}
+                  <li class="breadcrumbs__item">
+                    <span aria-current="page">{{ collection.title }}</span>
+                  </li>
+                {%- endif -%}
+              {%- when 'blog' -%}
+                {%- if current_tags -%}
+                  <li class="breadcrumbs__item">
+                    {{ blog.title | link_to: blog.url }}
+                  </li>
+                  <li class="breadcrumbs__item">
+                    {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+                    <span aria-current="page">{{ current_tags | join: ' + ' }}</span>
+                  </li>
+                {%- else -%}
+                  <li class="breadcrumbs__item">
+                    <span aria-current="page">{{ blog.title }}</span>
+                  </li>
+                {%- endif -%}
+              {%- when 'article' -%}
+                <li class="breadcrumbs__item">
+                  {{ blog.title | link_to: blog.url }}
+                </li>
+                <li class="breadcrumbs__item">
+                  <span aria-current="page">{{ article.title }}</span>
+                </li>
+              {%- else -%}
+                <li class="breadcrumbs__item">
+                  <span aria-current="page">{{ page_title }}</span>
+                </li>
+            {%- endcase -%}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .common_banner_bg_img{
+    background-image: url({{ settings.common_banner_img | img_url:'original' }});
+  }
+</style>

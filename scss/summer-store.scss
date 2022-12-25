@@ -1,0 +1,48 @@
+.summer-store-section {
+    margin-top: 100px;
+    background: #FAFAFA;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    .summer-store-coll {
+        position: relative;
+        margin: 10px 0px;
+        .summer-store-txt {
+            width: 90%;
+            position: absolute;
+            bottom: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(14px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .summer-store-txt h3 {
+            font-family: Heebo;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 44px;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: capitalize;
+            color: $color--white;
+            margin: 0;
+            @include mq("phone-portrait"){
+                font-size: 18px;
+                line-height: 36px
+            }  
+        }
+    }
+}
+
+.summer-three-coll-section {
+    margin: 100px 0px;
+    @include mq("phone"){
+        margin-top: 40px;
+    }
+    @include mq("phone-portrait"){
+        margin-top: 25px;
+    }
+    .summer-coll-box {
+        margin: 10px 0px;
+    }
+}

@@ -1,0 +1,69 @@
+<section class="hero-section-wrap">
+    <div class="hero-section d-flex">
+        {% for block in section.blocks %}
+        <a href="{{ block.settings.slider_url }}">
+            <div class="hero-desktop-img">
+                <div class="img">
+                    {% if block.settings.hero_img_xs !=blank %}
+                    {%- assign src_name = block.settings.hero_img_xs -%}
+                    {%- assign src_alt = block.settings.hero_img_xs -%}
+                    {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid xs-slider w-100" -%}
+                    {% else %}
+                        <div class="default_image">
+                            {% include 'default-banner' %}                        
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="hero-mobile-img">
+                <div class="img">    
+                    {% if block.settings.hero_img_sm !=blank %}
+                    {%- assign src_name = block.settings.hero_img_sm -%}
+                    {%- assign src_alt = block.settings.hero_img_sm -%}
+                    {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid sm-slider w-100" -%}
+                    {% else %}
+                        <div class="default_image">
+                            {% include 'default-banner' %}                        
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        
+    </div>
+</section>
+{% schema %}
+{
+    "name": "hero-slideshow",
+    "blocks": [
+        {
+        "type": "hero-Slide",
+        "name": "hero-Slide",
+            "settings": [
+                {
+                    "type": "url",
+                    "id": "slider_url",
+                    "label": "Hero Banner URL"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "hero_img_xs",
+                    "label": "Hero Image For Desktop"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "hero_img_sm",
+                    "label": "Hero Image For Mobile"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "hero-slideshow",
+            "category": "Slideshow"
+        }
+    ]
+}
+{% endschema %}

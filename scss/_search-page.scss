@@ -1,0 +1,149 @@
+.search-template{
+    margin: 80px 0;
+    @include mq("phone-portrait"){
+        margin: 20px 0;
+    }
+    .container{
+        @include mq("tablet-and-down"){
+            padding: 0px !important;
+        }
+        .search-block{
+            .search-title{
+                h1{
+                    font-family: $heading-font;
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 37px;
+                    text-align: center;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    margin-top: 15px;
+                    color: $basic-text-color;
+                    @include mq("phone-portrait"){
+                        font-size: 22px;
+                        margin-bottom: 5px;
+                    }
+                }
+                .error-content-wrap{
+                    .error-page-small-msg{
+                        font-family: $base-font;
+                        font-size: 18px;
+                        line-height: 26px;
+                        text-align: center;
+                        letter-spacing: 0.05em;
+                    }
+                }
+            }
+            .search-form-wrap{
+                .form-header{
+                    .search-input-group{
+                        margin-top: 15px;
+                        @include flexbox();
+                        @include align-items(center);
+                        .search-form-control{
+                            font-size: 16px;
+                            line-height: 30px;
+                            color: $basic-text-color;
+                            padding: 15px;
+                            width: 100%;
+                            border: 1px solid $basic-text-color;
+                            outline: none;
+                            @include mq("phone-portrait"){
+                                font-size: 14px;
+                                padding: 10px;
+                                line-height: 25px;
+                            }
+                        }
+                        .input-group-append{
+                            .search-submit-btn {
+                                width: 62px;
+                                height: 62px;
+                                border: 1px solid $button-bg-color;
+                                background: $button-bg-color;
+                                cursor: pointer;
+                                @include mq("phone-portrait"){
+                                    width: 47px;
+                                    height: 47px;
+                                }
+                                img{
+                                    filter: invert(1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .search-err-wrap{
+            margin: 25px 0px;
+            .err-msg-big{
+                font-family: $heading-font;
+                font-weight: 500;
+                font-size: 30px;
+                line-height: 37px;
+                text-align: center;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                // color: $color-product-title;
+            }
+            .err-msg-small {
+                font-family: $base-font;
+                font-size: 18px;
+                line-height: 26px;
+                text-align: center;
+                letter-spacing: 0.05em;
+            }
+        }
+
+        .search-result-wrap{
+            margin-top: 40px;
+            @include mq("phone-portrait"){
+                margin: 20px;
+            }
+            .search-success-msg-wrap{
+                margin: 20px 0px;
+                @include mq("phone-portrait"){
+                    margin: 10px 0px;
+                }
+                
+                .search-success-msg{
+                    font-family: $base-font;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 37px;
+                    text-align: center;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    @include mq("phone-portrait"){
+                        font-size: 16px;
+                        line-height: 30px;
+                    }
+                    @include mq("small--phone"){
+                        font-size: 13px;
+                        line-height: 23px;
+                    }
+                }   
+            }
+            .search-product-box{
+                // @include mq("phone-portrait"){
+                //     margin: 10px 0px;
+                // }
+                .product-item{
+                    margin: 0px auto;
+                    h3{
+                        @include mq("phone-portrait"){
+                            font-size: 18px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        .add-cart-button{
+            width: 100%;
+            svg {
+                width: 14px;
+            }
+        }
+    }
+}

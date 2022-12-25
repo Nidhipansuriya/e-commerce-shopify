@@ -1,0 +1,176 @@
+// .blog-section-title{
+//     background-image: url('https://cdn.shopify.com/s/files/1/0588/6528/7346/files/abt-bg-1.png?v=1628967236');
+//     background-repeat: no-repeat;
+//     background-position: 0 0;
+//     background-size: cover;
+//     height: 500px;  
+//     @include flexbox();
+//     text-align: center;
+//     align-content: center;
+//     @include justify-content(center);
+//     @include align-items(center);
+//     @include mq("large-desk-and-down"){
+//         height: 410px;
+//     }
+//     @include mq("large-desk-and-up"){
+//         height: 410px;
+//     }
+//     @include mq("desk-and-up"){
+//         height: 360px;
+//     }
+//     @include mq("lap"){
+//         height: 330px;
+//     }
+//     @include mq("phone-and-tablet"){
+//         height: 260px;
+//     }
+//     @include mq("tablet-portrait"){
+//         height: 200px;
+//     }
+//     @include mq("phone"){
+//         height: 200px;
+//     }
+//     .container{
+//         .page-title{
+//             font-family: $heading-font;
+//             font-weight: 500;
+//             font-size: 46px;
+//             line-height: 56px;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: $color--white;
+//             @include mq("phone"){
+//                 font-size: 20px;
+//             }
+//         }
+//     }
+// }
+// .blog-section-content{
+
+//     .blog-temp{
+//         .blog-header{
+//             margin: 60px 0;
+//             @include mq("phone-landscape"){
+//                 margin: 30px 0;
+//             }
+//             @include mq("phone-portrait"){
+//                 margin: 20px 0;
+//             }
+//             .section-title{
+//                 font-family: Montserrat;
+//                 font-style: normal;
+//                 font-weight: 600;
+//                 font-size: 30px;
+//                 line-height: 37px;
+//                 text-align: center;
+//                 letter-spacing: 0.08em;
+//                 text-transform: uppercase;
+//                 color: #000000;
+//                 padding-bottom: 10px;
+//                 @include mq("phone-landscape"){
+//                     font-size: 22px;
+//                     line-height: 30px;
+//                     padding-bottom: 5px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     font-size: 18px;
+//                     line-height: 24px;
+//                 }
+//             }
+//         }
+        
+//     }
+// }  
+// .blog-article-card{
+//     margin-bottom: 30px;
+//     &:hover {
+//         box-shadow: 0px 4px 107px #00000014;
+//     }
+//     .blog-article-content{
+//         .blog-bottom{
+//             padding: 25px 20px;
+//             @include mq("tablet-portrait"){
+//                 padding: 15px;
+//             }
+//             @include mq("phone-portrait"){
+//                 padding: 15px 10px;
+//             }
+//             .blog-article-date{
+//                 font-family: Heebo;
+//                 font-style: normal;
+//                 font-weight: normal;
+//                 font-size: 16px;
+//                 line-height: 26px;
+//                 letter-spacing: 0.08em;
+//                 text-transform: uppercase;
+//                 color: #939282;
+//                 @include mq("tablet-portrait"){
+//                     font-size: 14px;
+//                     line-height: 24px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     font-size: 12px;
+//                 }
+//             }
+//             .blog-article-title {
+//                 font-family: Montserrat;
+//                 font-style: normal;
+//                 font-weight: 500;
+//                 font-size: 18px;
+//                 line-height: 28px;
+//                 letter-spacing: 0.08em;
+//                 text-transform: uppercase;
+//                 color: #222222;
+//                 padding-top: 10px;
+//                 @include mq("tablet"){
+//                     font-size: 14px;
+//                     line-height: 26px;
+//                     padding-top: 5px;
+//                 }
+//                 @include mq("tablet-portrait"){
+//                     font-size: 14px;
+//                     line-height: 23px;
+//                     padding-top: 5px;
+//                 }
+//                 @include mq("phone"){
+//                     font-size: 14px;
+//                     line-height: 23px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     font-size: 14px;
+//                     line-height: 24px;
+//                     padding-top: 5px;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// .blog-heading-wrap h1{
+//     @include mq("phone-portrait"){
+//         font-size: 32px;
+//         line-height: 40px;
+//     }
+// }
+// .blog-comment-total, .blog-content{
+//     @include mq("phone-portrait"){
+//         font-size: 18px;
+//         line-height: 28px;
+//     }
+// }
+// .blog-list li{
+//     @include mq("phone-portrait"){
+//         font-size: 18px;
+//         line-height: 28px;
+//     }
+// }
+// .blog-container{
+//     @include mq("phone-portrait"){
+//         margin: 0 24px;
+//     }
+// }
+// .blog-heading-wrap{
+//     @include mq("phone-portrait"){
+//         margin-top: 20px;
+//     }
+// }

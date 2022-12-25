@@ -1,0 +1,113 @@
+/* FAQ CSS start */
+.faq_section{
+    .container{
+        max-width: 1172px;
+        width: 100%;
+        .information_faq_sec {
+            width: 100%;
+            .FAQ_item {
+                border-radius: 15px;
+                margin-bottom: 19px;
+                background-color: #fbfbfb;
+                &.item_active{
+                    background: #fbfbfb;
+                    border-radius: 15px;
+                    margin-bottom: 28px;
+                }
+                .question {
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 34px;
+                    display: flex;
+                    align-items: center;
+                    color: $basic-text-color;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                    padding: 17px 25px;
+                    // padding-left: 60px;
+                    // padding-right: 90px;
+                    @include mq("desk-and-down"){
+                        padding-left: 40px;
+                        padding-right: 60px;
+                    }
+                    @include mq("tablet-and-down"){
+                        font-size: 18px;
+                        line-height: 20px;
+                        padding: 20px;
+                        padding-left: 20px;
+                        padding-right: 50px;
+                    }
+                    @include mq("phone"){
+                        font-size: 16px;
+                        padding: 15px;
+                        padding-right: 40px;
+                    }
+                    &::after {
+                        content: "+";
+                        font-size: 30px;
+                        position: absolute;
+                        right: 60px;
+                        background-color: #efefef;
+                        max-width: 30px;
+                        line-height: 17px;
+                        width: 100%;
+                        max-height: 30px;
+                        display: flex;
+                        height: 100%;
+                        border-radius: 8px;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        @include mq("desk-and-down"){
+                            right: 30px;
+                        }
+                        @include mq("tablet-and-down"){
+                            right: 25px;
+                        }
+                        @include mq("phone"){
+                            right: 15px;
+                            font-size: 17px;
+                            line-height: 10px;
+                        }
+                    }
+                    &.active{
+                        &::after {
+                            content: "\2212";
+                            background-color: $primary;
+                            color: $color--white;
+                        }
+                    }
+                }
+                .answercont {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: 0.3s;
+                    .answer {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 28px;
+                        color: #636365;
+                        padding-right: 85px;
+                        padding-left: 25px;
+                        padding-bottom: 36px;
+                        border-bottom: 5px solid $primary;
+                        border-radius: 10px;
+                        @include mq("desk-and-down"){
+                            padding-right: 40px;
+                            padding-left: 40px;
+                        }
+                        @include mq("tablet-and-down"){
+                            padding-right: 20px;
+                            line-height: 25px;
+                            padding-left: 15px;
+                            padding-bottom: 20px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+          }
+    }
+}

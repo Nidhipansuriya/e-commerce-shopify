@@ -1,0 +1,70 @@
+<section class="customer_account">
+    <div class="container">
+    <div id="recover" class="main_account_form">
+      <div class="customer_form_img">
+        <div class="customer_img_main">
+            {%- assign src_name = settings.login_img -%}
+            {%- assign src_alt = settings.login_img -%}
+            {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid xs-slider" -%}
+        </div>
+      </div>
+      <div class="customer_form_content">
+        <div class="customer_form">
+              <div class="account_heading text-center">
+              <h3>Reset your password</h3>
+              <p>We will send you an email to reset your password</p>
+            </div>
+          {% form 'recover_customer_password' %}
+            {{ form.errors | default_errors }}
+
+            {% if form.posted_successfully? %}
+              {% assign reset_success = true %}
+            {% endif %}
+            <div class="input_group_div">
+              <input type="email" value="" size="30" name="email" id="recover-email" required class="large" placeholder="Enter Email" />
+            </div>
+            <div class="button_group_div reset_pass_btn">
+              <button class="button_all" type="submit">Submit</button>
+              <a class="button_all" href="#login">Cancel</a>
+            </div>
+            {% endform %}
+        </div>
+      </div>
+    </div>
+    <div id="login" class="main_account_form">
+      <div class="customer_form_img">
+        <div class="customer_img_main">
+            {%- assign src_name = settings.login_img -%}
+            {%- assign src_alt = settings.login_img -%}
+            {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid xs-slider" -%}
+        </div>
+      </div>
+      <div class="customer_form_content">
+        <div class="customer_form">
+          <div class="account_heading text-center">
+            <h3>Welcome,</h3>
+            <p>Welcome back! Please enter your details</p>
+          </div>
+          {% form 'customer_login' %}
+          {{ form.errors | default_errors }}
+            <div class="input_group_div">
+              <input type="email" name="customer[email]" required placeholder="Enter Email">
+            </div>
+            <div class="input_group_div mb-0">
+              <input type="password" name="customer[password]" placeholder="Enter Password" required>
+            </div>
+            <div class="customer_form_link forget_pass">
+              <a href="#recover">forgot Password?</a>
+            </div>
+            <div class="button_group_div">
+              <button class="button_all" type="submit">Login</button>
+            </div>
+            <div class="customer_form_link">
+              <span>Don’t have an account? <a href="/account/register">Sign up here</a></span>
+            </div>
+          {% endform %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

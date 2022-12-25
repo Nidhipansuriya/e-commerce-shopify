@@ -1,0 +1,136 @@
+.blog-content,.blog-comment-total {
+    font-family: 'charter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    word-break: break-word;
+    line-height: 32px;
+    letter-spacing: -0.003em;
+}
+.blog-container {
+    max-width: 680px;
+    margin: 80px auto;
+}
+.blog-content{
+    margin-top: 2em;
+}
+.blog-heading-wrap h1{
+    font-size: 46px;
+    line-height: 56px;
+    font-family: 'Heebo', sans-serif;
+}
+.blog-list{
+    list-style: disc;
+}
+.blog-list li{
+    margin-top: 1em;
+    font-family: 'charter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    word-break: break-word;
+    line-height: 32px;
+    letter-spacing: -.003em;
+}
+.blog-details{
+    align-items: center;
+    justify-content: space-between;
+}
+.blog-share a svg{
+    width: 30px;
+}
+.blog-comment-bg{
+    margin-top: 4rem;
+}
+.blog-comments-display{
+    padding: 2rem 0;
+}
+.article-template__comments{
+    margin-bottom: 5rem;
+}
+.article-template__comments-comment{
+    padding: 2rem 1.5rem;
+    background: #fafafa;
+    border-bottom: 1px solid #939282;
+}
+.article-template__comments-comment p{
+    font-size: 16px;
+}
+.caption-with-letter-spacing{
+    font-size: 14px;
+    color: #bababa;
+}
+.circle-divider::after {
+    content: '\2022';
+    margin: 0 1.3rem 0 1.5rem;
+}
+.right{
+    text-align: right
+}
+.blog-comment-total-big{
+    font-size: 23px;
+}
+.comment_form_group .field__label {
+    font-size: 18px;    
+    font-family: 'charter';
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+}
+.comment_form_group{
+    padding: 0 10px !important;
+    margin: 10px 0;
+}
+.comment_form_group .field__input{
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #939282;
+    outline: 0;
+    max-width: 100%;
+}
+.comment_submit_btn {
+    width: 140px;
+    height: 45px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    margin: 0 auto;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    cursor: pointer;
+    border: 1px solid #6e725b;
+    background: #6e725b;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all .5s;
+}
+.form-status{
+    font-family: 'charter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    word-break: break-word;
+    line-height: 32px;
+    letter-spacing: -.003em;
+    display: flex;
+}
+.form-status svg{
+    margin-right: 10px;
+}
+.form__message{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+.form__message svg{
+    margin-right: 10px;
+    width: 20px;
+}
+.commmet_autor{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-transform: capitalize;
+}

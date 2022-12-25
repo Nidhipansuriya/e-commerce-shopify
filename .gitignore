@@ -1,0 +1,16 @@
+._*
+.DS_Store
+Thumbs.db
+config.yml
+node_modules
+deploy.log
+theme/assetscustom.js
+theme/assets/custom.css
+config/shopify.yml
+npm-debug.log
+package-lock.json
+yarn.lock
+.env
+.env.*
+
+

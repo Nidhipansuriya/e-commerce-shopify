@@ -1,0 +1,48 @@
+{% if section.settings.collection_id != blank %}
+  <section class="featured_collection_section">
+    <div class="container">
+      {% if section.settings.title != blank %}
+        <div class="section_heading text-center">
+          <h4 class="font-f-heading">Our Products</h4>
+          {% comment %} <h3 class="font-f-heading">{{ section.settings.title }}</h3> {% endcomment %}
+          <p>
+            At Tavastha We Love to Preach Produce and Manufacture Only Heirloom seed Products<br>
+            with Ayurveda Approved Methodology
+          </p>
+        </div>
+      {% endif %}
+      <ul class="product_slider">
+        {% assign collection = section.settings.collection_id %}
+        {% for product in collections[collection].products %}
+          <li>
+            {% render 'product-item', product: product %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="product_slider_arrow slider_arrow_main"></div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "collection Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection_id",
+      "label": "collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feature collection"
+    }
+  ]
+}
+{% endschema %}

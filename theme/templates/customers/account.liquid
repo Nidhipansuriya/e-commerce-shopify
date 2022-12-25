@@ -1,0 +1,70 @@
+<section class="customer_account">
+  <div class="container">
+      <div class="order_page_main">
+        <div class="account_heading">
+              <h3>Order History</h3>
+              <a class="logout_icon" href="{{ routes.account_logout_url }}">
+                <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12.4894C14.7614 12.4894 17 10.2684 17 7.52865C17 4.78892 14.7614 2.56793 12 2.56793C9.23858 2.56793 7 4.78892 7 7.52865C7 10.2684 9.23858 12.4894 12 12.4894Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M20.5899 22.4108C20.5899 18.5712 16.7399 15.4658 11.9999 15.4658C7.25991 15.4658 3.40991 18.5712 3.40991 22.4108" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                  Log Out
+              </a>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="account_main_row">
+      <div class="order_history_col">
+        <div class="order_header">
+          <ul>
+            <li>ORDER</li>
+            <li>DATE</li>
+            <li>PAYMENT STATUS</li>
+            <li>FULFILLMENT STATUS</li>
+            <li>TOTAL</li>
+          </ul>
+        </div>
+        <div class="order_history">
+          {%- for order in customer.orders -%}
+          <ul>
+            <li>
+              <a href="{{ order.customer_url }}">{{ order.name }}</a>
+            </li>
+            <li>
+              <span>{{ order.created_at | date: "%d %b, %Y" }}</span>
+            </li>
+            <li>
+              <span>{{ order.financial_status_label }}</span>
+            </li>
+            <li>
+              <span>{{ order.fulfillment_status_label }}</span>
+            </li>
+            <li>
+              <span>{{ order.total_price | money_with_currency }}</span>
+            </li>
+          </ul>
+          {%- endfor -%}
+        </div>
+        <div class="order_history_mobile">
+          {%- for order in customer.orders -%}
+            <ul>
+              <li><span>ORDER</span> <span><a href="{{ order.customer_url }}">{{ order.name }}</a></span></li>
+              <li><span>DATE</span><span>{{ order.created_at | date: "%d %b, %Y" }}</span></li>
+              <li><span>PAYMENT</span><span>{{ order.financial_status_label }}</span></li>
+              <li><span>FULFILLMENT</span><span>{{ order.fulfillment_status_label }}</span></li>
+              <li><span>TOTAL</span><span>{{ order.total_price | money_with_currency }}</span></li>
+            </ul>
+            {%- endfor -%}
+          </div>
+      </div>
+      <div class="address_col">
+        <div class="account_address_details">
+          <h3>Account details</h3>
+          {{ customer.default_address | format_address }}
+          <a class="normal_text" href="{{ routes.account_addresses_url }}"> view addresses  ({{ customer.addresses_count }})</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

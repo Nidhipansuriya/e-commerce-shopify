@@ -1,0 +1,63 @@
+<style type="text/css">
+  @media screen and (min-width: 750px) {
+    .template-404 .title + * {
+      margin-top: 2rem;
+    }
+  }
+  .section_404{
+    padding-top: 30px;
+  }
+  .section_404 img{
+    margin-bottom: 40px;
+  }
+  .section_404 h2{
+    font-size: 50px;
+    margin-bottom: 29px;
+  }
+  .section_404 h5{
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  .section_404 a{
+    padding: 13px 48px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+  }
+  @media (max-width:575px) {
+    .section_404 h2{
+      font-size: 35px;
+    }
+  }
+</style>
+
+<section class="section_404">
+  <div class="container">
+    <div class="main_div_404 text-center">
+      <img class="img-fluid" src="{{ section.settings.image | img_url:''}}" alt="">
+      <h2> Page not found</h2>
+      <a class="font_f_Jost text-capitalize m-0 d-inline-block text-decoration-none" href="#">Continue shopping</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "404 page",
+    "settings": [
+      	
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "image"
+      }
+	],
+ 	"presets": [
+    {
+      "name": "404 page"
+    }
+  ]
+  }
+{% endschema %}

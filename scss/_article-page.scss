@@ -1,0 +1,145 @@
+// .blog-article-temp{
+//     .blog-article-post{
+//         @include mq("phone-portrait"){
+//             margin: 40px 0;
+//         }
+//         .artical-img-wrap{
+//             @include flexbox();
+//             @include flex-wrap(wrap);
+//             a {
+//                 width: 25%;
+//                 padding: 15px;
+//                 @include mq("phone-portrait"){
+//                     width: 50%;
+//                     padding: 10px;
+//                 }
+//                 img{
+//                     width: 100%;
+//                 }
+//             }
+//         }
+//         .blog-post-title{
+//             font-family: Montserrat;
+//             font-style: normal;
+//             font-weight: 600;
+//             font-size: 36px;
+//             line-height: 46px;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: #222222;
+//             @include mq("tablet"){
+//                 font-size: 28px;
+//             }
+//             @include mq("phone"){
+//                 font-size: 22px;
+//                 line-height: 24px;
+//             }
+//         }
+//         .blog-para-title{
+//             font-family: Montserrat;
+//             font-style: normal;
+//             font-weight: 600;
+//             font-size: 20px;
+//             line-height: 24px;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: #000000;
+//             @include mq("tablet"){
+//                 font-size: 18px;
+//             }
+//             @include mq("phone"){
+//                 font-size: 16px;
+//             }
+//         }
+//         .blog-para-desc{
+//             font-family: Heebo;
+//             font-style: normal;
+//             font-weight: normal;
+//             font-size: 18px;
+//             line-height: 30px;
+//             text-align: justify;
+//             letter-spacing: 0.05em;
+//             color: #666666;
+//             list-style: initial;
+//             @include mq("tablet"){
+//                 font-size: 14px;
+//                 line-height: 26px;
+//             }
+//             @include mq("phone"){
+//                 font-size: 14px;
+//                 line-height: 24px;
+//             }
+//         }
+//         ul{
+//             padding-left: 20px;
+//         }
+//     }
+//     .related-blog-post-wrap{
+//         background: #FAFAFA;
+//         padding: 80px 0;
+//         @include mq("phone"){
+//             padding: 40px 0;
+//         }
+//         .section-title{
+//             font-family: Montserrat;
+//             font-style: normal;
+//             font-weight: 600;
+//             font-size: 30px;
+//             line-height: 37px;
+//             text-align: center;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: #000000;
+//             @include mq("phone-portrait"){
+//                 font-size: 22px;
+//                 line-height: 30px;
+//             }
+//         }
+//     }
+//     .article-recomm-slider {
+//         padding: 0px 55px;
+//         @include mq("phone-portrait"){
+//             padding: 0 40px;
+//         }
+//         .product_recomm_arrow--prev{
+//             left: -10px;
+//             @include mq("phone-and-tablet"){
+//                 left: 0px;
+//             }
+//             svg {
+//                 @include transform(scaleX(-1));
+//             }
+//         }
+//         .product_recomm_arrow--next{
+//             right: -10px;
+//             @include mq("phone-and-tablet"){
+//                 right: 0px;
+//             }
+//         }
+//         &.carousel{
+//             .carousel-cell{
+//                 width: 33.3333%;
+//                 padding: 0 20px;
+//                 @include mq("phone-and-tablet"){
+//                     width: 50%;
+//                     padding: 0 10px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     width: 100%;
+//                     padding: 0;
+//                 }
+//             }
+//             .flickity-prev-next-button.previous{
+//                 @include mq("phone-portrait"){
+//                     left: -5px;
+//                 }
+//             }
+//             .flickity-prev-next-button.next {
+//                 @include mq("phone-portrait"){
+//                     right: -5px;
+//                 }
+//             }
+//         }
+//     }
+
+// }

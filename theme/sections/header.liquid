@@ -1,0 +1,246 @@
+<header class="header_sec mx-auto">
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="sidebar_icon">
+      <button id="open_btn">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.5" y="0.5" width="39" height="39" rx="2.5" stroke="#313848"/>
+          <path d="M29 20H11" stroke="#313848" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M29 14H11" stroke="#313848" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M29 26H11" stroke="#313848" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="header_logo">
+      <div class="logo_main_div">
+        {% if section.settings.logo_img != blank %}
+          <a href="{{ shop.url }}">
+            <img src="{{ section.settings.logo_img | img_url: 'original'}}" alt="{{shop.name}}" class="img-fluid mr-2 ">
+            <!--
+              {%- assign src_name = section.settings.logo_img -%}
+              {%- assign src_alt = section.settings.logo_img.alt -%}
+              {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid mr-2" -%}
+            -->
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="header_menu">
+      <div class="menu_main_div">
+        <ul class="nav_ul">
+          {% for link in linklists[section.settings.sidebar_menu].links %}
+            <li class="nav_li {% if link.active %}active_nav_li{% endif %}">
+              {% if link.links.size > 0 %}
+                <p class="font-f-noto h4 d-block mb-0">{{ link.title }}</p>
+                <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.28 0.96666L7.9333 5.31333C7.41997 5.82666 6.57997 5.82666 6.06664 5.31333L1.71997 0.96666" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {% else %}
+                <a class="font-f-noto h4 d-block mb-0" href="{{ link.url }}">{{ link.title }}</a>
+              {% endif %}
+              {% if link.links.size > 0 %}
+                <ul class="menu dropdown-child">
+                  {% for child_link in link.links %}
+                    <li class="menu-link {% if child_link.active %}active{% endif %}">
+                      <a class="font-f-noto h4 d-block mb-0" href="{{ child_link.url }}">{{ child_link.title }}</a>
+
+                      {% if child_link.links.size > 0 %}
+                        <ul class="menu dropdown-grandchild {% if link.active %}active{% endif %}">
+                          {% for grandchild_link in child_link.links %}
+                            <li class="menu-link">
+                              <a class="font-f-noto h4 d-block mb-0" href="{{ grandchild_link.url }}">
+                                {{- grandchild_link.title -}}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="header_icon">
+      <div class="icon_main">
+        <ul class="d-flex align-items-center">
+          <li>
+            <span class="search-icon-btn">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="#1C1C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18.9984 19.0004L14.6484 14.6504" stroke="#1C1C1C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </li>
+          <li class="header_user_account">
+            <span>
+              <a href="/account">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.73438 10C11.2197 10 13.2344 7.98528 13.2344 5.5C13.2344 3.01472 11.2197 1 8.73438 1C6.24909 1 4.23438 3.01472 4.23438 5.5C4.23438 7.98528 6.24909 10 8.73438 10Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16.462 18.9992C16.462 15.5162 12.997 12.6992 8.731 12.6992C4.465 12.6992 1 15.5162 1 18.9992" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </span>
+          </li>
+          <li class="cart-wrap-header">
+            <span class="cart-wrap-header">
+              <span class="cart_item_counter text-white">{{ cart.item_count }}</span>
+              <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 1L1 5V19C1 19.5304 1.21071 20.0391 1.58579 20.4142C1.96086 20.7893 2.46957 21 3 21H17C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19V5L16 1H4Z" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 5H19" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="side_bar">
+    <div class="d-flex justify-content-between align-items-center sidebar_header">
+      <div class="user_account">
+        <div class="user_icon">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12.4894C14.7614 12.4894 17 10.2684 17 7.52865C17 4.78892 14.7614 2.56793 12 2.56793C9.23858 2.56793 7 4.78892 7 7.52865C7 10.2684 9.23858 12.4894 12 12.4894Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M20.5899 22.4108C20.5899 18.5712 16.7399 15.4658 11.9999 15.4658C7.25991 15.4658 3.40991 18.5712 3.40991 22.4108" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
+        <div class="user_details">
+          <div class="welcome_title">Welcome ! {{ customer.name }}</div>
+        </div>
+      </div>
+      <div class="close_icon">
+        <button id="close_btn">
+          <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14.8173 12.5805L23.409 4.24678C23.7852 3.88098 23.9966 3.38485 23.9966 2.86753C23.9966 2.35022 23.7852 1.85409 23.409 1.48829C23.0327 1.1225 22.5224 0.916992 21.9903 0.916992C21.4583 0.916992 20.948 1.1225 20.5717 1.48829L12 9.84145L3.42828 1.48829C3.05204 1.1225 2.54174 0.916992 2.00965 0.916992C1.47757 0.916992 0.967269 1.1225 0.591025 1.48829C0.214782 1.85409 0.00340991 2.35022 0.00340991 2.86753C0.0034099 3.38485 0.214782 3.88098 0.591025 4.24678L9.18272 12.5805L0.591025 20.9142C0.40375 21.0948 0.255105 21.3097 0.153666 21.5464C0.0522265 21.7831 0 22.037 0 22.2935C0 22.5499 0.0522265 22.8038 0.153666 23.0405C0.255105 23.2773 0.40375 23.4921 0.591025 23.6727C0.776772 23.8548 0.99776 23.9993 1.24124 24.0979C1.48473 24.1966 1.74589 24.2473 2.00965 24.2473C2.27342 24.2473 2.53458 24.1966 2.77807 24.0979C3.02155 23.9993 3.24254 23.8548 3.42828 23.6727L12 15.3196L20.5717 23.6727C20.7575 23.8548 20.9785 23.9993 21.2219 24.0979C21.4654 24.1966 21.7266 24.2473 21.9903 24.2473C22.2541 24.2473 22.5153 24.1966 22.7588 24.0979C23.0022 23.9993 23.2232 23.8548 23.409 23.6727C23.5962 23.4921 23.7449 23.2773 23.8463 23.0405C23.9478 22.8038 24 22.5499 24 22.2935C24 22.037 23.9478 21.7831 23.8463 21.5464C23.7449 21.3097 23.5962 21.0948 23.409 20.9142L14.8173 12.5805Z" fill="#333333"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="side_bar_menu">
+      <div class="menu_main_div">
+        <ul class="nav_ul">
+          {% for link in linklists[section.settings.sidebar_menu].links %}
+            <li class="nav_li {% if link.active %}active_nav_li{% endif %}">
+              {% if link.links.size > 0 %}
+                <p class="font-f-noto h4 d-block mb-0">{{ link.title }}</p>
+                <svg width="14" height="7" viewBox="0 0 14 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.28 0.96666L7.9333 5.31333C7.41997 5.82666 6.57997 5.82666 6.06664 5.31333L1.71997 0.96666" stroke="#333333" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              {% else %}
+                <a class="font-f-noto h4 d-block mb-0" href="{{ link.url }}">{{ link.title }}</a>
+              {% endif %}
+              {% if link.links.size > 0 %}
+                <ul class="menu dropdown-child">
+                  {% for child_link in link.links %}
+                    <li class="menu-link">
+                      <a class="font-f-noto h4 d-block mb-0" href="{{ child_link.url }}">{{ child_link.title }}</a>
+
+                      {% if child_link.links.size > 0 %}
+                        <ul class="menu dropdown-grandchild">
+                          {% for grandchild_link in child_link.links %}
+                            <li class="menu-link">
+                              <a class="font-f-noto h4 d-block mb-0" href="{{ grandchild_link.url }}">
+                                {{- grandchild_link.title -}}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar_footer">
+      <a href="{{ routes.account_logout_url }}">
+        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12.4894C14.7614 12.4894 17 10.2684 17 7.52865C17 4.78892 14.7614 2.56793 12 2.56793C9.23858 2.56793 7 4.78892 7 7.52865C7 10.2684 9.23858 12.4894 12 12.4894Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M20.5899 22.4108C20.5899 18.5712 16.7399 15.4658 11.9999 15.4658C7.25991 15.4658 3.40991 18.5712 3.40991 22.4108" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        Log Out
+      </a>
+    </div>
+  </div>
+  <div class="mobile-fix-option align-items-center">
+    <div class="align-items-center w-100 d-flex m-0">
+      <div class="w-25 d-flex justify-content-center">
+        <a href="{{ shop.url }}" class="d-flex align-items-center flex-column">
+          <img
+            src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/house-2.svg?v=4566210679629557550"
+            alt="Home"
+            class="img-fluid "
+          >
+          <span class="text-center sm-bootm-text">Home</span>
+        </a>
+      </div>
+      <div class="w-25 d-flex justify-content-center">
+        <a href="/collections" class="d-flex align-items-center flex-column categories-btn">
+          <img
+            src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/category.svg?v=17726756404053136596"
+            alt="Category"
+            class="img-fluid "
+          >
+          <span class="text-center sm-bootm-text">Shop</span>
+        </a>
+      </div>
+      <div class="w-25 d-flex justify-content-center ">
+        <a class="d-flex align-items-center flex-column sidecart_icon_mobile">
+          <img
+            src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/sm-bottom-cart.svg?v=13377738887464534185"
+            alt=""
+            class="img-fluid "
+          >
+          <span class="text-center sm-bootm-text">Bag</span>
+        </a>
+      </div>
+      <div class="w-25 d-flex justify-content-center ">
+        <a class=" d-flex align-items-center flex-column" href="/account">
+          <img
+            src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/Account.svg?v=9569689137388166378"
+            alt="Account"
+            class="img-fluid "
+          >
+          <span class="text-center sm-bootm-text"> Account </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_img",
+      "label": "Brand Logo"
+    },
+    {
+      "type": "header",
+      "content": "Header Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "sidebar_menu",
+      "default": "main-menu",
+      "label": "Select Menu"
+    },
+    {
+      "type": "header",
+      "content": "header Icon"
+    }
+  ]
+}
+{% endschema %}

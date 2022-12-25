@@ -1,0 +1,394 @@
+<div class="container ">
+    <div class="return-wrap">
+        <div class="page-width page-container">
+            <header class="text-center">
+                <h1 class="section-title">{{ page.title }}</h1>
+            </header>
+            <div class="rte rte--indented-images">
+                {{ page.content }}
+            </div>
+        </div>
+        <div class="main_return_product_section">
+            <div class="return_product_details">
+                <!-- <label for="order_number">Enter your order ID</label> -->
+              <div class="form-input-field">
+                <label for="order_number">Order Number</label>
+                <input type="text" name="order_number" class="order_number" id="order_number" placeholder="Enter Your Order Id">
+              </div>
+              <div class="form-input-field">
+                <label for="mobile_number">Mobile Number</label>
+                <input type="text" name="mobile_number" class="mobile_number" id="mobile_number" placeholder="Enter Your Register Mobile Number">
+              </div>
+                <div class="d-flex justify-content-center">
+                    <button class="get_order">Lookup</button>
+                </div>
+            </div>
+            <div class="return_product_error"></div>
+            <div class="return_loader"  style="display:none;"><img src="https://cdn.shopify.com/s/files/1/0445/4262/3896/files/loading-buffering.gif?v=1641812233"></div>
+            <div class="return_product_result"></div>
+        </div>
+    </div>
+</div>
+<script>
+$(".get_order").on("click", function(){
+
+    var order_number  = $("#order_number").val();
+    var mobile_number = $("#mobile_number").val();
+    if(order_number == ""){
+        $("#order_number").css("border","2px solid red");
+        return false;
+    }else if(mobile_number == ""){
+       $("#order_number").css("border","2px solid #f4f4f4");
+        $("#mobile_number").css("border","2px solid red");
+        return false;
+    }else{
+       
+      	$("#mobile_number").css("border","2px solid #f4f4f4");
+        $(".return_loader").show();
+    get_order(order_number, mobile_number);
+        return false;
+    }
+});
+
+function phone_validate()
+{
+var text = document.getElementById("customer_phone").value;
+var regx = /^[6-9]\d{9}$/ ;
+if(regx.test(text)){
+    document.querySelectorAll('#customer_phone').forEach(x=>x.classList.remove('error'));
+}else{
+    document.querySelectorAll('#customer_phone').forEach(x=>x.classList.add('error'));
+    return false;
+}
+}
+
+function back_btn(){
+    document.querySelector(".return_product_details").style.display = "block";
+    document.querySelector(".return_product_result").innerHTML = " ";
+    document.querySelector(".back_btn").style.display = "none";
+}; 
+function doAlert(checkboxElem){
+    if (checkboxElem.checked) {
+    var t = checkboxElem.parentElement;
+    t.parentElement.classList.add('selector_row');
+    } else {
+    var t = checkboxElem.parentElement;
+    t.parentElement.classList.remove('selector_row');
+    }
+} 
+
+// file upload
+
+const dt = new DataTransfer();
+function file_open(){
+    var file = document.getElementById('attachment');
+    file.click();
+}
+function fileupload(this1){
+    var data = new FormData();
+    for(var i = 0; i < this1.files.length; i++){
+    data.append('file[]',  document.getElementById('attachment').files[i]);
+    let fileName1 = "<span class='name'>"+ this1.files.item(i).name +"</span>";
+    let delete_elment =  "<span class='file-delete' onclick='file_delete(this);'><span>+</span></span>";
+    let full_html = "<span class='file-block'>"+delete_elment+fileName1+"</span>";
+
+    document.querySelector("#filesList > #files-names").innerHTML += full_html;
+    };
+    // Ajout des fichiers dans l'objet DataTransfer
+    for (let file of this1.files) {
+    dt.items.add(file);
+    }
+    // Mise à jour des fichiers de l'input file après ajout
+    this1.files = dt.files;
+};
+function file_delete(that){
+    let name = $(that).next('span.name').text();
+    console.log(dt);
+    let children = that.parentNode; 
+    children.remove();
+
+    // Supprimer l'affichage du nom de fichier
+    // $(this).parent().remove();
+    for(let i = 0; i < dt.items.length; i++){
+    // Correspondance du fichier et du nom
+    if(name === dt.items[i].getAsFile().name){
+        // Suppression du fichier dans l'objet DataTransfer
+        dt.items.remove(i);
+        continue;
+    }
+    }
+    // Mise à jour des fichiers de l'input file après suppression
+    document.getElementById('attachment').files = dt.files;
+    // });
+}
+function get_order(order_number, mobile_number){
+    
+    var formData = new FormData(); 
+    formData.append("order_number",order_number);
+  formData.append("mobile_number",mobile_number);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function()
+    {
+    if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+    {
+        document.querySelector(".return_product_details").style.display = "none";
+        var res =  ''; //JSON.parse(xmlHttp.response);
+        var res1 = '';//JSON.parse(xmlHttp.response);
+        
+        
+        document.querySelector(".return_product_result").innerHTML = decodeURIComponent(xmlHttp.response);
+        document.querySelector(".return_loader").style.display = "none";
+        
+        response_javascript_execute();
+
+//         alert(xmlHttp);
+    }
+    }
+    xmlHttp.open("post", "https://return.surbhiinfotech.com/index.php/API/get_order"); 
+    xmlHttp.send(formData); 
+    
+    function response_javascript_execute(){
+    
+        document.getElementById("create_request").onclick = function() {create_request()};
+        document.getElementById("lookup_back_btn_2").onclick = function() {lookup_back_btn_2()};
+
+        function create_request() {
+        var create_order_return = document.getElementById("create_order_return");
+        var order_detail_table = document.getElementById("order-details");
+        create_order_return.style.display = "block";
+        order_detail_table.style.display = "none";
+        }
+
+        function lookup_back_btn_2(){
+        var create_order_return = document.getElementById("create_order_return");
+        var order_detail_table = document.getElementById("order-details");
+        create_order_return.style.display = "none";
+        order_detail_table.style.display = "block";
+        }
+
+
+    
+    (function (d, w, undefined) {
+d.querySelector('#btn-section #submit').addEventListener('click', doSubmitMulti);
+var multiLanguageSelectorContainer = d.querySelector('#create_return_page_table');
+//   var customer_note = d.querySelector('.customer_note').value;
+    
+function doSubmitMulti() {
+    var customer_note =  document.getElementById("customer_note").value;
+    var customer_email =  document.getElementById("customer_email").value;
+    var customer_phone =  document.getElementById("customer_phone").value;
+    
+    var languagesChecked = [].slice.call( 
+                            multiLanguageSelectorContainer
+                                .querySelectorAll('[type=checkbox]:checked') )
+                            .map(function (v){
+                            return v.value;
+                            });
+    if(languagesChecked.length == 0){
+        d.querySelectorAll('.select_checkbox').forEach(x=>x.classList.add('error'));
+        return false;
+    }else{  
+        d.querySelectorAll('.select_checkbox').forEach(x=>x.classList.remove('error'));
+    }
+    if(customer_note == ""){
+        d.querySelectorAll('.customer_note').forEach(x=>x.classList.add('error'));
+        return false;
+    }else{
+        d.querySelectorAll('.customer_note').forEach(x=>x.classList.remove('error'));
+    }
+    if(customer_email == ""){
+        d.querySelectorAll('#customer_email').forEach(x=>x.classList.add('error'));
+        return false;
+    }else{
+        d.querySelectorAll('#customer_email').forEach(x=>x.classList.remove('error'));
+    }
+    if(customer_phone == ""){
+        d.querySelectorAll('#customer_phone').forEach(x=>x.classList.add('error'));
+        return false;
+    }else{
+        d.querySelectorAll('#customer_phone').forEach(x=>x.classList.remove('error'));
+    }
+    var file = document.getElementById('attachment').files.length;
+    if(file == 0){
+        d.querySelectorAll('#img_upload_section').forEach(x=>x.classList.add('error'));
+        return false;
+    }else{
+    d.querySelectorAll('#img_upload_section').forEach(x=>x.classList.remove('error'));
+    }
+    phone_validate();
+    myFunction();
+}
+
+function myFunction()
+{
+    var table = document.querySelector(".selectable");
+    var rows =  document.querySelectorAll('.selector_row');
+    var arr = [];
+    var additonal_arr = [];
+    rows.forEach((item, i) => {
+    let that = item;
+    var product_id = item.querySelector(".product_id").value;
+    var product_name = item.querySelector(".product_name").value;
+    var variant_name = item.querySelector(".variant_name").value;
+    var variant_id = item.querySelector(".variant_id").value;
+    var price = item.querySelector(".price").value;
+    var select_checkbox = item.querySelector(".select_checkbox").value;
+    var product_qty = item.querySelector(".product_qty").value;
+    var return_reason = item.querySelector(".return_reason").value;
+    var return_types = item.querySelector(".return_types").value;
+    var return_quantity = item.querySelector(".return_quantity").value;
+
+    arr.push({
+            product_id: product_id,
+            product_name: product_name,
+            variant_id: variant_id,
+            variant_name: variant_name,
+            price: price,
+            select_checkbox: select_checkbox,
+            product_qty: product_qty,
+            return_reason: return_reason,
+            return_types: return_types,
+            return_quantity: return_quantity
+        });
+    });
+    additonal_arr.push({
+                customer_note: document.querySelector(".customer_note").value,
+                customer_email: document.querySelector("#customer_email").value,
+                customer_phone: document.querySelector("#customer_phone").value,
+                order_id: document.querySelector(".order_id").value,
+                order_number: document.querySelector(".order_number").value,
+                user_id: document.querySelector(".user_id").value,
+                purchase_date: document.querySelector(".purchase_date").value
+    });
+    var formData = new FormData(); 
+    var filesLength=document.getElementById('attachment').files;
+    formData.append("data",JSON.stringify(arr));
+    for (let i = 0; i < filesLength.length; i++) {
+    formData.append("files[]", filesLength[i])
+    }
+    formData.append("additonal_arr",JSON.stringify(additonal_arr));
+    var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function()
+        {
+            if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            {
+            alert(xmlHttp.responseText)
+                    var text = xmlHttp.responseText;
+                if(text.search("successfully")){
+                    location.reload();
+                };	
+                
+            
+            }
+        }
+        xmlHttp.open("post", "https://return.surbhiinfotech.com/index.php/API/request_data"); 
+        xmlHttp.send(formData);
+        
+}  
+
+}(document, window))
+    }
+    
+//     $.ajax({
+//       url:'https://3de6-103-251-59-215.ngrok.io/octics/index.php/API/get_order',
+//       data: {order_number: order_number},
+//       type: 'POST',
+//       success: function(data) {
+//         if(data == ''){
+//         	 $(".return_loader").hide();
+//         	 $(".return_product_details").show();
+//           	 $(".return_product_error").html('<p>Invalid Order Number</p>');	
+//           	 $("#order_number").css("border","2px solid red");
+//         }else{
+//           $(".return_loader").hide();
+//           $(".return_product_details").hide();
+//           $(".return_product_error").html('');	
+//           $("#order_number").css("border","2px solid #f4f4f4");
+        
+// //           json_html(data);
+//           $('.return_product_result').append(data);
+//         }
+//       }
+//     });
+}
+
+function json_html(result){
+    var tr = $('<table>');
+    for (var i = 0; i < result.length; i++) {
+    tr.append('<tr>');
+    
+    tr.append("<td><img src='" + result[i].image + "' width='50px' height='50px'></td>");
+    tr.append("<td>" + result[i].title + "</td>");
+    tr.append("<td>" + result[i].variant_title + "</td>");
+    tr.append("<td>" + result[i].price + "</td>");
+    tr.append("<td>" + result[i].quantity + "</td>");
+    tr.append("<td>" + result[i].sku + "</td>");
+    
+    tr.append('</tr>');
+    
+    }
+    tr.append("</table>");
+    $('.return_product_result').append(tr);
+} 
+</script>
+  
+  
+<style>
+.main_return_product_section {
+    position: relative;
+}
+.return_loader {
+    position: absolute;
+    top: -31px;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+}
+.return_loader img {
+    width: 100px;
+    height: 100px;
+}
+
+.response_error {
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    margin: 0 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.response_error span{cursor:pointer;}
+#files-area {
+    width: 30%;
+    margin: 0 auto;
+    }
+    .file-block {
+    border-radius: 10px;
+    background-color: rgba(144, 163, 203, 0.2);
+    margin: 5px;
+    color: initial;
+    display: inline-flex;
+    }
+    .file-block > span.name {
+    padding-right: 10px;
+    width: max-content;
+    display: inline-flex;
+    }
+    .file-delete {
+    display: flex;
+    width: 24px;
+    color: initial;
+    background-color: #6eb4ff 0;
+    font-size: large;
+    justify-content: center;
+    margin-right: 3px;
+    cursor: pointer;
+    }
+    .file-delete:hover {
+    background-color: rgba(144, 163, 203, 0.2);
+    border-radius: 10px;
+    }
+    .file-delete > span {
+    transform: rotate(45deg);
+    } 
+
+</style>

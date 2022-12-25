@@ -1,0 +1,79 @@
+body {
+    .pagination-wrapper {
+        nav {
+            display: contents;
+        }
+        span {
+            color: #ffffff;
+            font-size: 22px;
+            border-radius: 37px;
+            background-color: burlywood;
+            color: black;
+        }
+        a {
+            color: #ffffff;
+            font-size: 22px;
+        }
+    }
+    .category-hero-section{
+        margin: 50px 0px;
+        .collection_all_main{
+            flex-wrap: wrap;
+        }
+        .category-box{
+            padding: 10px;
+            .category-box-wrap{
+                position: relative;
+                overflow: hidden;
+                border: 1px solid #636365;
+                .img{
+                    text-align: center;
+                    padding: 30px;
+                    img{
+                        max-width: 300px;
+                        width: 100%;
+                    }
+                }
+                .category-content {
+                    position: absolute;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    .category-content-box {
+                        position: absolute;
+                        padding: 20px 0px;
+                        bottom: 0%;
+                        /* left: 5%; */
+                        background-color: $primary;
+                        width: 100%;
+                        /* height: 19%; */
+                        text-align: center;
+                        .category-title {
+                            font-weight: 500;
+                            font-size: 24px;
+                            line-height: 29px;
+                            letter-spacing: 0.08em;
+                            text-transform: uppercase;
+                            color: $color--white;
+                        }
+                        button.categort-button {
+                            border-radius: 48px;
+                            font-family: $base-font;
+                            font-weight: 500;
+                            letter-spacing: 0.08em;
+                            text-transform: uppercase;
+                            color: $color--white;
+                            padding: 13px 27px;
+                            background-color: transparent;
+                            font-size: 16px;
+                            line-height: 23px;
+                            border: 1px solid $color--white;
+                            margin-top: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{% for collection in product.collections limit: 2 %}
+  {% if forloop.length > 1 %}
+    {% for coll_title in collection.title %}
+      {% if coll_title != 'All' %}
+        {% assign coll = collection %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {% assign coll = collection %}
+  {% endif %}
+{% endfor %}
+
+<section class="releated_product_section">
+  <div class="related_section_heading text-center section_heading text-center">
+    <h3 class="font-f-heading">You May Also Like</h3>
+  </div>
+  <div class="releated_product_wrap">
+    {% assign is_product_page = true %}
+    {% assign current_product = product %}
+    {% assign current_product_found = false %}
+    {% assign collection_product = coll.products %}
+    {% if collection_product.length > 4 %}
+      <div class="releated_product_row row d-flex">
+        {% for product in coll.products limit: 6 %}
+          {% if product.handle == current_product.handle %}
+            {% assign current_product_found = true %}
+          {% else %}
+            {% unless current_product_found == false and forloop.last %}
+              <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+                <div class="releated_col">
+                  {% render 'own-product' , product.product:product,is_product_page:is_product_page %}
+                </div>
+              </div>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="row d-flex">
+        {% for product in coll.products limit: 4 %}
+          {% if product.handle == current_product.handle %}
+            {% assign current_product_found = true %}
+          {% else %}
+            {% unless current_product_found == false and forloop.last %}
+              <div class="col-12 col-md-4 col-lg-3 col-sm-6">
+                <div class="a1 ">
+                  {% render 'own-product' , product.product:product,is_product_page:is_product_page %}
+                </div>
+              </div>
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+  <div class="releated_product_slider_arrow slider_arrow_main"></div>
+</section>
+
+{% comment %}
+  <script>
+    $('.releated_col').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    });
+  </script>
+  <script>
+    $('.a1').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    });
+  </script>
+{% endcomment %}

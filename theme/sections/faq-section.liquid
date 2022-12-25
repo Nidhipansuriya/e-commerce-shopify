@@ -1,0 +1,79 @@
+{%- include 'common_banner' -%}
+<section class="faq_section">
+    <div class="container">
+      <div class="information_faq_sec">
+        {% for block in section.blocks %}
+        <div class="FAQ_item">
+          <div class="question font-f-noto">
+            {{ block.settings.question }}
+          </div>
+          <div class="answercont">
+            <div class="answer font-f-noto">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</section>
+  
+{% schema %}
+  {
+    "name": "Faq Section",
+    "settings": [],
+	"blocks": [
+        {
+          "type": "faq",
+          "name": "faq",
+          "settings": [
+  			{
+              "type": "text",
+              "id": "question",
+              "label": "question"
+            },
+ 			{
+              "type": "text",
+              "id": "answer",
+              "label": "answer"
+            }
+          ]
+        }
+     ],
+     "presets": [
+      {
+        "name": "Faq Section"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+let question = document.querySelectorAll(".question");
+
+question.forEach(question => {
+  question.addEventListener("click", (e) => {
+    const active = document.querySelector(".question.active");
+    const parent = document.querySelector(".FAQ_item.item_active");
+    let that = e.currentTarget;
+    const parents = that.closest(".FAQ_item");
+    if(active && active !== question ) {
+      active.classList.toggle("active");
+      active.nextElementSibling.style.maxHeight = 0;
+    }
+    if(parent && parent !== parents ) {
+      parent.classList.toggle("item_active");
+    }
+    question.classList.toggle("active");
+    const answer = question.nextElementSibling;
+    if(question.classList.contains("active")){
+      answer.style.maxHeight = answer.scrollHeight + "px";
+      parents.classList.add("item_active");
+    } else {
+      answer.style.maxHeight = 0;
+      parents.classList.remove("item_active");
+    }
+  })
+})
+
+</script>

@@ -1,0 +1,12 @@
+{
+    "sections": {
+      "about-us-template": {
+        "type": "about-us-template",
+        "settings": {
+        }
+      }
+    },
+    "order": [
+      "about-us-template"
+    ]
+  }

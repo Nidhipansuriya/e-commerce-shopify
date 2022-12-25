@@ -1,0 +1,183 @@
+
+<div class="searchbar-wrap">
+    <div class="container-fluid">
+        <div class="col-12 ">
+
+            <form action="/search" method="GET" role="search" class="d-flex align-items-center">
+                <span class="close-mobile-search"><i class="fa fa-arrow-left" aria-hidden="true"></i></span>
+                <button type="submit" class="seach-btn search-mobile">
+                    <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+                    <img src="{{ 'search.png' | file_img_url: 'original' }}" alt="" class="img-fluid">
+                </button>
+                <input type="text" autocomplete="off" placeholder="Search for products" id="searchbar"
+                    class="input_box exp-search-bar" name="q" value="">
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+<!-- <div class="browse-category-wrap">
+    <div class="browse-heading">
+        <div class="container-fluid">
+            <div class="browse-text">
+                <h1>Browes Category</h1>
+            </div>
+        </div>
+    </div>
+    <div class="category-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 pl-2 pr-0">
+                    <ul class="category-list">
+                        {% for collection in collections %}
+                        {% assign data_title = collection.title | split: '|' | first %}
+                        {% assign data_json = collection.title | split: '|' | last %}
+
+                        {% if collection.image %}
+                            {%- assign collection_image = collection.image -%}
+                        {% elsif collection.products.first and collection.products.first.images != empty %}
+                            {%- assign collection_image = collection.products.first.featured_image -%}  
+                        {% else %}
+                            {% assign collection_image = blank %}
+                        {% endif %}
+
+                        
+                        <li class="collection-list-width">
+                            <div class="category-list-box">
+                                <a href="{{collection.url}}">
+                                    <div class="img">
+                                        {%- assign src_name = collection_image -%}
+                                        {%- assign src_alt = collection_image.alt -%}
+                                        {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid search-img" -%}
+                                    </div>
+                                    <h6 class="text-center">{{ data_title | truncate: 15 }}</h6>
+                                </a>
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if settings.trending_now_check != false %}
+        
+    <div class="trending-now-section">
+        <div class="trending-head-wrap">
+            <div class="container-fluid">
+                <div class="browse-text">
+                    <h1>Trending Now</h1>
+                </div>
+            </div>
+        </div>
+        <div class="trending-content-wrap">
+            <ul class="trending-ul">
+                {% if settings.trending_now_1 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_1}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+               
+                {% if settings.trending_now_2 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_2}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_3 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_3}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_4 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_4}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_5 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_5}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_6 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_6}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_7 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_7}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_8 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_8}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_9 != blank %}
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_9}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% if settings.trending_now_10 != blank %}  
+                    
+                <li class="trending-list">
+                    <div class="trending-link">
+                        <a href="">
+                            <span class="link-title">{{settings.trending_now_10}}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+</div>  -->

@@ -1,0 +1,133 @@
+<section class="contact_section">
+    <div class="container">
+      <div class="contact_form_div">
+        <div class="contact_box">
+          {% if section.settings.contact_img !=blank %}
+          {%- assign src_name = section.settings.contact_img -%}
+          {%- assign src_alt = section.settings.contact_img.alt -%}
+          {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+          {% else %}
+          <div class="default_image">
+              <svg class="placeholder-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 525.5 525.5"><path d="M324.5 212.7H203c-1.6 0-2.8 1.3-2.8 2.8V308c0 1.6 1.3 2.8 2.8 2.8h121.6c1.6 0 2.8-1.3 2.8-2.8v-92.5c0-1.6-1.3-2.8-2.9-2.8zm1.1 95.3c0 .6-.5 1.1-1.1 1.1H203c-.6 0-1.1-.5-1.1-1.1v-92.5c0-.6.5-1.1 1.1-1.1h121.6c.6 0 1.1.5 1.1 1.1V308z"></path><path d="M210.4 299.5H240v.1s.1 0 .2-.1h75.2v-76.2h-105v76.2zm1.8-7.2l20-20c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l1.5 1.5 16.8 16.8c-12.9 3.3-20.7 6.3-22.8 7.2h-27.7v-5.5zm101.5-10.1c-20.1 1.7-36.7 4.8-49.1 7.9l-16.9-16.9 26.3-26.3c1.6-1.6 3.8-2.5 6.1-2.5s4.5.9 6.1 2.5l27.5 27.5v7.8zm-68.9 15.5c9.7-3.5 33.9-10.9 68.9-13.8v13.8h-68.9zm68.9-72.7v46.8l-26.2-26.2c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-26.3 26.3-.9-.9c-1.9-1.9-4.5-3-7.3-3s-5.4 1.1-7.3 3l-18.8 18.8V225h101.4z"></path><path d="M232.8 254c4.6 0 8.3-3.7 8.3-8.3s-3.7-8.3-8.3-8.3-8.3 3.7-8.3 8.3 3.7 8.3 8.3 8.3zm0-14.9c3.6 0 6.6 2.9 6.6 6.6s-2.9 6.6-6.6 6.6-6.6-2.9-6.6-6.6 3-6.6 6.6-6.6z"></path></svg>
+          </div>
+      {% endif %}
+        </div>
+        <div class="contact_form">
+          <p class="about_product_text m-0 font-f-noto"> {{ section.settings.contact_heading }}</p>
+          <h2 class="about_product_title m-0 font-f-el">{{ section.settings.contact_title }}</h2>
+          <div class="contact_form_details">
+            <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+              {%- form 'contact', id: 'ContactForm', class: 'isolate' -%}
+                {%- if form.posted_successfully? -%}
+                <div class="form-status form-status-list form__message" tabindex="-1" autofocus>{% render 'icon-success' %} Thanks for contacting us. We'll get back to you as soon as possible.</div>
+                {%- elsif form.errors -%}
+                <div class="form__message">
+                <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>{% render 'icon-error' %}  Please adjust the following:</h2>
+              </div>
+              <ul class="form-status-list caption-large" role="list">
+                <li>
+                  <a href="#ContactForm-email" class="link normal_text">
+                    {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                  </a>
+                </li>
+              </ul>
+              {%- endif -%}
+                
+  
+                  <div class="input_100 contact_input">
+                    <input class="w-100 font-f-noto" autocomplete="name" type="text" id="ContactForm-name" name="contact[{{ 'templates.contact.form.name' | t }}]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" placeholder="Name">
+                  </div>
+                  {%- if form.errors contains 'email' -%}
+                    <small class="contact__field-error" id="ContactForm-email-error">
+                      <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+                      <span class="form__message">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</span>
+                    </small>
+                {%- endif -%}
+                
+                <div class="d-flex align-items-center flex-wrap justify-content-between w-100">
+                  <div class=" input_50 contact_input">
+                    <input
+                           autocomplete="email"
+                           type="email"
+                           id="ContactForm-email"
+                           class="w-100 font-f-noto"
+                           name="contact[email]"
+                           spellcheck="false"
+                           autocapitalize="off"
+                           value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                           aria-required="true"
+                           {% if form.errors contains 'email' %}
+                           aria-invalid="true"
+                           aria-describedby="ContactForm-email-error"
+                           {% endif %}
+                           placeholder="Email"
+                           >
+                  </div>
+  
+                
+  
+  
+                  <div class="input_50 contact_input">
+                    <input type="tel" id="ContactForm-phone" class="w-100 font-f-noto" autocomplete="tel" name="contact[{{ 'templates.contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}" placeholder="Phone number">
+                  </div>
+                </div>
+  
+              <div class="input_100 contact_input">
+  
+                <textarea
+                          rows="10"
+                          id="ContactForm-body"
+                          class="w-100 font-f-sora text-area"
+                          name="contact[{{ 'templates.contact.form.comment' | t }}]"
+                          placeholder="Message"
+                          >
+                  {{- form.body -}}
+                </textarea>
+              </div>
+              <div class="form_submit_button contact__button">
+                <button type="submit" class="submit_btn font-f-noto">
+                  Submit
+                </button>
+              </div>
+              {%- endform -%}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <div class="contact_map mx-auto">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14878.588505081834!2d72.81945918712395!3d21.206172479176484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e58cc0e3163%3A0xc6f243ea30c02caf!2sSurat%20Head%20Post%20Office!5e0!3m2!1sen!2sin!4v1653049526657!5m2!1sen!2sin" width="100%" height="437" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div> -->
+  </section>
+  
+  {% schema %}
+    {
+      "name": "contact form",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "contact_img",
+        "label": "Contact Image"
+      },
+      {
+        "type": "text",
+        "id": "contact_heading",
+        "label": "Contact Heading"
+      },
+      {
+        "type": "text",
+        "id": "contact_title",
+        "label": "Contact Title"
+      }
+      ],
+       "presets": [
+        {
+          "name": "contact form"
+        }
+      ]
+    }
+  {% endschema %}
+  
+  

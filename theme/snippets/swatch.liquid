@@ -1,0 +1,71 @@
+
+    {% for product_option in product.options_with_values %}
+    {% assign first_loop_index = forloop.index %}
+    {% assign option_name_down = product_option.name | downcase %}
+    <div class="product-swatch-wrap swatch-main-wrap {{product_option.name}} {% if swatchoff == true  %} col-lg-12 col-md-12 col-sm-12 col-12 {% else %} col-lg-6 col-md-6 col-12 {% endif %}" data-type="{{product_option.name}}">
+        {% assign size_swatch = false %}
+        {% if option_name_down == 'size' %}
+        {% assign size_swatch = true %}
+        {% endif %}
+        <div class="option-main-title-wrap">
+            <div class="title-wrap">
+                <b>{{ product_option.name }}:</b><span class="selected-value">selected-value</span>
+            </div>
+            {% if size_swatch %}
+                {% assign customize_flag = false %}
+                {% for value in product_option.values %}
+                    {% assign value_down = value | downcase %}
+                    {% if value_down == 'customize' %}    
+                        {% assign customize_flag = true %}
+                    {% endif %}
+                {% endfor %}
+                    <div class="size-chart-button">
+                        <p>Size Chart</p>
+                    </div>
+            {% endif %}
+        </div>
+        {% assign color_swatch = false %}
+        {% if option_name_down == 'color' %}
+        {% assign color_swatch = true %}
+        {% endif %}
+        <div class="swatch-element-wrap">
+        {% for value in product_option.values %}
+            {% if color_swatch %}
+            {% assign color_img = value | handleize %}
+            {% assign color_img = color_img | append:'_swatch.png' %}
+            {% endif %}
+            {% assign value_down = value | downcase %}
+            {% assign is_customize = false %}
+            {% if size_swatch and value_down == 'customize' %}
+                {% assign is_customize = true %}
+            {% endif %}
+            {% if is_customize %}
+                <div class="customize customize-swatch hide">
+                    <span>c</span>
+                </div>
+            {% else %}
+            
+                <div class="swatch-element  {% if forloop.first %} active{% endif %}{% if color_swatch %} color{% endif %} d-flex align-items-center justify-content-center" data-value="{{value}}">
+                    <span{% if color_swatch %} style="background-image: url({{color_img | file_url}})"{% endif %}>{{ value }}</span>
+                </div>
+            {% endif%}
+        {% endfor %}
+        </div>
+    </div><br/>
+    {% endfor %}
+    <select name="id" class="variants-list">
+    <option value="1" selected data-id="1">Please select variant</option>
+    {% for variant in product.variants %}
+        {% assign option_value = '' %}
+        {%- for option in variant.options -%}   
+            {% assign option_value = option_value | append: option %}
+            {%- unless forloop.last -%}
+                {% assign option_value = option_value | append: '/' %}
+            {%- endunless -%}
+        {%- endfor -%}
+        
+        <option data-available={{variant.available}} data-id="{{variant.id}}" {%- comment -%}{% if forloop.first %} selected {% endif %}{%- endcomment -%} data-value="{{option_value}}" data-img="{{ variant.image | img_url: 'master' }}" >
+            {{option_value}}
+        </option>
+    {% endfor %}
+    </select>

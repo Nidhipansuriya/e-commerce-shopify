@@ -1,0 +1,67 @@
+<section class="newsletter_section">
+    <div class="newsletter-bg">
+        
+      <div class="container">
+        <div class="newsletter_main">
+            <div class="newsletter_img">
+                <!-- <img src="{{ section.settings.newsletter_image | img_url: 'master' }}" alt="newsletter-image" class="img-fluid"> -->
+                {%- assign src_name = section.settings.newsletter_image -%}
+                {%- assign src_alt = section.settings.newsletter_image.alt -%}
+                {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+            </div>
+            <div class="newsletter_main_form">
+                <div class="section_heding">
+                    <h3><span></span>{{ section.settings.newsletter_heading }}</h3>
+                    <p class="font-f-pop">{{ section.settings.newsletter_descrip }} </p>
+                </div>
+                <div  class="newsletter_form_div">
+                    <form action="" class="newsletter_form">
+                        <div class="newsletter-form-main">
+                            <div class="form_input">
+                                <input class="" type="text" placeholder="your email" name="mail" required>
+                            </div>
+                            <div class="form_button">          
+                                <input class="font-f-pop" type="submit" value="Subscribe">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>  
+</section>
+    
+{% schema %}
+{
+    
+    "name": "newsletter",
+    "settings":  [  
+    {
+        "type": "image_picker",
+        "id": "newsletter_image",
+        "label": "newsletter image"
+    },
+    {
+        "type" : "text",
+        "id" : "newsletter_heading",
+        "label" : "newsletter heading"
+    },
+    {
+        "type" : "text",
+        "id" : "newsletter_descrip",
+        "label" : "newsletter_content"
+    }
+    ],
+    "presets": [
+    {
+        "name": {
+        "en": "newsletter section"
+        },
+        "category": {
+        "en": "Home page section"
+        }
+    }
+    ]
+}
+{% endschema %}

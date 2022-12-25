@@ -1,0 +1,80 @@
+// .sitemap-wrap{
+//     margin-bottom: 50px;
+//     .section-heading-wrap{
+//         padding: 40px 0;
+//         .section-title{
+//             font-family: $heading-font;
+//             font-style: normal;
+//             font-weight: 600;
+//             font-size: 30px;
+//             line-height: 37px;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: $color--black;
+//         }
+//     }
+//     .sitemap-menus-wrap{
+//         .menus{
+//             .menu-title{
+//                 font-family: $heading-font;
+//                 font-style: normal;
+//                 font-weight: 500;
+//                 font-size: 20px;
+//                 line-height: 34px;
+//                 letter-spacing: 0.08em;
+//                 text-transform: uppercase;
+//                 color: $color--black;
+//                 border-bottom: 1px solid #939282;
+//                 @include inline-flex();
+//                 @include mq("phone-portrait"){
+//                     font-size: 16px;
+//                 }
+//             }
+//             .menu-li{
+//                 list-style: none;
+//                 padding-left: 20px;
+//                 margin-bottom: 30px;
+//                 @include mq("phone-portrait"){
+//                     padding-left: 0px;
+//                     margin-bottom: 20px;
+//                 }
+//                 .second-child-title{
+//                     margin: 14px 0;
+//                     @include mq("phone-portrait"){
+//                         margin: 10px 0;
+//                     }
+//                     a{
+//                         font-family: $base-font;
+//                         font-style: normal;
+//                         font-weight: 400;
+//                         font-size: 16px;
+//                         line-height: 28px;
+//                         padding: 5px 0px 5px 20px;
+//                         border-left: solid 4px #6f725c;
+//                         color: $color--black;
+//                         text-transform: capitalize;
+//                         @include mq("phone-portrait"){
+//                             padding: 5px 0 5px 5px;
+//                             font-size: 12px;
+//                         }
+//                     }
+//                 }
+//                 .third-child-ul{
+//                     margin-bottom: 15px;
+//                     padding-left: 10px;
+//                     li{
+//                         margin-bottom: 10px;
+//                         .third-child-title{ 
+//                             font-family: $heading-font;
+//                             font-weight: 400;
+//                             font-size: 14px;
+//                             line-height: 24px;
+//                             color: $color--black;
+//                             text-transform: uppercase;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

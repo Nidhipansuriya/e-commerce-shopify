@@ -1,0 +1,75 @@
+<div class="step-2-inner">
+    <div class="container">
+        <div class="step-title text-center">
+            <p class="step-info">STEP-2 of 3</p>
+            <h4 class="step-heading">{{ section.settings.step_2_title }}</h4>
+            <p class="step-desc">{{ section.settings.step_2_desc }}</p>
+        </div>
+        <div class="selected-products-wrap">
+            <div class="left-section">
+                <div class="left-inner-wrap">
+                    <div class="image-wrap">
+                        <!-- <img src="//cdn.shopify.com/s/files/1/0588/6528/7346/products/dark-wall-bedside-table_925x_051c6c6f-7203-4821-8b02-948a75061edb_medium.jpg?v=1627793920" alt="Bedside Table"> -->
+                        <!-- <span class="count">1</span> -->
+                    </div>
+                </div>
+            </div>
+            <div class="right-section">
+                <div class="top-section">
+                    <p>Box Contents</p>
+                </div>
+                <div class="middle-section">
+                    <div class="selected-product-wrap">
+                        <!-- <div class="qty-wrap">2</div>
+                        <div class="title-wrap">Blus Cotton Lace Robe</div>
+                        <div class="price-wrap">Rs. 100</div>
+                        <div class="remove-btn-wrap"><span class="remove-icon"><img src="{{'cart-remove.svg' | file_url}}" alt="remove item"/></span></div> -->
+                    </div>
+                </div>
+                <div class="bottom-section">
+                    <div class="sub-total-wrap">
+                        <span class="total-text">Box Sub Total:</span><span class="total-value">{{ '0' | money_with_currency}}</span>
+                    </div>  
+                    <div class="complete-box-btn">Complete box</div>
+                </div>
+            </div>
+        </div>
+        <div class="sort-by-filter-wrap d-flex align-items-center justify-content-end">
+            <select id="sort-by" data-sortby="manual">
+                <option value="manual">Featured</option>
+                <option value="best-selling">Best selling</option>
+                <option value="title-ascending">Alphabetically, A-Z</option>
+                <option value="title-descending">Alphabetically, Z-A</option>
+                <option value="price-ascending">Price, low to high</option>
+                <option value="price-descending">Price, high to low</option>
+                <option value="created-ascending">Date, old to new</option>
+                <option value="created-descending">Date, new to old</option>
+            </select>
+        </div>
+        {% assign collection = collections[section.settings.step_2_collection] %}
+        <script>
+            custom.collectionProducts = {{ collection.products | json }};
+            custom.collectionHandle = "{{ collection.handle }}";
+        </script>
+        <div class="gift-products-wrap">
+            {% for product in collection.products %}
+            <div class="gift-each-item col-lg-3 col-md-3 col-sm-4 col-6">
+                <div class="gift-each-product-wrap" data-pid="{{product.id}}">
+
+                    <img src="{{ product.featured_image | img_url: 'original' }}" alt="{{product.featured_image.alt}}" />
+                    <div class="add-to-box-btn" data-pid="{{product.id}}">Add to box</div>
+                    <div class="qty-spinner-wrap hide">
+                        <div class="qty-min d-flex justify-content-center align-items-center">
+                            -
+                        </div>    
+                        <div class="product_qty_num">0</div>
+                        <div class="qty-plus d-flex justify-content-center align-items-center">
+                            +
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

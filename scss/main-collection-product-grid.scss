@@ -1,0 +1,384 @@
+.all_category_section{
+    .custom-container{
+        max-width: 1450px;
+        padding: 0px 15px;
+        margin: 0px auto;
+        @include mq("phone") {
+            padding: 0 7.5px;
+        }
+        @include mq("small_phone") {
+            padding: 0px 0px;
+        }
+        .category-section-wrap{
+            margin: 0 !important;
+            .collecion-filter-wrap{
+                position: sticky;
+                top: 134px;
+                z-index: 998;
+                .filter-box{
+                    background: $bg-color;
+                    border-radius: 5px;
+                    @include mq("phone-and-tablet") {
+                        position: fixed;
+                        width: 350px;
+                        border-radius: 0;
+                        top: 0;
+                        height: 100vh;
+                        left: -350px;
+                        z-index: 999;
+                        transition: all .3s ease;
+                        overflow: scroll;
+                        padding: 0;
+                    }
+                   @include mq("small_phone") {
+                        width: 300px;
+                    }
+                    .filter-box-title {
+                        padding: 13px 20px;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 22px;
+                        color: $basic-text-color;
+                        text-transform: capitalize;
+                        background-color: $bg-color;
+                        position: relative;
+                        .close_btn{
+                            display: none;
+                            @include mq("phone-and-tablet") {
+                                display: block;
+                            }
+                            svg{
+                                width: 15px;
+                                height: 15px;
+                            }
+                        }
+                    }
+                    .collection-filter-box {
+                        padding: 13px 20px;
+                        .collection-filter-block {
+                            border-bottom: 1px solid $color-grey;
+                            padding-bottom: 20px;
+                            margin-bottom: 20px;
+                            .collapse-filter-title {
+                                margin-bottom: 23px;
+                                font-weight: 400;
+                                font-size: 22px;
+                                line-height: 20px;
+                                color: $basic-text-color;
+                                text-transform: capitalize;
+                                font-family: 'Marcellus', serif;
+                            }
+                            .collection-filter-checkbox {
+                                display: block;
+                                margin-bottom: 15px;
+                                // .active_sort{
+                                //     display: block;
+                                // }
+                                input {
+                                    padding: 0;
+                                    height: initial;
+                                    width: initial;
+                                    margin-bottom: 0;
+                                    display: none;
+                                    cursor: pointer;
+                                    &:checked + label::after {
+                                        content: '';
+                                        display: block;
+                                        position: absolute;
+                                        top: 5px;
+                                        left: 8px;
+                                        width: 6px;
+                                        height: 14px;
+                                        border: solid #A1805A;
+                                        border-width: 0 2px 2px 0;
+                                        transform: rotate(45deg);
+                                    }
+                                    &:checked + label::before{
+                                        background-color: #c4c4c4b3;
+                                      }
+                                }
+                                label {
+                                    position: relative;
+                                    cursor: pointer;
+                                    color: $color--black;
+                                    &:before {
+                                        content:'';
+                                        -webkit-appearance: none;
+                                        background-color: transparent;
+                                        border: 1px solid $color--black;
+                                        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+                                        padding: 10px;
+                                        display: inline-block;
+                                        position: relative;
+                                        vertical-align: middle;
+                                        cursor: pointer;
+                                        margin-right: 5px;
+                                    }
+                                }
+                                &span {
+                                    padding-bottom: 10px;
+                                    font-weight: 500;
+                                    font-size: 14px;
+                                    line-height: 17px;
+                                    color: $color--white;
+                                    text-align: end;
+                                }
+                            }
+
+                        }
+                        .range-slider{
+                            label{
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+            .collection-item-wrap{
+                @include mq("phone"){
+                    padding-left: 7.5px;
+                    padding-right: 7.5px;
+                }
+                .Sort_by {
+                    padding-bottom: 20px;
+                    margin-bottom: 44px;
+                    border-bottom: 1px solid #AEA79D;
+                    @include mq("phone-and-tablet"){
+                        flex-wrap: wrap;
+                    }
+                    .filter_md_btn {
+                        display: none;
+                        @include mq("phone-and-tablet"){
+                            display: block;
+                            width: 100%;
+                            margin-bottom: 15px;
+                        }
+                        .open_btn{
+                            padding: 8px 45px;
+                            border: 1px solid var(--primary-color);
+                            font-size: 18px;
+                            transition: 0.5s ease-in-out;
+                            text-transform: capitalize;
+                            background: transparent;
+                            color: $basic-text-color;
+                        }
+                    }
+                    .product-filter-count{
+                        @include mq("phone-and-tablet") {
+                            width: 50%;
+                        }
+                        h4{
+                            color: $basic-text-color;
+                            margin-bottom: 0px;
+                            margin-top: 0px;
+                            margin: 15px 0px !important;
+                            @include mq("phone-and-tablet"){
+                                margin-left: 15px;
+                            }
+                            @include mq("s_phone"){
+                                margin-right: 0;
+                                width: 100%;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                    .sort_by_box{
+                        display: flex;
+                        justify-content: flex-end;
+                        @include mq("phone-and-tablet") {
+                            width: 50%;
+                        }
+                        #sort-by{
+                            background-color: $bg-color;
+                            color: $basic-text-color;
+                            border: none;
+                            font-weight: 400;
+                            font-size: 18px;
+                            line-height: 23px;
+                            text-align: center;
+                            padding: 0px 10px;
+                            letter-spacing: 0.025em;
+                            outline: 0px;
+                           @include mq("phone-portrait") {
+                                font-size: 14px;
+                                letter-spacing: 0em;
+                            }
+                            option{
+                                background-color: $cart-bg;
+                                border: 0px solid;
+                            }
+                        }
+                        // .select_box_arrow {
+                        //     right: 15px;
+                        //     top: 0px;
+                        //     svg{
+                        //         width: 13px;
+                        //         height: 7px;
+                        //     }
+                        // }
+                    }
+                }
+                .row{
+                    margin: 0;
+                    padding: 0;
+                }
+                
+                .collection-products-item{
+                    padding: 0 7.5px;
+                    @include mq("small_phone") {
+                        width: 100%;
+                    }
+                    .product-item{
+                        @include mq("small_phone") {
+                            margin: 0px auto;
+                        }
+                        .product-box{
+                            .product_information{
+                                .product-title{
+                                    h3{
+                                        @include mq("small_phone") {
+                                            font-size: 20px;
+                                            line-height: 16px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+    
+}
+@include mq("tablet-and-down") {
+    .mystyle{
+        left: 0;
+    }
+}
+
+// range slider css
+.wrapper {
+    position: relative;
+    width: 100%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    background-color: transparent;
+    pointer-events: none;
+}
+
+.slider-track {
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    margin: auto;
+    top: -7px;
+    bottom: 0;
+}
+// range thumb
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    margin-top: -9px;
+    pointer-events: auto;
+    border-radius: 50%;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.pagination_div{
+    padding-top: 30px;
+    border-top: 1px solid #AEA79D;
+}
+.values span {
+    font-size: 16px;
+    color: #4B4843;
+    margin-bottom: 0px;
+}
+.page_count p{
+    font-size: 18px;
+}
+.page_links a,p{
+    font-size: 18px;
+}
+.page_links li{
+    margin-right: 30px;
+    :last-child{
+        margin-right: 0px;
+    }
+    .active p{
+        background: var(--primary-color);
+        padding: 1px 10px;
+        border-radius: 50%;
+        color: $color--white;
+    }
+}
+
+.next_page svg{
+    width: 20px;
+    height: 20px;
+}
+@include mq("s_phone") {
+    .page_count{
+        display: none;
+    }
+    .pagination_div {
+        justify-content: center !important;
+        flex-wrap: wrap;
+    }
+    .page_links ul{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .page_links li{
+        margin-bottom: 10px;
+    }
+}
+.sidebar_filter_cls li:nth-child(1){
+    margin-bottom: 15px;
+}
+input[type=checkbox] {
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: auto;
+    margin-right: 0.5rem;
+    position: absolute;
+    opacity: 0;
+}
+.filter-label input {
+    opacity: 0;
+}
+ .filter-label input.active_filter , .active_collection::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    width: 6px;
+    height: 14px;
+    border: solid var(--primary-color);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .filter-label input.active_filter , .active_collection::before {
+    background-color: #c4c4c4b3;
+  }
+  .collection-filter-checkboxspan {
+    color: white;
+}

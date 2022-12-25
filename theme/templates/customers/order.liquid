@@ -1,0 +1,189 @@
+<section class="customer_account">
+    <div class="container">
+      <div class="order_page_main">
+        <div class="account_heading">
+              <h3>Account</h3>
+              <a class="Return_to_Account" href="{{ routes.account_url }}">Return to Account details</a>
+        </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="order_info_mobile">
+      {%- for line_item in order.line_items -%}
+        <ul>
+          <li>
+            <span>Product</span> 
+            <span> 
+            {%- if line_item.product.url != blank -%}
+                  <a href="{{ line_item.product.url }}">{{ line_item.title  | truncate: 20 }}</a>
+                {%- else -%}
+                  <p>{{ line_item.title | truncate: 20 }}</p>
+                {%- endif -%}
+              {%- if line_item.line_level_discount_allocations != blank -%}
+                <div class="discount_main_div">
+                  {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                    <div class="discount_list_div">
+                      <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                        <use href="#icon-discount" />
+                      </svg>
+                      <span>{{- discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money -}})</span>
+                    </div>
+                  {%- endfor -%}
+                </div>
+                {%- endif -%}
+              </span>
+          </li>
+          <li><span>SKU</span><span>{{ line_item.sku }}</span></li>
+          <li><span>PRICE</span><span>{{ line_item.final_price | money }}</span></li>
+          <li><span>QUANTITY</span><span>{{ line_item.quantity }}</span></li>
+          <li>
+            <span>TOTAL</span>
+            <span>
+              {%- if line_item.original_line_price != line_item.final_line_price -%}
+                <dl>
+                  <dt>
+                    <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                  </dt>
+                  <dd>
+                    <s>{{ line_item.original_line_price | money }}</s>
+                  </dd>
+                  <dt>
+                    <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                  </dt>
+                  <dd>
+                    <span>{{ line_item.final_line_price | money }}</span>
+                  </dd>
+                </dl>
+              {%- else -%}
+                {{ line_item.original_line_price | money }}
+              {%- endif -%}
+            </span>
+          </li>
+        </ul>
+      {%- endfor -%}
+        <ul>
+          <li>
+            <span>Subtotal</span> 
+            <span>{{ order.line_items_subtotal_price | money }}</span>
+          </li>
+          <li>
+            {%- for tax_line in order.tax_lines -%}
+            <span>Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+            <span>{{ tax_line.price | money }}</span>
+            {%- endfor -%}
+          </li>
+          <li>
+            <span>Total</span>
+            <span>{{ order.total_price | money_with_currency }}</span>
+          </li>
+        </ul>
+    </div>
+    <div class="order_main_row">
+      <div class="order_content_col">
+        <h3>Order {{ order.name }}</h3>
+        {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%}
+        <p class="order_date">Placed on {{ order_date }}</p>
+        {%- if order.cancelled -%}
+          {%- assign cancelled_at = order.cancelled_at | time_tag: format: "date_at_time" -%}
+          <p class="order_date">{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+          <p class="order_date">{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
+        {%- endif -%}
+        <div>
+          <ul class="order_header">
+            <li class="product_col">Product</li>
+            <li>SKU</li>
+            <li>PRICE</li>
+            <li>QUANTITY</li>
+            <li>TOTAL</li>
+        </ul>
+          {%- for line_item in order.line_items -%}
+          <ul class="order_content">
+            <li class="product_col">
+                {%- if line_item.product.url != blank -%}
+                  <a href="{{ line_item.product.url }}">{{ line_item.title  | truncate: 20 }}</a>
+                {%- else -%}
+                  <p>{{ line_item.title | truncate: 20 }}</p>
+                {%- endif -%}
+                {%- if line_item.line_level_discount_allocations != blank -%}
+                  <div class="discount_main_div">
+                    {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+                      <div class="discount_list_div">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 12 12">
+                          <use href="#icon-discount" />
+                        </svg>
+                        <span>{{- discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money -}})</span>
+                      </div>
+                    {%- endfor -%}
+                  </div>
+                {%- endif -%}
+            </li>
+            <li>
+              <span>{{ line_item.sku }}</span>
+            </li>
+            <li>
+              {{ line_item.final_price | money }}
+            </li>
+            <li><span>{{ line_item.quantity }}</span></li>
+            <li>
+              <span>
+                {%- if line_item.original_line_price != line_item.final_line_price -%}
+                  <dl>
+                    <dt>
+                      <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+                    </dt>
+                    <dd>
+                      <s>{{ line_item.original_line_price | money }}</s>
+                    </dd>
+                    <dt>
+                      <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+                    </dt>
+                    <dd>
+                      <span>{{ line_item.final_line_price | money }}</span>
+                    </dd>
+                  </dl>
+                {%- else -%}
+                  {{ line_item.original_line_price | money }}
+                {%- endif -%}
+              </span>
+            </li>
+          </ul>
+          {%- endfor -%}
+            <ul class="order_total">
+              <li>
+                <span>Subtotal</span> 
+                <span>{{ order.line_items_subtotal_price | money }}</span>
+              </li>
+              <li>
+                {%- for tax_line in order.tax_lines -%}
+                <span>Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</span>
+                <span>{{ tax_line.price | money }}</span>
+                {%- endfor -%}
+              </li>
+              <li>
+                <span>Total</span>
+                <span>{{ order.total_price | money_with_currency }}</span>
+              </li>
+            </ul>
+        </div>
+      </div>
+      <div class="order_address_col">
+        <div class="account_address_details">
+          <h3>Billing Address</h3>
+          <p>
+            <strong>Payment Status:</strong>
+            {{ order.financial_status_label }}
+          </p>
+           {{ order.billing_address | format_address }}
+        </div>
+        <div class="account_address_details">
+          <h3>Shipping Address</h3>
+          <p>
+          <strong>Fulfillment Status:</strong>
+          {{ order.fulfillment_status_label }}
+        </p>
+        {{ order.shipping_address | format_address }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

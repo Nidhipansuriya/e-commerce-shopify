@@ -1,0 +1,48 @@
+<div class="step-3-inner">
+    <div class="container">
+        <div class="step-title text-center">
+            <p class="step-info">STEP-3 of 3</p>
+            <h4 class="step-heading">{{ section.settings.step_3_title }}</h4>
+            <p class="step-desc">{{ section.settings.step_3_desc }}</p>
+        </div>
+        <div class="card-section-first">
+            {% for block in section.blocks %}
+                <div class="card-child-wrap col-lg-3 col-md-3 col-sm-4 col-6" data-id="{{ block.settings.id}}">
+                    <img src="{{ block.settings.image | img_url: 'original' }}" />
+                    <p>{{ block.settings.title }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="card-section-final hide d-flex">
+            <div class="left-part col-lg-3 col-md-4 col-sm-4 col-6 text-center">
+                <img src="" alt='gift-cart' />
+                <div class="change-card-button">Change card</div>   
+            </div>
+            <div class="right-part col-lg-9 col-md-8 col-sm-8 col-12">
+                <div class="form-wrap d-flex">
+                    <div class="inner-wrap col-lg-6 col-md-6 col-sm-6 col-12">
+                        <label for="user-to">To*</label>
+                        <input id="user-to" type="text" />
+                    </div>
+                    <div class="inner-wrap col-lg-6 col-md-6 col-sm-6 col-12">
+                        <label for="user-from">From*</label>
+                        <input id="user-from" type="text" />
+                    </div>
+                </div>
+                <div class="message-wrap col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="gift-message">Message on card*</label>
+                    <!-- <input id="gift-message" type="text" /> -->
+                    <textarea id="gift-message" placeholder="Enter your card message here. 180 characters max." maxlength="180" rows="6" name="Message" required=""></textarea>
+                </div>
+                <div class="checkbox-wrap col-lg-12 col-md-12 col-sm-12 col-12">
+                    <input id="gift-checkbox" type="checkbox" />
+                    <label for="gift-checkbox">Click here and we'll send the card blank and outside the BOXFOX for you to write yourself!</label>
+                </div>
+                <div class="gift-action-btn-wrap col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="gift-add-to-cart-btn">Add To Cart</div>
+                    <div class="change-card-button">Change card</div>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

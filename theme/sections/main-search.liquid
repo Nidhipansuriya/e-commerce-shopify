@@ -1,0 +1,102 @@
+<section class="search-template">
+  <div class="container">
+      <div class="search-block">
+          <div class="search-title">
+              {% if template contains '404' %}
+                  <div class="text-center error-content-wrap">
+                      <img src="{{ '404_img.png' | file_img_url: 'original' }}" alt="404">
+                      <h1 class="text-center text-white">We couldn't find any matches!</h1>
+                      <p class="text-center error-page-small-msg text-white">Please Check The Spelling or Try Searching Something Else</p>
+                  </div>
+              {% else %}
+                  <h1 class="text-center text-white">search</h1>
+              {% endif %}
+          </div>
+          <div class="row d-flex justify-content-center search-form-wrap">
+              <div class="col-lg-6 col-md-10 col-sm-10 col-12 p-0">
+                  <form class="form-header" action="/search" method="get" role="search">
+                      <div class="search-input-group">
+                          <input type="search" class="search-form-control" name="q" aria-label="Amount (to the nearest dollar)" placeholder="Search" value="{{ search.terms }}">
+                          <div class="input-group-append">
+                              <button type="submit" class="search-submit-btn"><img src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/search_1024x1024.png?v=7909548435479120052" alt="" class="img-fluid"></button>
+                          </div>
+                      </div>
+                  </form>
+
+                  <form class="form-search" method="post" name="search-page-form" style="display: none;">
+                      <div class="search-input-group">
+                          <input type="search" class="search-form-control" name="query" aria-label="Amount (to the nearest dollar)" placeholder="Searchbar" value="{{ search.terms }}">
+                          <div class="input-group-append">
+                              <button type="button" class="search-form-submit"><img src="//cdn.shopify.com/s/files/1/0588/6528/7346/files/search_1024x1024.png?v=7909548435479120052" alt="" class="img-fluid"></button>
+                          </div>
+                      </div>
+                  </form>
+
+              </div>
+          </div>
+      </div>
+
+
+      
+      
+     
+          
+      {% if search.performed and search.results_count == 0 %}
+      
+      <div class="search-err-wrap">
+          <div class="row">
+              <div class="col-sm-12 text-center section-b-space">
+                  <h3 class="err-msg-big text-white">We couldn't find any matches!</h3>
+                  <p class="err-msg-small text-white">Please Check The Spelling or Try Searching Something Else</p>
+              </div>
+          </div>
+      </div>
+      {% endif %}
+      
+  
+      {% if template contains '404' %}
+
+      {% else %}
+
+      {% if search.results_count != 0  %}
+      <div class="search-result-wrap">
+          <div class="search-success-msg-wrap text-center">
+              <h4 class="search-success-msg">
+                  Your search for "{{ search.terms }}" revealed the following:
+              </h4>
+          </div>
+          {% paginate search.results by 12 %}
+          <div class="row d-flex flex-wrap search-product">
+                  {% for item in search.results %}
+                      {% if item.object_type == 'product' %}
+                      <div class="col-lg-3 col-md-3 col-sm-4 col-6 search-product-box">
+                          {% render 'product-item' , product:item %}
+                      </div>
+                      {% endif %}
+                  {% endfor %}
+              </div>
+          </div>
+          {%- if paginate.pages > 1 -%}
+          {% render 'pagination', paginate: paginate, class: 'pagination-wrapper-small' %}
+          {%- endif -%}
+          {% endpaginate %}
+          
+      {% endif %}
+
+      {% endif %}
+      
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "product-template",
+  "presets": [
+      {
+          "name": "search-template",
+          "category": "search template"
+      }
+  ]
+}
+{% endschema %}

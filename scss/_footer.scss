@@ -1,0 +1,119 @@
+.footer_section{
+    background-size: cover;
+    padding-top: 52px;
+    background-position: top;
+    background-repeat: no-repeat;
+    padding-bottom: 80px;
+    @include mq("phone"){
+        padding-bottom: 5 0px;
+    }
+    .footer_row{
+        width: 100%;
+        max-width: 1450px;
+        padding: 0px 15px;
+        margin: 0px auto;
+    }
+    .logo_div {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #D0D0D0;
+        padding-bottom: 43px;
+        margin-bottom: 55px;
+        position: relative;
+        .footer_icon{
+            position: absolute;
+            right: 0;
+            bottom: 65px;
+            @include mq("phone"){
+                position: initial;
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+            }
+            .social_icon{
+                display: flex;
+                align-items: center;
+                li{
+                    background: $primary;
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-left: 8px;
+                    &:first-child{
+                        margin-left: 0px;
+                    }
+                    a{
+                        display: contents;
+                    }
+                }
+            }
+        }
+    }
+    .footer_menu_main {
+        margin: 0 auto;
+        display: flex;
+        max-width: 1234px;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .footer_line{
+            background-color: $primary;
+            display: block;
+            height: 2px;
+            width: 50px;
+            margin-bottom: 12px;
+            @media (max-width:850px) {
+                margin: 0 auto 12px;
+            }
+        }
+        .footer_menu{
+            max-width: 240px;
+            width: 100%;
+            @include mq("desk-and-down"){
+                max-width: 200px;
+            }
+            @media (max-width:850px) {
+                max-width: 50%;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .footer_title {
+                color: #333333;
+                font-weight: 400;
+                font-size: 30px;
+                line-height: 100%;
+                padding-bottom: 12px;
+                margin: 0;
+                @include mq("desk-and-down"){
+                    font-size: 24px;
+                }
+                @include mq("phone"){
+                    font-size: 17px;
+                }
+            }
+            .footer_menu_ul{
+                .footer_menu_item{
+                    a{
+                        color: #333333;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 150%;
+                        text-decoration: none;
+                        margin-bottom: 18px !important;
+                        @include mq("desk-and-down"){
+                            font-size: 17px;
+                        }
+                        @include mq("small_phone"){
+                            font-size: 13px;
+                            line-height: 118%;
+                            margin-bottom: 10px!important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

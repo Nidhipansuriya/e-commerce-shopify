@@ -1,0 +1,34 @@
+<div class="product-item">
+  <div class="product-box">
+      <div class="product-img-box">
+          <a href="{{ product.url | within: collection }}">
+              <div class="product_img">    
+                  {%- assign src_name = product.featured_image -%}
+                  {%- assign src_alt = product.featured_image.alt -%}
+                  {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+              </div>
+          </a>
+      </div>
+      <div class="product_information">
+          <div class="product_rating">
+            {{ product.metafields.judgeme.badge }}
+          </div>
+          <div class="product_title">
+              <a class="font-f-noto" href="{{ product.url | within: collection }}">
+                  <h3 class="font-f-noto">{{ product.title | truncate: 20 }}</h3>
+              </a>
+          </div>
+          <div class="product_price_div">
+              <span class="product_price font-f-noto"> {{ product.price |  money_without_trailing_zeros }}</span>
+              <span class="product_compare_price font-f-noto">{{ product.variants[0].compare_at_price | money_without_trailing_zeros }}</span>
+          </div>
+          <div class="product_form">
+            <div class="add_to_cart">
+              <a href="{{ product.url }}" class="add_to_cart_btn button_all font-f-noto">
+                Add to Cart
+              </a>
+          </div>
+          </div>
+      </div>
+  </div>
+</div> 

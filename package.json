@@ -1,0 +1,49 @@
+{
+  "name": "octics-fashion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "costart": "concurrently --kill-others \" webpack --mode development\" \"npm run theme\"",
+    "theme": "cd theme && theme open && theme deploy && theme watch",
+    "start": "webpack --mode development & cd theme && theme open && theme deploy && theme watch",
+    "watch": "webpack --mode development & cd theme && theme open --env=production && theme watch --env=production",
+    "webpack_watch": "webpack --mode development",
+    "webpackProd": "webpack",
+    "webpack_production": "webpack --mode production",
+    "deploy": "webpack && cd theme && theme open --env=production && theme deploy --env=production --allow-live",
+    "deploy_safe": "webpack && cd theme && theme open --env=production && theme deploy --env=production -n",
+    "download": "cd theme && theme open && theme download",
+    "create": "webpack --mode production && cd theme && theme new --name \"$npm_config_release\" --env release-candidate && theme open --env release-candidate",
+    "update": "webpack --mode production && cd theme && theme deploy --env release-candidate && theme open --env release-candidate",
+    "watch-rc": "webpack --mode development & cd theme && theme open --env=release-candidate && theme watch --env=release-candidate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/kartiksonani007/octics-fashion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kartiksonani007/octics-fashion/issues"
+  },
+  "homepage": "https://gitlab.com/kartiksonani007/octics-fashion#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/polyfill": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-stage-0": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^1.0.1",
+    "mini-css-extract-plugin": "^0.4.5",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "@splidejs/splide": "^2.4.21",
+    "smooth-scrollbar": "^8.6.2"
+  }
+}

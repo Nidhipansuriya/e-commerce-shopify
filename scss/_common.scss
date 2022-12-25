@@ -1,0 +1,228 @@
+body{
+  background: $bg-color !important;
+  font-family: $base-font;
+  .mx-auto{
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .container{
+    max-width:1450px;
+    @include mq("lap-desk-and-down"){
+      max-width: 1170px;
+    }
+    @include mq("desk-and-down"){
+      max-width: 960px;
+    }
+    @include mq("tablet-and-down"){
+      max-width: 750px;
+    }
+    @include mq("phone"){
+      max-width: 550px;
+    }
+    @include mq("phone-portrait"){
+      max-width: 450px;
+    }
+  }
+  .font-f-heading{
+    font-family: $heading-font;
+  }
+  .font-f-paragraph{
+    font-family: $base-font;
+  }
+  .section_heading{
+    margin-bottom: 30px;
+    h4{
+      margin: 0px 0 14px;
+      color: $primary;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      @include mq("desk-and-down") {
+        margin: 0;
+        font-size: 16px;
+      }
+      @include mq("phone"){
+        margin: 0px 0 5px;
+        font-size: 14px;
+      }
+    }
+    h3{
+      font-weight: 400;
+      font-size: 60px;
+      line-height: 122%;
+      margin: 0;
+      color: $basic-text-color;      
+        @include mq("desk-and-down") {
+            font-size: 50px;
+        }
+        @include mq("tablet-and-down"){
+          font-size: 40px;
+        }
+        @include mq("phone") {
+            font-size: 30px;
+        }
+    }
+    p{
+      font-weight: 400;
+      font-size: 18px;
+      color: $color-grey;
+      line-height: 157%;
+      margin: 16px 0 0;
+      @include mq("desk-and-down") {
+        margin: 0;
+        font-size: 16px;
+      }
+      @include mq("phone"){
+        margin: 5px 0 0;
+        font-size: 14px;
+      }
+    }
+  }
+  .button_all{
+    background: $button-bg-color;
+    border-radius: $button-radius;
+    border: 1px solid $button-bg-color;
+    font-weight: 500;
+    color: $button-text-color;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+    &:hover{
+        background-color: transparent;
+        color: $basic-text-color !important;
+    }
+  }
+  .p-0{
+    padding: 0 !important;
+  }
+  .text-white{
+      color: $color--white;
+  }
+  .text-center{
+      text-align: center;
+  }
+  section{
+      padding-bottom: 100px;
+      @include mq("tablet-and-down") {
+          padding-bottom: 70px;
+      }
+  }
+  ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+  .visually-hidden{
+    visibility: hidden;
+  }
+  .d-none{
+    display: none;
+  }
+  .hidden {
+    display: none !important;
+  }
+  .sticky{
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  .black-bg{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0000003b;
+    z-index: 100;
+    display: none;
+    &.active{
+      display: block;
+    }
+  }
+  a {
+    cursor: pointer;
+  }
+  .slick-arrow{
+    top: 50%;
+    width: 46px;
+    height: 46px;
+    box-shadow: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    border: 0px solid;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    &.slick-prev{
+        left: 0;   
+        background-image: url("https://cdn.shopify.com/s/files/1/0618/5045/2126/files/left.png?v=1656396235");
+    }
+    &.slick-next{
+        right: 0;
+        background-image: url("https://cdn.shopify.com/s/files/1/0618/5045/2126/files/right.png?v=1656396247");
+    }
+  }
+  .slider_arrow_main{
+    position: relative;
+    width: 100%;
+    max-width: 112px;
+    margin: 30px auto 0;
+    display: flex;
+    justify-content: space-between;
+    @include mq("s_phone") {
+        margin: 20px auto 0;
+    }
+    button{
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        border: 0px solid;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+    }
+    .slick-disabled{
+        opacity: 0.5;
+    }
+  }
+}
+.filter_loder {
+  position: fixed;
+  display: none;
+  align-content: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  bottom: 0;
+  padding-left: 200px;
+  @include mq("phone-and-tablet"){
+    padding-left: 0px;
+  }
+  &.active{
+    display: flex;
+  }
+  svg{
+    width: 70px;
+    margin: 0 auto;
+    background-color: $color--white;
+    height: 70px;
+    margin-top: 200px;
+  }
+}

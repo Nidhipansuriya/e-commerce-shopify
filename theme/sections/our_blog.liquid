@@ -1,0 +1,66 @@
+
+<section class="our-blog-section">
+    <div class="container">
+        <div class="latest-blog-main">
+            {% if section.settings.latest-heading !=blank %}
+            <div class="section_heading text-center">
+                <h3 class="font-f-heading">{{section.settings.latest-heading}}</h3>
+            </div>
+            {% endif %}
+            <div class="latest-content">
+                {%- assign blog = blogs[section.settings.blog] -%}
+                {% for article in blog.articles limit: 3 %}
+                    <div class="latest-box-main">
+                        <div class="latest-box-image">
+                            <!-- <img src="{{ article.image | img_url: 'master' }}" alt="image-1"> -->
+                            {%- assign src_name = article.image -%}
+                            {%- assign src_alt = article.image.alt -%}
+                            {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+                        </div>
+                        <div class="latest-box-heading">
+                            <h3 class="text-white">{{ article.title }}</h3>
+                        </div>
+                        <div class="latest-box-content">
+                            <p class="text-white">{{ article.excerpt }}</p>
+                        </div>
+                        <div class="latest-box-btn">
+                            <span></span>
+                            <a href="{{ article.url }}">Read more</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name" : "our blog",
+    "settings" :[
+    {
+        "type" : "text",
+        "id" : "latest-heading",
+        "label" : "latest heading"
+    },
+    {
+       "type": "blog",
+       "id":"blog",
+       "label":"blog"
+    }
+    ],
+   
+    "presets" :[
+    {
+        "name" :{
+            "en" : "our blog section"
+        },
+        "category" : {
+            "en" : "home page section"
+        }
+    }
+    
+    ]
+}
+{% endschema %}

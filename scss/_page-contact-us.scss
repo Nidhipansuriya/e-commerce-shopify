@@ -1,0 +1,213 @@
+.contact_section{
+    .container{
+        .contact_form_div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1273px;
+            margin: 0 auto;
+            width: 100%;
+            @include mq("tablet-and-down") {
+                flex-wrap: wrap;
+                justify-content: center !important;
+            }
+            .normal_text{
+                color: $color--black;
+                font-family: Poppins,sans-serif;
+                font-weight: 400;
+                &:hover{
+                    color: #fff;
+                }
+            }
+            .contact_box {
+                max-width: 480px;
+                width: 100%;
+                margin-right: 30px;
+                @include mq("tablet-and-down") {
+                    margin-right: 0px;
+                    margin-bottom: 30px;
+                }
+                .default_image{
+                    svg{
+                        border: 1px solid #000;
+                    }
+                }
+                img{
+                    width: 100%;
+                }
+                .contact_info{
+                    padding-top: 50px;
+                    .contact_icon_div{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50%;
+                        min-width: 60px;
+                        min-height: 60px;
+                        background-color: #313848;
+                    }
+                    .contact_details{
+                        margin-left: 20px;
+                        @include mq("small_phone") {
+                            margin-left: 0px;
+                            width: 100%;
+                            margin-top: 15px;
+                            text-align: center;
+                        }
+                        .contact_sub_title{
+                            color: #313848;
+                            font-size: 22px;
+                            font-weight: 600;
+                            margin-top: 0px;
+                            margin-bottom: 4px;
+                        }
+                        .contact_sub_des{
+                            text-decoration: none;
+                            color: #313848;
+                            font-size: 20px;
+                            margin-bottom: 0px;
+                        }
+                    }
+                    .address_info{
+                        p{
+                            @include mq("tablet-and-down") {
+                                max-width: 100%;
+                            }
+                        }
+                    }
+                    ul{
+                        li {
+                            margin-bottom: 40px;
+                            .contact_info_box{
+                                display: flex;
+                                align-items: flex-start; 
+                                @include mq("small_phone") {
+                                    flex-wrap: wrap;
+                                    justify-content: center;
+                                }
+                            }
+                        }
+                    } 
+                }
+            }
+            .contact_form{
+                max-width: 639px;
+                width: 100%;
+                @include mq("tablet-and-down") {
+                    text-align: center;
+                }
+                @include mq("phone") {
+                    max-width: 100%;
+                }
+                .about_product_text{
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 27px;
+                    letter-spacing: 4px;
+                    text-transform: uppercase;
+                    color: $primary;
+                    margin-bottom: 14px !important;
+                    @include mq("tablet-and-down") {
+                        font-size: 18px;
+                    }
+                    @include mq("phone") {
+                        margin-bottom: 0px;
+                    }
+                }
+                .about_product_title{
+                    font-weight: 600;
+                    font-size: 55px;
+                    line-height: 60px;
+                    text-transform: capitalize;
+                    color: $color--black;
+                    margin-bottom: 27px !important;
+                    @include mq("desk-and-down") {
+                        font-size: 42px;
+                    }
+                    @include mq("tablet-and-down") {
+                        font-size: 36px;
+                        margin-bottom: 18px
+                    }
+                    @include mq("phone") {
+                        font-size: 30px;
+                    }
+                }
+                .contact_input{
+                    color: #ffffff;
+                    label{
+                        text-transform: capitalize;
+                        font-size: 20px;
+                        line-height: 28px;
+                        margin-bottom: 15px;
+                        display: block;
+                    }
+                    input, textarea{
+                        border: 1px solid #828282;
+                        background-color: #fff;
+                        border-radius: 5px;
+                        outline: 0;
+                        padding: 12.5px 15px;
+                        margin-bottom: 30px;
+                        font-size: 18px;
+                        color: #828282;
+                        opacity: 0.8;
+                        &:hover{
+                        box-shadow: 0 10px 20px #0000000d;
+                        color: #333333;
+                        opacity: 1;
+                        }
+                    }
+                }
+                .input_50 {
+                    width: 48%;
+                    max-width: 350px;
+                    @include mq("phone") {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+                .form_submit_button{
+                    button{
+                        background-color: $button-bg-color;
+                        border: 1px solid $button-bg-color;
+                        border-radius: 8px;
+                        font-weight: 500;
+                        font-size: 20px;
+                        line-height: 27px;
+                        color: $button-text-color;
+                        max-width: 166px;
+                        width: 100%;
+                        padding: 16px 0px;
+                        cursor: pointer;
+                        :hover{
+                            background-color: transparent;
+                            color: $button-bg-color;
+                        }
+                        @include mq("phone") {
+                            max-width: 100%;
+                            padding: 15px 0px;
+                        }
+                    }
+                }
+                .contact_input{
+                    textarea{
+                        height: 164px;
+                    }
+                }
+                .contact_form_details{
+                    .page-width{
+                        padding: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// .contact_map {
+//     max-width: 1273px;
+//     width: 100%;
+//     margin-top: 61px;
+// }

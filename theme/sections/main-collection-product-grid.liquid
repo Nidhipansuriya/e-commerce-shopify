@@ -1,0 +1,417 @@
+<style>
+  .range-slider {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .rangeValues {
+    display: block;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none;
+    border: 1px solid white;
+    width: 100%;
+    position: absolute;
+    left: 0;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #6e725b;
+    border: none;
+    border-radius: 3px;
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* border: none; */
+    border: 2px solid #fff;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #6e725b;
+    margin-top: -7px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+  }
+
+  input[type='range']:focus {
+    outline: none;
+  }
+
+  /* input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+  } */
+
+  input[type='range']::-moz-range-track {
+    width: 300px;
+    height: 5px;
+    background: #6e725b;
+    border: none;
+    border-radius: 3px;
+  }
+
+  input[type='range']::-moz-range-thumb {
+    border: 2px solid #fff;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #6e725b;
+  }
+
+  /*hide the outline behind the border*/
+
+  input[type='range']:-moz-focusring {
+    outline: 1px solid white;
+    outline-offset: -1px;
+  }
+
+  input[type='range']::-ms-track {
+    width: 300px;
+    height: 5px;
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+    /*remove default tick marks*/
+    color: transparent;
+    z-index: -4;
+  }
+
+  input[type='range']::-ms-fill-lower {
+    background: #6e725b;
+    border-radius: 10px;
+  }
+
+  input[type='range']::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 10px;
+  }
+
+  input[type='range']::-ms-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #6e725b;
+  }
+
+  input[type='range']:focus::-ms-fill-lower {
+    background: #6e725b;
+  }
+
+  input[type='range']:focus::-ms-fill-upper {
+    background: #ccc;
+  }
+</style>
+
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+{%- assign total_active_values = 0 -%}
+{% assign collection_handle = collection.handle %}
+
+<section
+  class="collections-temp all_category_section"
+  id="cate_pg"
+  data-url="{{ shop.url }}"
+  data-filter=""
+  data-sort=""
+>
+  <div class="custom-container">
+    {% if collection.metafields.custom.collection_filter_check != '' %}
+      {%- assign filter_check = collection.metafields.custom.collection_filter_check | split: ',' -%}
+      {% assign title = false %}
+      {% for item in filter_check %}
+        {% if item == 'title' %}
+          {% assign title = true %}
+        {% elsif condition %}
+
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    <div class="row category-section-wrap d-flex" data-collurl="{{ collection.url }}">
+      <div class="col-12">
+        <div class="collection-head-wrap text-center">
+          <h1 class="collection-title">{{ collection.title }}</h1>
+        </div>
+      </div>
+    </div>
+    <div class="category-filter-sm">
+      {% comment %} <button onclick="showFilter()" class="filter-sm-btn" id="filter-sm-btn">filter</button> {% endcomment %}
+      <button class="filter-sm-btn open_btn_filter" id="filter-sm-btn ">filter</button>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12 collecion-filter-wrap">
+        <div class="filter-box" id="filter-box">
+          <form id="CollectionFiltersForm" class="facets__form">
+            <div class="filter-box-title">
+              filter by
+              {% comment %} <span class="filter_close close_btn_filter" onclick="hideFilter()"> {% render 'icon-close' %} </span> {% endcomment %}
+              <span class="filter_close close_btn_filter"> {% render 'icon-close' %} </span>
+            </div>
+            <!--
+              {%- if filter.active_values.size > 0 -%}
+                  <a href="{{ filter.url_to_remove }}" class="filter-group-display__header-reset">Reset</span>
+              {%- endif -%}
+            -->
+            <div class="collection-filter-box">
+              <div class="collection-filter-block">
+                <h4 class="collapse-filter-title">collections</h4>
+                <div class="collection-collapse-block">
+                  <ul class="sidebar_filter_cls">
+                    {% assign filter_coll = settings.filter_collection | split: ',' -%}
+                    {% for collops in filter_coll %}
+                      <li data-value="{{ collops | handleize }}">
+                        {% assign coll_handle = collops | handleize %}
+                        <label
+                          for="collection-{{ forloop.index }}"
+                          class="filter-label {% if collection_handle == coll_handle %} active_collection {% endif %} "
+                        >
+                          <input
+                            type="checkbox"
+                            name="collection-name"
+                            class="collection-filter"
+                            id="collection-{{ forloop.index }}"
+                            data-value="{{ coll_handle }}"
+                            {% if collection_handle == coll_handle %}
+                              checked
+                            {% endif %}
+                          >
+                          {{ collops }}
+                        </label>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+
+              {%- for filter in collection.filters -%}
+                {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+                {% case filter.type %}
+                  {% when 'list' %}
+                    <div class="collection-filter-block">
+                      <h4 class="collapse-filter-title">{{ filter.label | escape }}</h4>
+                      <div class="collection-collapse-block">
+                        {% assign filter_label = filter.label %}
+
+                        <ul class="sidebar_filter_cls {% if filter_label == 'Size' %} d-flex {% endif %} ">
+                          {%- for filter_value in filter.values -%}
+                            <li>
+                              {% comment %} <div>{{ filter.values | json }}</div> {% endcomment %}
+
+                              <div class="collection-filter-checkbox">
+                                <label
+                                  for="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                  class="{% if filter_label == 'Size' %} size-filter-label {% else %} filter-label {% endif %} {% if filter_value.active %}active_filter{% endif %}"
+                                >
+                                  <input
+                                    type="checkbox"
+                                    class="custom-checkbox-input"
+                                    name="{{ filter_value.param_name }}"
+                                    value="{{ filter_value.value }}"
+                                    id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                                    {% if filter_value.active -%}
+                                      checked
+                                    {%- endif %}
+                                    {% if filter_value.count == 0 and filter_value.active == false -%}
+                                      disabled
+                                    {%- endif %}
+                                    data-link="{{filter_value.param_name }}={{ filter_value.value | url_encode }}"
+                                    data-val="{{ filter_value.value | url_encode  }}"
+                                  >
+                                  {{ filter_value.label | escape }}
+                                </label>
+                              </div>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                        <div class="filter-group-display__submit">
+                          <!-- <input type="submit" value="Apply"> -->
+                        </div>
+                      </div>
+                    </div>
+
+                  {% else %}
+                  {%- when 'price_range' -%}
+                    <div class="collection-filter-block range-slider">
+                      <h4 class="collapse-filter-title">{{ filter.label | escape }}</h4>
+                      {%- assign min_value = filter.min_value.value | default: 0 -%}
+                      {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+
+                      <label for="price-range-min" class="">
+                        <input
+                          {% if filter.min_value.value -%}
+                            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                          {% else %}
+                            value="0"
+                          {%- endif %}
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          step="10"
+                          type="range"
+                          name="{{ filter.min_value.param_name }}"
+                          id="price-range-min"
+                          class="pricerange"
+                          data-link="{{ filter.min_value.param_name }}"
+                        >
+                      </label>
+                      <label for="price-range-max" class="">
+                        <input
+                          {% if filter.max_value.value -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                          {% else %}
+                            value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          {%- endif %}
+                          min="0"
+                          max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                          step="1"
+                          type="range"
+                          name="{{ filter.max_value.param_name }}"
+                          id="price-range-max"
+                          class="pricerange"
+                          data-link="{{ filter.max_value.param_name }}"
+                        >
+                        <!--
+                          <input value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" min="0" max="{{ filter.range_max | money_without_currency | replace: ',', '' }}" step="10" type="range" name="{{ filter.max_value.param_name }}" class="pricerange" data-link='{{ filter.max_value.param_name }}'>
+                        -->
+                      </label>
+                      <!-- <input type="submit" value="Apply"> -->
+                      <span class="rangeValues filter-label">{{ min_value | money }} - {{ max_value | money }} </span>
+                    </div>
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {% comment %}
+        <div class="col-lg-9 col-md-12 col-sm-12 col-12 collection-item-wrap">
+          <div class="sorting-dropdown">
+            {% paginate collection.products by 48 %}
+              <div class="row collection-products ">
+                {%- for product in collection.products -%}
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-12 collection-products-item">
+                    {% render 'own-product', product: product %}
+                  </div>
+                {% endfor %}
+              </div>
+              {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate, class: 'pagination-wrapper-small' %}
+              {%- endif -%}
+            {% endpaginate %}
+
+            {%- comment -%}
+              <div class="row d-flex align-items-center m-0">
+                  <div class="col-6">
+
+                  </div>
+              </div>
+            {%- endcomment -%}
+          </div>
+        </div>
+      {% endcomment %}
+
+      <div class="col-lg-9 col-md-9 col-12 collection-item-wrap">
+        <div class="filter_loder">
+          {% include 'loader-gif' %}
+        </div>
+        <div class="Sort_by d-flex  justify-content-between align-items-center">
+          {% comment %}
+            <div class="filter_md_btn">
+              <button class="open_btn text-decoration-none font_f_Jost text_secondary d-inline-block">filter</button>
+            </div>
+          {% endcomment %}
+
+          <div class="product-filter-count" style="padding-left: 18px;">
+            <h4>Showing {{ collection.products_count }} Result</h4>
+          </div>
+          <div class="sort_by_box font_f_Jost position-relative">
+            <div id="custom-select">
+              <select id="sort-by" class="" style="border: none;">
+                {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+
+                {% for option in collection.sort_options %}
+                  <div data-value="{{ option | handleize }}">
+                    {% assign coll_handle = option | handleize %}
+                    <option
+                      class="custom-opion custom-checkbox-input {% if sort_by == 'Sort' %} size-filter-label {% else %} filter-label {% endif %} {% if option.active %} active_sort_filter {% endif %}"
+                      data-val="{{ option.value | url_encode  }}"
+                      name="{{option.param_name }}"
+                      data-value="{{ coll_handle }}"
+                      value="{{ option.value }}"
+                      {% if option.active -%}
+                        selected="selected"
+                      {%- endif %}
+                      data-link="{{ option.param_name }}sort_by={{ option.value | url_encode }}"
+                      data-val="{{ option.value | url_encode  }}"
+                      sort_index="{{ forloop.index }}"
+                    >
+                      {{ option.name }}
+                    </option>
+                  </div>
+                {% endfor %}
+              </select>
+            </div>
+            <!--
+              <div class="select_box_arrow position-absolute">
+                <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.9" d="M10 1L5.5 5L1 1" stroke="$basic-text-color" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            -->
+          </div>
+        </div>
+        {% comment %} <hr style="border:1px solid #b3b3b3; margin-top:0px; margin-bottom:0px;"> {% endcomment %}
+        {% paginate collection.products by 12 %}
+          <div class="row collection-products d-flex flex-wrap">
+            {%- for product in collection.products -%}
+              <div class="col-lg-4 col-md-6 col-sm-6 col-12 collection-products-item">
+                {% comment %} {% render 'product-item' , product.product:product,is_product_page:is_product_page %} {% endcomment %}
+                <!-- {% render 'product_card' , product:product  %} -->
+                {% render 'own-product', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+          {%- if paginate.pages > 1 -%}
+            {% render 'pagination', paginate: paginate, class: 'pagination-wrapper-small' %}
+          {%- endif -%}
+        {% endpaginate %}
+      </div>
+    </div>
+  </div>
+  <input type="hidden" value="{{ shop.url }}{{ collection.url }}" class="shop-url">
+</section>
+
+{% comment %}
+  <script>
+    console.log('options1233');
+    const options1233= {{ settings.filter_collection | json }}
+    console.log(options1233);
+  </script>
+{% endcomment %}
+
+<script>
+  function showFilter() {
+    document.getElementById('filter-box').style.display = 'block';
+  }
+  function hideFilter() {
+    document.getElementById('filter-box').style.display = 'none';
+  }
+</script>
+
+{% schema %}
+{
+  "name": "collections-temp",
+  "presets": [
+    {
+      "name": "collections-template",
+      "category": "collections template"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,444 @@
+.customer_account{
+    background: #f7f6f2;
+    padding: 50px 0px;
+    margin: 50px 0px;
+    .main_account_form{
+        background: #fff;
+        max-width: 1250px;
+        margin: auto;
+        width: 100%;
+        padding: 50px 0;
+        display: flex;
+        align-items: center;
+    }
+    .account_heading{
+        margin-bottom: 30px;
+        h3{
+            font-weight: 500;
+            font-size: 45px;
+            line-height: 61px;  
+            color: $basic-text-color;
+            margin: 0px 0px 8px;
+            @include mq("tablet-and-down"){
+                font-size: 30px;
+                line-height: 36px;
+            }
+        }
+        p{
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 24px;
+            color: $color-grey;
+            margin: 0;
+        }
+    }
+    .customer_form_img{
+        width: 50%;
+        border-right: 1px solid $primary;
+        padding: 0px 15px;
+        @include mq("tablet-and-down"){
+            display: none;
+        }
+        .customer_img_main{
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .customer_form_content{
+        width: 50%;
+        padding: 0px 15px;
+        @include mq("tablet-and-down"){
+            width: 100%;
+        }
+        .customer_form{
+            max-width: 450px;
+            margin: 0 auto;
+            width: 100%;
+            .input_group_div{
+                margin-bottom: 25px;
+                input{
+                    width: 100%;
+                    border: 1px solid $color-grey;
+                    border-radius: 8px;
+                    padding: 14px 30px;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 22px;
+                    &::placeholder{
+                        color: $color-grey;
+                        opacity: 0.6;
+                    }
+                }
+                &.mb-0{
+                    margin-bottom: 0;
+                }
+            }
+            .button_group_div{
+                margin-top: 25px;
+                button, a{
+                    width: 100%;
+                    padding: 15px 0px;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 27px;
+                    text-align: center;
+                    color: $color--white;
+                }
+                &.reset_pass_btn{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    a, button{
+                        width: 49%;
+                    }
+                }
+            }
+            .customer_form_link{
+                margin-top: 15px;
+                display: flex;
+                justify-content: center;
+                a{
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: $primary;
+                    text-decoration: none;
+                }
+                &.forget_pass{
+                    display: flex;
+                    justify-content: flex-end;
+                }
+            }
+        }
+        .errors{
+            color: red;
+        }
+    }
+    #recover {
+        display: none;
+    }
+    #recover:target {
+        display: flex;
+    }
+    #recover:target~#login {
+        display: none;
+    }
+    .order_header{
+        @include mq("phone"){
+            display: none;
+        }
+        ul{
+            align-items: center;
+            display: flex;
+            width: 100%;
+            border: 1px solid $primary;
+            li{
+                padding: 10px;
+                width: 20%;
+                text-align: center;
+                color: $basic-text-color;
+                // border-right: 1px solid $primary;
+                font-weight: 500;
+                @include mq("lap-desk-and-down"){
+                    font-size: 14px;
+                    padding: 10px 2px;
+                }
+                &:last-child{
+                    border: 0px;
+                }
+            }
+        }
+    }
+    .order_history{
+        @include mq("phone"){
+            display: none;
+        }
+        ul{
+            align-items: center;
+            display: flex;
+            width: 100%;
+            border: 1px solid $primary;
+            border-top: 0px;
+            li{
+                // border-right: 1px solid $primary ;
+                width: 20%;
+                text-align: center;
+                color: $basic-text-color;
+                padding: 10px;
+                @include mq("lap-desk-and-down"){
+                    padding: 10px 2px;
+                }
+                &:last-child{
+                    border: 0px;
+                }
+                a, p{
+                    color: var(--basic-text-color);
+                    @include mq("lap-desk-and-down"){
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    .order_page_main{
+        display: flex;
+        align-items: center;
+        .logout_icon, .Return_to_Account{
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            color: var(--basic-text-color);
+            svg{
+                width: 30px;
+            }
+        }
+    }
+    .account_main_row{
+        display: flex;
+        @include mq("tablet-and-down"){
+            flex-wrap: wrap;
+        }
+        .order_history_col{
+            width: 75%;
+            @include mq("tablet-and-down"){
+                width: 100%;
+            }
+        }
+        .address_col{
+            width: 25%;
+            @include mq("tablet-and-down"){
+                width: 100%;
+            }
+            .account_address_details{
+                max-width: 250px;
+                margin-left: auto;
+                padding-left: 15px;
+                width: 100%;
+                @include mq("tablet-and-down"){
+                    max-width: 100%;
+                    margin-top: 30px;
+                    padding-left: 0px;
+                }
+                h3{
+                    margin: 0 0 10px;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 30px;
+                    color: var(--basic-text-color);
+                    @include mq("tablet-and-down"){
+                        font-size: 30px;
+                        line-height: 36px;
+                        margin-bottom: 30px;
+                    }
+                }
+                p, a{
+                    margin: 0;
+                    color: var(--basic-text-color);
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    .order_history_mobile{
+        display: none;
+        @include mq("phone"){
+            display: block;
+        }
+        ul{
+            border: 1px solid $primary;
+            padding: 15px;
+            margin-bottom:  15px;
+            &:last-child{
+                margin-bottom: 0px;
+            }
+            li{
+                display: flex;
+                justify-content: space-between;
+                span{
+                    color: var(--basic-text-color);
+                    font-size: 14px;
+                    a{
+                        color: var(--basic-text-color);
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+    .order_main_row{
+        display: flex;
+        @include mq("tablet-and-down"){
+            flex-wrap: wrap;
+        }
+        @include mq("phone"){
+            display: none;
+        }
+        .order_content_col{
+            width: 75%;
+            @include mq("tablet-and-down"){
+                width: 100%;
+            }
+            ul{
+                align-items: center;
+                display: flex;
+                width: 100%;
+                border: 1px solid $primary;
+                li{
+                    // border-right: 1px solid $primary ;
+                    width: 20%;
+                    text-align: center;
+                    color: $basic-text-color;
+                    padding: 10px;
+                    @include mq("lap-desk-and-down"){
+                        padding: 10px 2px;
+                        font-size: 14px;
+                    }
+                    &:last-child{
+                        border: 0px;
+                    }
+                    a, p{
+                        color: var(--basic-text-color);
+                        @include mq("lap-desk-and-down"){
+                            font-size: 14px;
+                        }
+                    }
+                }
+                .product_col{
+                    @include mq("tablet-and-down"){
+                        width: 30%;
+                        padding: 10px 5px;
+                    }
+                }
+            }
+            .order_content{
+                border-top: 0px;
+                .discount_main_div{
+                    .discount_list_div{
+                        display: flex;
+                        align-items: center;
+                        svg{
+                            width: 16px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+            .order_total{
+                border: 1px solid $primary;
+                padding: 15px;
+                display: block;
+                margin-bottom:  15px;
+                &:last-child{
+                    margin-bottom: 0px;
+                }
+                li{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                    span{
+                        color: var(--basic-text-color);
+                        font-size: 14px;
+                        a{
+                            color: var(--basic-text-color);
+                            font-size: 14px;
+                        }
+                        dl{
+                            margin: 0;
+                        }
+                    }
+                    .discount_main_div{
+                        .discount_list_div{
+                            display: flex;
+                            align-items: center;
+                            svg{
+                                width: 16px;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .order_address_col{
+            width: 25%;
+                @include mq("tablet-and-down"){
+                    width: 100%;
+                }
+                .account_address_details{
+                    max-width: 250px;
+                    margin-left: auto;
+                    padding-left: 15px;
+                    margin-bottom: 30px;
+                    width: 100%;
+                    &:last-child{
+                        margin-bottom: 0px;
+                    }
+                    @include mq("tablet-and-down"){
+                        max-width: 100%;
+                        margin-top: 30px;
+                        padding-left: 0px;
+                    }
+                    h3{
+                        margin: 0 0 10px;
+                        font-weight: 500;
+                        font-size: 24px;
+                        line-height: 30px;
+                        color: var(--basic-text-color);
+                        @include mq("tablet-and-down"){
+                            font-size: 30px;
+                            line-height: 36px;
+                            margin-bottom: 30px;
+                        }
+                    }
+                    p, a{
+                        margin: 0;
+                        color: var(--basic-text-color);
+                        font-size: 16px;
+                    }
+                }
+        }
+    }
+    .order_info_mobile{
+        display: none;
+        @include mq("phone"){
+            display: block;
+        }
+        ul{
+            border: 1px solid $primary;
+            padding: 15px;
+            margin-bottom:  15px;
+            &:last-child{
+                margin-bottom: 0px;
+            }
+            li{
+                display: flex;
+                justify-content: space-between;
+                span{
+                    color: var(--basic-text-color);
+                    font-size: 14px;
+                    a{
+                        color: var(--basic-text-color);
+                        font-size: 14px;
+                    }
+                    dl{
+                        margin: 0;
+                    }
+                }
+                .discount_main_div{
+                    .discount_list_div{
+                        display: flex;
+                        align-items: center;
+                        svg{
+                            width: 16px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,154 @@
+<div id="mobile_drawer" class="mobile_nav_drawer">
+    <div class="category_drawer_logo d-flex align-items-center justify-content-center">
+        <a href="/" class="site-logo">
+            <div class="img">
+                {%- assign src_name = section.settings.header_logo -%}
+                {%- assign src_alt = section.settings.header_logo.alt -%}
+                {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid" -%}
+            </div>
+            {%- comment -%}
+            <!-- <img src="{{ 'Small_Header_Logo.png' | file_img_url: 'original' }}" alt="site logo" class="img-fluid"> -->
+            {%- endcomment -%}
+        </a>
+        <div class="mobile-back text-right">
+            <!-- <i class="fa fa-times" aria-hidden="true"></i> -->
+            <img src="{{ 'close-icon.svg' | file_url }}" alt="" class="drawer-close-icon">
+        </div>
+    </div>
+    <ul class="mobile_menu-ul">
+        {% if section.settings.nav_menu != '' %}
+        {% for l in linklists[section.settings.nav_menu].links %}       
+        {% assign submenu = l.title | handleize %}
+        {% if linklists[submenu].links.size > 0 %}
+        <li class="mobile_li has_child">
+            <div class="mobile-link-wrap">
+
+                <a href="{{ l.url }}" class="mobile_nav_title d-block" data-toggle="dropdown">
+                    <span>{{ l.title }}</span>
+                </a>
+                <span class="dropdown_arrow">
+                    <img src="{{ 'down-arrow.png' | file_img_url: 'original' }}" alt="" class="down-angle">
+                </span>
+            </div>
+
+
+            <ul class="child_ul" >
+                {% for l in linklists[submenu].links %}
+                {% assign submenu = l.title | handleize %}
+                {% if linklists[submenu].links.size > 0 %}
+                
+                <li class="child_li">
+                    <div class="mobile-menu-link-wrap">
+                        
+                        <a href="{{ l.url }}" class="sub-child-link d-block">
+                            <span class="menu-item-title">{{ l.title }}</span>
+                        </a>
+                            <span class="dropdown_arrow_child1" ></span>
+                    </div>
+                    <div class="mega_menu-link" style="display: none;">
+                        <ul class="child_menu third_menu" >
+                            {% for l in linklists[submenu].links %}
+                            <li class="lastmenu">
+                                <div class="mobile-link-wrap">      
+                                    <a tabindex="-1" href="{{ l.url }}" class="third_menu_link d-block">
+                                        <span class="child-third-title">{{ l.title }}</span>
+                                    </a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+                {% else %}
+                <li class="child_li lastmenu">
+                    <div class="mobile-link-wrap">
+                        <a tabindex="-1" href="{{ l.url }}" class="sub-child-link d-block">
+                            <span class="menu-item-title">{{ l.title }}</span>
+                        </a>
+                    </div>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+                
+            
+        </li>
+        {% else %}
+        <li class="mobile_li">
+            <div class="mobile-link-wrap">
+                <a tabindex="-1" href="{{ l.url }}" class="mobile_nav_title d-block">
+                    <span class="">{{ l.title }}</span>
+                </a>
+            </div>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </ul>
+
+    <div class="sm_menu_end">
+        <div class="sm-help-end">
+            <div class="help_main_info">
+                <div class="help-main-left">
+                    <div class="help-label">{{ section.settings.help_label1 }}</div>
+                    <div class="help-info">
+                        {{ section.settings.help_logo1 }}   {%- comment -%}{% include 'icon-mobile' %}{%- endcomment -%}  <span>{{ section.settings.help_info_1 }}</span> 
+                    </div>
+                </div>
+                <div class="help-main-right">
+                    <a href="tel:{{ section.settings.help_info_1 }}">
+                        
+                        {% include 'icon-help-call' %}
+                        
+                    </a>
+                </div>
+            </div>
+            <div class="help_main_info">
+                <div class="help-main-left">
+                    <div class="help-label">{{ section.settings.help_label2 }}</div>
+                    <div class="help-info">
+                        {{ section.settings.help_logo2 }}  {%- comment -%}{% include 'icon-help-mail' %}{%- endcomment -%} <span>{{ section.settings.help_info_2 }}</span> 
+                    </div>
+                </div>
+                <div class="help-main-right">
+                    <a href="mailto:{{ section.settings.help_info_2 }}">
+                        {% include 'icon-help-fullmail' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mobile-fix-option d-flex align-items-center">
+    <div class="col-12">
+        <div class="row align-items-center d-flex m-0">
+            <div class="w-25 d-flex justify-content-center">
+                <a href="/" class="d-flex align-items-center flex-column">
+                    <img src="{{ 'house-2.svg' | file_url }}" alt="Home" class="img-fluid ">
+                    <span class="text-center sm-bootm-text">Home</span>
+                </a>
+            </div>
+            <div class="w-25 d-flex justify-content-center">
+                <a class="d-flex align-items-center flex-column categories-btn">
+                    <img src="{{ 'category.svg' | file_url }}" alt="Category" class="img-fluid ">
+                    <span class="text-center sm-bootm-text">Categories</span>
+                </a>
+            </div>
+            <div class="w-25 d-flex justify-content-center ">
+                <a class="d-flex align-items-center flex-column sidecart_icon_mobile" >
+                    <img src="{{ 'sm-bottom-cart.svg' | file_url }}" alt="" class="img-fluid ">
+                    <span class="text-center sm-bootm-text">Bag</span>
+                </a>
+            </div>
+            <div class="w-25 d-flex justify-content-center ">
+                <a class=" d-flex align-items-center flex-column"  href="/account"  >
+                    <img src="{{ 'Account.svg' | file_url }}" alt="Account" class="img-fluid ">
+                    <span class="text-center sm-bootm-text"> Account </span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

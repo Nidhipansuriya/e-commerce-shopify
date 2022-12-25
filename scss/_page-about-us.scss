@@ -1,0 +1,212 @@
+// .about-section-title{
+//     background-image: url('https://cdn.shopify.com/s/files/1/0588/6528/7346/files/abt-bg-1.png?v=1628967236');
+//     background-repeat: no-repeat;
+//     background-position: 0 0;
+//     background-size: cover;
+//     height: 500px;  
+//     @include flexbox();
+//     text-align: center;
+//     align-content: center;
+//     @include justify-content(center);
+//     @include align-items(center);
+//     @include mq("large-desk-and-down"){
+//         height: 410px;
+//     }
+//     @include mq("large-desk-and-up"){
+//         height: 410px;
+//     }
+//     @include mq("desk-and-up"){
+//         height: 360px;
+//     }
+//     @include mq("lap"){
+//         height: 330px;
+//     }
+//     @include mq("phone-and-tablet"){
+//         height: 260px;
+//     }
+//     @include mq("tablet-portrait"){
+//         height: 200px;
+//     }
+//     @include mq("phone"){
+//         height: 200px;
+//     }
+//     .container{
+//         .page-title{
+//             font-family: $heading-font;
+//             font-weight: 500;
+//             font-size: 46px;
+//             line-height: 56px;
+//             letter-spacing: 0.08em;
+//             text-transform: uppercase;
+//             color: $color--white;
+//             @include mq("phone"){
+//                 font-size: 20px;
+//             }
+//         }
+//     }
+// }
+// .about-section-content{
+//     .secondary-content-wrap{
+//         margin: 30px 0;
+//         .secondary-content-left {
+//             border-right: 1px dashed #CCCCCC;
+//             @include mq("phone-and-tablet"){
+//                 border: none;
+//             }
+//         }
+//     }
+//     .primary-title{
+//         font-family: $heading-font;
+//         font-weight: 500;
+//         font-size: 30px;
+//         line-height: 37px;
+//         letter-spacing: 0.08em;
+//         text-transform: uppercase;
+//         color: $color--black;
+//         margin: 1rem 0;
+//         @include mq("phone-and-tablet"){
+//             font-size: 26px;
+//         }
+//         @include mq("phone"){
+//             font-size: 22px;
+//         }
+//         @include mq("phone-portrait"){
+//             font-size: 18px;
+//         }
+//     }
+//     .primary-content ,.primary-main-content{
+//         font-family: $base-font;
+//         font-size: 18px;
+//         line-height: 30px;
+//         letter-spacing: 0.05em;
+//         @include mq("phone-and-tablet"){
+//             font-size: 16px;
+//         }
+//         @include mq("phone-portrait"){
+//             font-size: 14px;
+//             line-height: 26px;
+//         }
+//     }
+//     .primary-main-content {
+//         padding-left: 20px;
+//         border-left: 5px solid #939282;
+//     }
+    
+//     .about-block1{
+//         .custom-container{
+//             .row-padding {
+//                 padding: 50px 0;
+//                 .about-block1{
+//                     margin: 2rem 0;
+//                 }
+//             }   
+//         }
+//     }
+//     .about-block2{
+//         background-image: url('https://cdn.shopify.com/s/files/1/0588/6528/7346/files/abt-bg-2.png?v=1628968969');
+//         background-repeat: no-repeat;
+//         background-position: 0 0;
+//         height: 823px;
+//         padding: 60px;
+//         @include mq("phone-and-tablet"){
+//             height: 100%;
+//             background-size: cover;
+//         }
+//         @include mq("phone-portrait"){
+//             padding: 20px;
+//         } 
+//         @include mq("small_phone"){
+//             padding: 5px;
+//         } 
+//         .custom-container{
+//             .about-box{
+//                 width: 658px;
+//                 height: auto;
+//                 padding: 50px;
+//                 background-color: $color--white;
+//                 @include mq("phone"){
+//                     width: 100%;
+//                     padding: 20px;
+//                 }
+//                 @include mq("phone-portrait"){
+//                     padding: 10px;
+//                 }   
+//             }
+//         }
+//     }
+// }
+// .page-content-wrap{
+//     margin: 80px 0;
+//     padding: 0px 20px;
+//     @include mq("phone-portrait"){
+//         margin: 20px 0;
+//         padding: 0px 5px;
+//     }
+//     ul{
+//         list-style: unset !important;
+//     }
+//     .page-content{
+//         font-family: 'charter';
+//         font-style: normal;
+//         font-weight: 400;
+//         font-size: 21px;
+//         line-height: 32px;
+//         letter-spacing: -0.003em;
+//         @include mq("phone-portrait"){
+//             font-size: 18px;
+//             line-height: 28px;
+//         }
+//     }
+// }
+// .return-wrap {
+//     padding: 80px 0;
+//     @include mq("phone-portrait"){
+//         padding: 40px 0;
+//     }
+//     .section-title{
+//         font-family: $heading-font;
+//         font-weight: 500;
+//         font-size: 30px;
+//         line-height: 46px;
+//         text-transform: uppercase;
+//         color: $color--black;
+//         @include mq("phone"){
+//             font-size: 20px;
+//         }
+//     }
+//     .main_return_product_section{
+//         text-align: center;
+//         .return_product_details{
+//             .form-input-field {
+//                 width: 60%;
+//                 margin: 0 auto;
+//                 margin-bottom: 20px;
+//                 @include mq("phone-portrait"){
+//                     width: 100%;
+//                 }
+//                 input{
+//                     height: 40px;
+//                     border-radius: 2px;
+//                     width: 100%;
+//                     border: 1px solid #6E725B;
+//                     padding: 10px 15px;
+//                 }
+//                 label {
+//                     margin-left: 0;
+//                     display: block;
+//                     text-align: left;
+//                     margin-bottom: 5px;
+//                 }
+//             }
+//             .get_order{
+//                 margin: 20px 0;
+//                 border: 1px solid #6E725B;
+//                 background: #6E725B;
+//                 color: #fff;
+//                 cursor: pointer;
+//                 padding: 12px 30px;
+//                 font-size: 16px;
+//             }
+//         }
+//     }
+// }

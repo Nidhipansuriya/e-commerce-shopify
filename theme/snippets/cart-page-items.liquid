@@ -1,0 +1,181 @@
+{% if cart.item_count > 0 %}
+<div class="pb-3 text- section-heading-wrap">
+  <h1 class="section-title">Selected Items</h1>
+</div>
+<div class="cart_page_form">
+    <div class="row">
+        <div class="col-12 col-lg-12 cart_items_main" data-item-count="{{ cart.item_count }}">
+          <form method="post" novalidate class="cart cart_form">
+          <ul class="cart-items-ul d-flex">
+            <li class="first">Product</li>
+            <li class="second">Qty</li>
+            <li class="third">Price</li>
+            <li class="forth">Total</li>
+          </ul>  
+          <div class="table cart_items">
+            <div class="cart_form_wrapper_fixed"></div>
+              {% for item in cart.items %}
+              {% assign bundlePrice = 0 %}
+              {% assign bundleCompPrice = 0 %}
+              {% assign isBundle = false %}
+              {% assign b_id = 0 %}
+              {% for prop in item.properties %}
+                  {% if prop.first contains '_bid' %}
+                      {% assign isBundle = true %}
+                      {% assign b_id = prop.last %}
+                  {% endif %}
+                  {% if prop.first contains '_type' %}
+                      {% assign type = prop.last %}
+                  {% endif %}
+              {% endfor %}
+              {% assign mainProdPrice = 0 %}
+              {% assign mainProdCompPrice = 0 %}
+              {% if type == 'master' %}
+                  {% assign mainProdPrice = item.line_price %}
+                  {% assign mainProdCompPrice = item.variant.compare_at_price | times: item.quantity %}
+                  {% assign bundlePrice = bundlePrice | plus: mainProdPrice %}
+                  {% assign bundleCompPrice = bundleCompPrice | plus: mainProdCompPrice %}
+                  {% for itemIn in cart.items %}
+                      {% assign childPrice = 0 %}
+                      {% assign childCompPrice = 0 %}
+                      {% for prop in itemIn.properties %}
+                          {% if prop.first contains '_type' and prop.last contains 'child' and itemIn.properties['_bid'] == b_id %}
+                              {% assign childPrice = itemIn.line_price %}
+                              {% assign childCompPrice = itemIn.variant.compare_at_price | times: itemIn.quantity %}
+                              {% assign bundlePrice = bundlePrice | plus: childPrice %}
+                              {% assign bundleCompPrice = bundleCompPrice | plus: childCompPrice %}
+                          {% endif %}
+                      {% endfor %}
+                  {% endfor %}
+              {% endif %}
+              <div class="items cart-items{% if isBundle %} bundle-item{% endif %}{% if type == 'child' %} hide{% endif %}" data-original-price="{{item.original_line_price}}" data-type="{{type}}" data-bid="{{b_id}}" data-line-price="{{item.line_price}}" data-id="{{forloop.index}}" data-quantity="{{item.quantity}}"  data-variant="{{item.variant_id}}" data-product="{{item.product.handle}}" data-title="{{item.product.title}}" >
+                <div class="d-flex align-items-center d-flex-new">
+                <div class="cart-loader">
+                  <!-- <img class="img" src="{{ 'button-loading.svg' | file_url }}" alt=""> -->
+                  {% render 'loader-gif' %}
+                </div>
+                <div class="column_product_info">
+                  <div class="d-flex align-items-center">
+                        <div class="cart_item_image">
+                            <div class="image cart_item">
+                                <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                                    {%- assign src_name = item -%}
+                                    {%- assign src_alt = item.product.title -%}
+                                    {%- render 'srcset' with src_name:src_name,src_alt:src_alt -%}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cart_item_info">
+                            <div class="name cart_item ">
+                              <a href="{{ item.url }}">
+                                  {{ item.product.title }}
+                              </a>  
+                              {%- comment -%} {% if item.sku != blank %}
+                                <h3 class="item_sku">{{ item.sku }}</h3>
+                              {% endif %} {%- endcomment -%}
+                              <!-- {% unless item.product.has_only_default_variant %}
+                                  {% for option in item.options_with_values %}
+                                    <span class="cart_item_options">{{ option.name }}: {{ option.value }}</span>
+                                  {% endfor %}
+                                  <span class="cart_item_options">Size: {{ item.variant.option1 }}</span>
+                              {% endunless %} -->
+                            </div>
+                            <div class="remove-wrapper">
+                              <div class="mobile_cart_item_price">
+                                <span class="item_original_price mr-2">
+                                  {{ item.price | money_with_currency }}
+                                </span>
+                                {%- comment -%} {% assign compare = item.variant.compare_at_price | times: item.quantity %}
+                                {% if isBundle %}
+                                  <span class="price{% if item.original_line_price != item.line_price or bundleCompPrice > bundlePrice %} red{% endif %}">
+                                    {{ bundlePrice | money_with_currency }}
+                                  </span>
+                                {% else %}
+                                  <span class="price{% if item.original_line_price != item.line_price or compare > item.line_price %} red{% endif %}">
+                                    {{ item.line_price | money_with_currency }}
+                                  </span>
+                                {% endif %} {%- endcomment -%}
+                              </div>
+                              {% if item.line_level_discount_allocations.size > 0 %}
+                                  {% for discount_allocation in item.line_level_discount_allocations %}
+                                      <span class="discount-msg">{{discount_allocation.discount_application.title}}</span>
+                                  {% endfor %}
+                              {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                  </div> 
+                <div class="column_quantity">
+                  {% unless isBundle %}
+                    <div class="spinner clearfix">
+                      <div class="spinner-min">{% include 'qty-minus' %}</div>
+                      <input type="number"  id="updates_{{ item.key }}"
+                          class="product_qty" value="{{ item.quantity }}" min="0"
+                          data-id="{{ item.key }}" pattern="[0-9]*" inputmode="numeric" readonly>
+                      <div class="spinner-plus">{% include 'qty-plus' %}</div>
+                    </div>
+                  {% endunless %}
+                </div>
+                <div class="column_price_sum">
+                  <span class="price">
+                    {{ item.price | money_with_currency }}
+                </span>
+                </div>
+                <div class="column_total_sum">
+                  {% assign compare = item.variant.compare_at_price | times: item.quantity %}
+                  <span class="price">
+                      <span class="original-price">
+                        <span class="money">
+                        {% if isBundle %}
+                          {{ bundlePrice | money_with_currency }}
+                        {% else %}
+                          {{ item.line_price | money_with_currency }}
+                        {% endif %}
+                        </span> 
+                      </span>
+                  </span>
+
+                </div>
+                <p class="remove">
+                  <a class="cart_item__remove" item-id="{{item.id}}" href="#" >
+                    <span class="remove-icon">
+                      {% render 'icon-remove' %}
+                    </span>  
+                  </a>
+                </p>
+              </div>
+              </div>
+              {% endfor %}
+
+          </div>
+        </form>
+        </div>
+        <div class="row d-flex justify-content-start">
+
+          <div class="col-12 cart_sidebar">
+            <div class="cart_footer">
+                <p class="cart_total cart_total_price total-price-wrapper" data-price="{{ cart.total_price | money }}">
+                  <span>Subtotal</span>
+                    <span class="wrap">
+                      <span class="money">{{ cart.total_price | money  }}</span>
+                      <span class="subtotal-total">{{ cart.total_price | money }}</span>
+                    </span>
+                  <div class="docapp-cart-with-coupon-summary"></div>
+                </p>
+                <p>
+                  <a href="/checkout" class="btn checkout_btn d-flex align-items-center justify-content-center">Secure Checkout</a>
+                </p>
+              </div>
+            </div>
+        </div>
+        </div>
+  </div>
+  {% else %}
+  <div class="cart_empty text-center">
+    <span>Your cart is currently empty.</span>
+    <p class="alert alert-warning"><a href="/collections">Continue shopping</a></p>
+  </div>
+  {% endif %}
+<div class="count hide">
+  {{ cart.item_count }}
+</div>

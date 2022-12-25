@@ -1,0 +1,326 @@
+.addresses [aria-expanded="false"] ~ div[id] {
+    display: none;
+}
+  
+.addresses [aria-expanded="true"] ~ div[id] {
+    display: block;
+}
+
+input[type=checkbox] {
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: auto;
+    margin-right: 0.5rem;
+    position: inherit;
+    opacity: 1;
+}
+
+.address_button{
+    width: 100%;
+    text-align: center;
+    .address_add_button{
+        cursor: pointer;
+        max-width: 300px;
+        width: 100%;
+        margin: 20px auto;
+        background: $button-bg-color;
+        border: 1px solid $color--white;
+        padding: 15px 80px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        border-radius: 3px;
+        color: $color--white;
+        text-decoration: none;
+        @include mq('phone'){
+            font-size: 16px;
+        }
+    }
+    .address_clear_btn{
+        cursor: pointer;
+        max-width: 300px;
+        width: 100%;
+        margin: 0px auto;
+        background: transparent;
+        padding: 15px 80px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        border: 1px solid $color-grey;
+        border-radius: 3px;
+        color: $color-grey;
+        text-decoration: none;
+        @include mq('phone'){
+            font-size: 16px;
+        }
+    }
+}
+
+
+.customer_address{
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0px 15px;
+    .account_page_title{
+        text-align: left;
+        font-family: $heading-font;
+        font-size: 40px;
+        line-height: 39px;
+        color: $heading-color;
+        margin: 20px 0px !important;
+        @include mq('phone'){
+            font-size: 30px;
+        }
+    }
+    .normal_text{
+        font-family: $base-font;
+        color: $basic-text-color;
+        display: block;
+        text-align: center;
+        font-size: 15px;
+        margin-bottom: 10px !important;
+    }
+    .add_addresses{
+        text-align: end;
+        margin-bottom: 20px;
+        .add_address_btn{
+            cursor: pointer;
+            background-color: $button-bg-color;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            border: none;
+        }
+        #AddAddress{
+            text-align: left !important;
+            #AddressNewHeading{
+                text-align: left;
+                font-size: 25px;
+                line-height: 39px;
+                color: $basic-text-color;
+                margin: 0 0 50px !important;
+                border-bottom: 1px solid $color-grey;
+                padding-bottom: 20px;
+                @include mq('phone'){
+                    font-size: 20px;
+                    line-height: 34px;
+                    padding-bottom: 10px;
+                    margin: 0 0 25px !important;
+                }
+            }
+            form{
+                display: flex;
+                flex-flow: row wrap;
+                .addresses_input_group{
+                    margin-bottom: 35px;
+                    padding: 0px 7.5px;
+                    @include mq('phone'){
+                        margin-bottom: 20px;
+                    }
+                    @include mq('phone-portrait'){
+                        padding: 0px 0px;
+                    }
+                    &.input_width{
+                        width: 33.33%;
+                        @include mq('phone'){
+                            width: 100%;
+                        }
+                    }
+                    label{
+                        font-family: $base-font;
+                        color: $color--black;
+                        font-weight: 400;
+                        font-size: 20px;
+                        line-height: 22px;
+                        width: 100%;
+                        display: block;
+                        margin-bottom: 15px;
+                        @include mq('phone'){
+                            font-size: 17px;
+                            margin-bottom: 10px;
+                        }
+                        @include mq('phone-portrait'){
+                            font-size: 16px;
+                            margin-bottom: 8px;
+                        }
+                    }
+                    input{
+                        font-family: $base-font;
+                        background-color: transparent;
+                        font-weight: 400;
+                        padding: 14.5px 15px;
+                        font-size: 16px;
+                        width: 100%;
+                        line-height: 17px;
+                        border: 1px solid $color-grey;
+                        border-radius: 3px;
+                        color: $color--black;
+                    }
+                    #AddressCountryNew, #AddressProvinceNew{
+                        font-family: $base-font;
+                        height: 46px;
+                        width: 100%;
+                        font-weight: 400;
+                        font-size: 16px;
+                        color: $color--black;
+                        border: 1px solid $color-grey!important;
+                        border-radius: 3px!important;
+                        padding: 10px 15px;
+                        background: $color--white;
+                    }
+                }
+                .address_checkBox{
+                    width: 100%;
+                    padding: 0 15px;
+                    display: flex;
+                    align-items: center;
+                    input{
+                        border: 1px solid #000;
+                        margin-top: 0!important;
+                        margin-bottom: 0!important;
+                    }
+                    label{
+                        padding-left: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .address_details_wrap{
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 15px;
+        position: relative;
+        @include mq('phone-portrait'){
+            padding: 0px 0px;
+        }
+        .totla_address{
+            display: flex;
+            flex-wrap: wrap;
+            .detail_address{
+                margin-top: 0;
+                width: 100%;
+                max-width: 50%;
+                padding: 0 15px;
+                margin-bottom: 30px;
+                @include mq('tablet-and-down'){
+                    max-width: 100%;
+                }
+                @include mq('phone-portrait'){
+                    padding: 0px 0px;
+                }
+                .details_address_back{
+                    text-align: center;
+                    padding: 20px 20px;
+                    border-radius: 5px;
+                    background-color: #fbfbfb;
+                    @include mq('phone-portrait'){
+                        padding: 20px 7.5px;
+                    }
+                    .account_default_title{
+                        text-align: left;
+                        font-family: $heading-font;
+                        font-size: 30px;
+                        line-height: 29px;
+                        color: $heading-color;
+                        margin-bottom: 10px !important;
+                        @include mq('phone'){
+                            font-size: 25px;
+                        }
+                    }
+                    p{
+                        margin-bottom: 16px;
+                        font-size: 18px;
+                        line-height: 28px;
+                        color: $color--black;
+                        font-family: $base-font;
+                        text-align: center;
+                        @include mq('phone-portrait'){
+                            font-size: 16px;
+                        }
+                    }
+                    .add_address_btn{
+                        border-radius: 8px;
+                        padding: 0;
+                        width: 50px;
+                        height: 50px;
+                        background-color: $button-bg-color;
+                        border: none;
+                        cursor: pointer;
+                        svg{
+                            width: 20px;
+                            height: 20px;
+                            fill: $color--white;
+                        }
+                    }
+                    .address_popup{
+                        .edit_address{
+                            font-family: $base-font;
+                            color: $color--black;
+                            font-size: 22px;
+                            line-height: 25px;
+                            text-align: left;
+                            margin: 30px 0px;
+                        }
+                        .addresses_input_group{
+                            text-align: left;
+                            margin-bottom: 35px;
+                            padding: 0 7.5px;
+                            @include mq('phone'){
+                                margin-bottom: 20px;
+                            }
+                            @include mq('phone-portrait'){
+                                padding: 0px 0px;
+                            }
+                            label{
+                                font-family: $base-font;
+                                color: $color--black;
+                                font-weight: 400;
+                                font-size: 20px;
+                                line-height: 22px;
+                                width: 100%;
+                                display: block;
+                                margin-bottom: 15px;
+                                @include mq('phone'){
+                                    font-size: 17px;
+                                    margin-bottom: 10px;
+                                }
+                                @include mq('phone-portrait'){
+                                    font-size: 16px;
+                                    margin-bottom: 8px;
+                                }
+                            }
+                            input{
+                                font-family: $base-font;
+                                background-color: transparent;
+                                font-weight: 400;
+                                padding: 14.5px 15px;
+                                font-size: 16px;
+                                width: 100%;
+                                line-height: 17px;
+                                border: 1px solid $color-grey;
+                                border-radius: 3px;
+                                color: $color--black;
+                            }
+                            .address_country, .add_province{
+                                height: 46px;
+                                width: 100%;
+                                font-weight: 400;
+                                font-size: 16px;
+                                color: $color--black;
+                                border: 1px solid $color-grey!important;
+                                border-radius: 3px!important;
+                                padding: 10px 15px;
+                                background: $color--white;
+                            }
+                        }
+                        .address_checkBox{
+                            padding: 0 7.5px;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

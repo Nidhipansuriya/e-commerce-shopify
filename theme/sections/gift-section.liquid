@@ -1,0 +1,134 @@
+<div class="gift-wrap-section custom-container">
+    <div class="header-section text-center">
+        <h3 class="title-wrap">{{ section.settings.title }}</h3>
+        <!-- <img src="{{ 'section-underline.png' | file_img_url: 'original' }}" alt="" class="img-fluid section-underline"> -->
+    </div>
+    {% render 'gift-tab-header' %}
+    <div class="gift-content step-1 active" data-step="1">
+        {% render 'gift-step-1' %}
+    </div>
+    <div class="gift-content step-2" data-step="2">
+        {% render 'gift-step-2' %}
+    </div>
+    <div class="gift-content step-3" data-step="3">
+        {% render 'gift-step-3' %}
+    </div>
+    <div class="gift-content step-4" data-step="4">
+        {% render 'gift-step-4' %}
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Gift Section",
+    "settings": [
+    {
+        "type": "header",
+        "content": "Title section"
+    },
+    {
+        "type": "text",
+        "id": "title",
+        "label":"Title",
+        "default":"Style your own box"
+    },
+    {
+        "type": "header",
+        "content": "Step 1"
+    },
+    {
+        "type": "text",
+        "id": "step_1_title",
+        "label":"Title",
+        "default":"Choose Your Box Color"
+    },
+    {
+        "type": "text",
+        "id": "step_1_desc",
+        "label":"Description"
+    },
+    {
+        "type":"product",
+        "id":"step_1_product_1",
+        "label":"First product"
+    },
+    {
+        "type":"product",
+        "id":"step_1_product_2",
+        "label":"Second product"
+    },
+    {
+        "type": "header",
+        "content": "Step 2"
+    },
+    {
+        "type": "text",
+        "id": "step_2_title",
+        "label":"Title",
+        "default":"Choose Your Items"
+    },
+    {
+        "type": "text",
+        "id": "step_2_desc",
+        "label":"Description"
+    },
+    {
+        "type":"collection",
+        "id":"step_2_collection",
+        "label":"Collection"
+    },
+    {
+        "type": "header",
+        "content": "Step 3"
+    },
+    {
+        "type": "text",
+        "id": "step_3_title",
+        "label":"Title",
+        "default":"Choose Your Items"
+    },
+    {
+        "type": "text",
+        "id": "step_3_desc",
+        "label":"Description"
+    },
+    {
+        "type": "header",
+        "content": "Step 4"
+    },
+    {
+        "type": "text",
+        "id": "step_4_title",
+        "label":"Title",
+        "default":"Choose Your Items"
+    },
+    {
+        "type": "text",
+        "id": "step_4_desc",
+        "label":"Description"
+    }
+    ],
+    "blocks":[
+    {
+        "name":"Gift card",
+        "type":"card",
+        "settings":[
+            {
+                "type":"text",
+                "id":"title",
+                "label":"Title"
+            },
+            {
+                "type":"text",
+                "id":"id",
+                "label":"Id"
+            },
+            {
+                "type":"image_picker",
+                "id":"image",
+                "label":"Image"
+            }
+        ]
+    }
+    ]
+}
+{% endschema %} 

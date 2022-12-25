@@ -1,0 +1,13 @@
+{% layout none %}
+{% for product in collection.products %}
+    {% capture collection_data %}
+    {{collection_data}}
+    {% if collection_data != blank %},{% endif %}
+        {% if product.available %}
+            {{ product | json }}  
+        {% endif %} 
+    {% endcapture %}
+{% endfor %}
+[
+    {{collection_data}}
+]

@@ -1,0 +1,14 @@
+<div class="blog-article-card">
+    <a href="{{ article.url }}" class="blog-article-content">
+        <div class="img">    
+            {%- assign src_name = article.image.src -%}
+            {%- assign src_alt = article.image.src.alt -%}
+            {%- render 'srcset' with src_name:src_name,src_alt:src_alt, src_class:"img-fluid web-banner" -%}
+        </div>
+
+        <div class="blog-bottom">
+            <span class="blog-article-date">{{- article.published_at | time_tag: format: 'month_year' -}}</span>
+            <div class="blog-article-title">{{ article.title | escape }}</div>
+        </div>
+    </a>
+</div>
